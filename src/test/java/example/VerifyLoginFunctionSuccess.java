@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import page.LoginPage;
 import utils.ConfigReader;
 
-public class VerifyLoginFunction {
+public class VerifyLoginFunctionSuccess {
     @BeforeMethod
     public void setUp() {
         driver = new ChromeDriver();
