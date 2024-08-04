@@ -18,6 +18,10 @@ public class EditCustomerInformationPage {
     By showAllCustomersBreadcrumbButtonSelector = By.xpath("//ol/li/a[@href='listCustomer.xhtml']");
     By homeBreadcrumbButtonSelector = By.xpath("//i[@class='fa fa-home']");
 
+    public EditCustomerInformationPage(WebDriver driver) {
+        this.driver = driver;
+    }
+
     @Step ("Edit name")
     public void nameEditInput(String name) {
         driver.findElement(nameEditInputSelector).clear();

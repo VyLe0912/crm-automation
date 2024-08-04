@@ -30,6 +30,10 @@ public class HomePage {
     By ordersMenuButtonSelector = By.xpath("//span[text() = 'Orders']");
     By openShowAllOrdersPageSelector = By.xpath("//a[text() = 'Show All Orders']");
 
+    public HomePage(WebDriver driver) {
+        this.driver = driver;
+    }
+
     @Step ("Click [Menu/ Customer] button on side bar")
     public void clickCustomerMenuButton() {
         driver.findElement(customerMenuButtonSelector).click();
