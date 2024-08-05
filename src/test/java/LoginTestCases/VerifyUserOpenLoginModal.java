@@ -1,4 +1,4 @@
-package example;
+package LoginTestCases;
 
 import io.qameta.allure.Allure;
 import org.openqa.selenium.By;
@@ -19,6 +19,7 @@ public class VerifyUserOpenLoginModal {
         driver = new ChromeDriver();
         configReader = new ConfigReader();
         loginPage = new LoginPage(driver);
+        softAssert = new SoftAssert();
     }
 
     @Test
@@ -39,4 +40,5 @@ public class VerifyUserOpenLoginModal {
     WebDriver driver;
     ConfigReader configReader;
     LoginPage loginPage;
+    SoftAssert softAssert;
 }
