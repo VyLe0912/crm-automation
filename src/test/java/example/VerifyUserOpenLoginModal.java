@@ -1,5 +1,6 @@
 package example;
 
+import io.qameta.allure.Allure;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,9 +23,12 @@ public class VerifyUserOpenLoginModal {
 
     @Test
     public void verifyLoginFunction() {
+        Allure.step("Open CRM website");
         driver.get(configReader.getUrl());
         String labelLogin = driver.findElement(labelLoginSelector).getText();
         SoftAssert softAssert = new SoftAssert();
+
+        //Kiểm tra hiển thị trang Đăng Nhập
         softAssert.assertEquals(labelLogin, "Login", "Access web failed");
     }
 
