@@ -25,6 +25,13 @@ public class VerifySuccessfulAddACustomerWhenUserInputValidDataForAllFields {
 
     @BeforeMethod
     public void setUp() {
+
+        SoftAssert softAssert = new SoftAssert();
+
+        String name = faker.name().name();
+        String email = faker.internet().emailAddress();
+        String phone = faker.phoneNumber().phoneNumber();
+        String address = faker.address().fullAddress();
         driver = new ChromeDriver();
         configReader = new ConfigReader();
         loginPage = new LoginPage(driver);
@@ -36,14 +43,7 @@ public class VerifySuccessfulAddACustomerWhenUserInputValidDataForAllFields {
     }
 
     @Test
-    public void test() {
-
-        SoftAssert softAssert = new SoftAssert();
-
-        String name = faker.name().name();
-        String email = faker.internet().emailAddress();
-        String phone = faker.phoneNumber().phoneNumber();
-        String address = faker.address().fullAddress();
+    public void testSuccess() {
 
         Allure.step("Open CRM website");
         driver.get(configReader.getUrl());
@@ -57,13 +57,13 @@ public class VerifySuccessfulAddACustomerWhenUserInputValidDataForAllFields {
         showAllCustomersPage.clickNewCustomerButton();
         showAllCustomersPage.verifyCreateCustomerPageIsDisplayed();
 
-        softAssert.assertTrue(createCustomerPage.createCustomerPageIsDisplayed(), "[Create customer] page is not displayed");
+        softAssert.assertTrue(createCustomerPage.isCreateCustomerPageDisplayed(), "[Create customer] page is not displayed");
         Allure.step("Input valid data for all fields");
-        createCustomerPage.createACustomer(name, email, phone, address);
+        createCustomerPage.createCustomer(name, email, phone, address);
 
         Allure.step("Click [Create a customer] button");
         createCustomerPage.clickCreateACustomerButton();
-        createCustomerPage.waitCloseCreateCustomerForm();
+        createCustomerPage.waitForCustomerInformationPageIsDisplayed();
 
         softAssert.assertTrue(showAllCustomersPage.showAllCustomerPageIsDisplayed(), "[Show all customers] page is not displayed");
 

@@ -55,19 +55,19 @@ public class VerifyCannotSuccessCreateACustomerWhenLeaveBlankAllFields {
         createCustomerPage.clickCreateACustomerButton();
 
 
-        softAssert.assertTrue(createCustomerPage.createCustomerPageIsDisplayed(), "Create success");
+        softAssert.assertTrue(createCustomerPage.isCreateCustomerPageDisplayed(), "Create success");
 
         // kiem tra thong bao hien thi o truong [Name]
-        softAssert.assertEquals(createCustomerPage.nameFieldTextMessage(), "Please enter your name", "No message in name field");
+        softAssert.assertEquals(createCustomerPage.getErrorForNameField(), "Please enter your name", "No message in name field");
 
         // kiem tra thong bao hien thi o truong [Email]
-        softAssert.assertEquals(createCustomerPage.emailFieldTextMessage(), "Please enter your email", "No message in email field");
+        softAssert.assertEquals(createCustomerPage.getErrorForEmailField(), "Please enter your email", "No message in email field");
 
         // kiem tra thong bao hien thi o truong [Phone]
-        softAssert.assertEquals(createCustomerPage.phoneFieldTextMessage(), "Please enter your phone", "No message in phone field");
+        softAssert.assertEquals(createCustomerPage.getErrorForPhoneField(), "Please enter your phone", "No message in phone field");
 
         // kiem tra thong bao hien thi o truong [Address]
-        softAssert.assertEquals(createCustomerPage.addressFieldTextMessagne(), "Please enter your address", "No message in address field");
+        softAssert.assertEquals(createCustomerPage.getErrorForAddressField(), "Please enter your address", "No message in address field");
 
         softAssert.assertAll();
 

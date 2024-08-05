@@ -58,18 +58,18 @@ public class CreateCustomerPage {
         driver.findElement(cancelButtonSelector).click();
     }
 
-    public void waitCloseCreateCustomerForm() {
+    public void waitForCustomerInformationPageIsDisplayed() {
         Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(d->d.findElement(newCustomerButtonSelector).isDisplayed());
     }
 
-    public boolean createCustomerPageIsDisplayed() {
+    public boolean isCreateCustomerPageDisplayed() {
         Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(d->d.findElement(openCreateCustomerPage).isDisplayed());
     }
 
     @Step ("Create a customer")
-    public void createACustomer (String name, String email, String phone, String address) {
+    public void createCustomer(String name, String email, String phone, String address) {
         nameInput(name);
         emailInput(email);
         phoneInput(phone);
@@ -96,19 +96,19 @@ public class CreateCustomerPage {
         driver.findElement(addressInputSelector).clear();
     }
 
-    public String nameFieldTextMessage() {
+    public String getErrorForNameField() {
         return driver.findElement(nameFieldTextMessageSelector).getText();
     }
 
-    public String emailFieldTextMessage() {
+    public String getErrorForEmailField() {
         return driver.findElement(emailFieldTextMessageSelector).getText();
     }
 
-    public String phoneFieldTextMessage() {
+    public String getErrorForPhoneField() {
         return driver.findElement(phoneFieldTextMessageSelector).getText();
     }
 
-    public String addressFieldTextMessagne() {
+    public String getErrorForAddressField() {
         return driver.findElement(addressFieldTextMessageSelector).getText();
     }
 }
