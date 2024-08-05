@@ -15,6 +15,7 @@ public class VerifyLoginFailedWhenOneFieldIsBlank {
         driver = new ChromeDriver();
         configReader = new ConfigReader();
         loginPage = new LoginPage(driver);
+        softAssert = new SoftAssert();
     }
 
     @Test
@@ -23,12 +24,11 @@ public class VerifyLoginFailedWhenOneFieldIsBlank {
         loginPage.login("", "VyLe123!");
         loginPage.waitForTextAppear();
 
-        SoftAssert softAssert = new SoftAssert();
-
         //Kiểm tra thông báo trường Email hiển thị
         softAssert.assertEquals(loginPage.emailTextMessage(), "Please enter your email", "Email field error");
 
         driver.navigate().refresh();
+
         loginPage.login("abc@gmail.com","");
         loginPage.waitForTextAppear();
 
@@ -46,4 +46,5 @@ public class VerifyLoginFailedWhenOneFieldIsBlank {
     WebDriver driver;
     ConfigReader configReader;
     LoginPage loginPage;
+    SoftAssert softAssert;
 }

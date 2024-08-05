@@ -1,4 +1,4 @@
-package example;
+package LoginTestCases;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,6 +15,7 @@ public class VerifyLoginFailedWhenAllFieldsAreBlank {
         driver = new ChromeDriver();
         configReader = new ConfigReader();
         loginPage = new LoginPage(driver);
+        softAssert = new SoftAssert();
     }
 
     @Test
@@ -22,7 +23,6 @@ public class VerifyLoginFailedWhenAllFieldsAreBlank {
         driver.get(configReader.getUrl());
         loginPage.login("","");
         loginPage.waitForTextAppear();
-        SoftAssert softAssert = new SoftAssert();
 
         //Kiểm tra thông báo trường Email hiển thị
         softAssert.assertEquals(loginPage.emailTextMessage(), "Please enter your email", "Email field error");
@@ -41,4 +41,5 @@ public class VerifyLoginFailedWhenAllFieldsAreBlank {
     WebDriver driver;
     ConfigReader configReader;
     LoginPage loginPage;
+    SoftAssert softAssert;
 }
