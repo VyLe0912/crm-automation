@@ -27,6 +27,7 @@ public class VerifyUserOpenLoginModal {
         Allure.step("Open CRM website");
         driver.get(configReader.getUrl());
         String labelLogin = driver.findElement(labelLoginSelector).getText();
+        System.out.println("Vao duoc day");
 
         //Kiểm tra hiển thị trang Đăng Nhập
         softAssert.assertEquals(labelLogin, "Login", "Access web failed");
