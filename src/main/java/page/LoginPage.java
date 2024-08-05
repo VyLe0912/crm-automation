@@ -41,7 +41,7 @@ public class LoginPage {
     }
 
     public String passTextMessage() {
-        return driver.findElement(passTextMessage()).getText();
+        return driver.findElement(textPassSelector).getText();
     }
 
     public void login(String email, String password) {
