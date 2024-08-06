@@ -16,13 +16,13 @@ public class CreateCustomerPage {
     By phoneInputSelector = By.id("j_idt70:phone");
     By addressInputSelector = By.id("j_idt70:address");
     By createACustomerButtonSelector = By.name("j_idt70:j_idt80");
-    By cancelButtonSelector = By.xpath("//a[@href='/CRMweb/faces/listCustomer.xhtml']");
+    By cancelButtonSelector = By.xpath("//a[text()='Cancel']");
     By newCustomerButtonSelector = By.xpath("//a[text()='New Customer']");
     By openCreateCustomerPage = By.xpath("//h5[text()='Add Customer']");
-    By nameFieldTextMessageSelector = By.xpath("(//span[@style='color: red'])[1]");
-    By emailFieldTextMessageSelector = By.xpath("(//span[@style='color: red'])[2]");
-    By phoneFieldTextMessageSelector = By.xpath("(//span[@style='color: red'])[3]");
-    By addressFieldTextMessageSelector = By.xpath("(//span[@style='color: red'])[4]");
+    By nameFieldTextMessageSelector = By.xpath("//input[@id='j_idt70:name']/preceding-sibling::span");
+    By emailFieldTextMessageSelector = By.xpath("//input[@id='j_idt70:email']/preceding-sibling::span");
+    By phoneFieldTextMessageSelector = By.xpath("//input[@id='j_idt70:phone']/preceding-sibling::span");
+    By addressFieldTextMessageSelector = By.xpath("//input[@id='j_idt70:address']/preceding-sibling::span");
 
     public CreateCustomerPage(WebDriver driver) {
         this.driver = driver;
@@ -30,21 +30,25 @@ public class CreateCustomerPage {
 
     @Step ("Input Name")
     public void nameInput(String name) {
+        driver.findElement(nameInputSelector).clear();
         driver.findElement(nameInputSelector).sendKeys(name);
     }
 
     @Step ("Input Email")
     public void emailInput(String email) {
+        driver.findElement(emailInputSelector).clear();
         driver.findElement(emailInputSelector).sendKeys(email);
     }
 
     @Step ("Input Phone")
     public void phoneInput(String phone) {
+        driver.findElement(phoneInputSelector).clear();
         driver.findElement(phoneInputSelector).sendKeys(phone);
     }
 
     @Step ("Input Address")
     public void addressInput(String address) {
+        driver.findElement(addressInputSelector).clear();
         driver.findElement(addressInputSelector).sendKeys(address);
     }
 
@@ -61,6 +65,11 @@ public class CreateCustomerPage {
     public void waitForCustomerInformationPageIsDisplayed() {
         Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(d->d.findElement(newCustomerButtonSelector).isDisplayed());
+    }
+
+    public void waitForCreateCustomerPageIsDisappear() {
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(d->!d.findElement(createACustomerButtonSelector).isDisplayed());
     }
 
     public boolean isCreateCustomerPageDisplayed() {

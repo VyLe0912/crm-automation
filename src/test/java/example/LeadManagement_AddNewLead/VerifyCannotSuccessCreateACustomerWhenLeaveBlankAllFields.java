@@ -1,6 +1,5 @@
-package example;
+package example.LeadManagement_AddNewLead;
 
-import com.github.javafaker.Faker;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,10 +20,11 @@ public class VerifyCannotSuccessCreateACustomerWhenLeaveBlankAllFields {
     LoginPage loginPage;
     ShowAllCustomersPage showAllCustomersPage;
     CreateCustomerPage createCustomerPage;
-    Faker faker;
+    SoftAssert softAssert;
 
     @BeforeMethod
     public void setUp() {
+        softAssert = new SoftAssert();
         driver = new ChromeDriver();
         configReader = new ConfigReader();
         loginPage = new LoginPage(driver);
@@ -37,23 +37,19 @@ public class VerifyCannotSuccessCreateACustomerWhenLeaveBlankAllFields {
     @Test
     public void test() {
 
-        SoftAssert softAssert = new SoftAssert();
-
         Allure.step("Open CRM website");
         driver.get(configReader.getUrl());
 
         Allure.step("Login success");
         loginPage.login("abcTrang@gmail.com", "123123");
-        showAllCustomersPage.verifyShowAllCustomersPageIsDisplayed();
-
+        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
 
         Allure.step("Click [New customer] button");
         showAllCustomersPage.clickNewCustomerButton();
-        showAllCustomersPage.verifyCreateCustomerPageIsDisplayed();
+        showAllCustomersPage.waitForCreateCustomerPageIsDisplayed();
 
         Allure.step("Click [Create a customer] button");
         createCustomerPage.clickCreateACustomerButton();
-
 
         softAssert.assertTrue(createCustomerPage.isCreateCustomerPageDisplayed(), "Create success");
 
