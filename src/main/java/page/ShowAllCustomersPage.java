@@ -12,7 +12,7 @@ public class ShowAllCustomersPage {
     WebDriver driver;
 
     By newCustomerButtonSelector = By.xpath("//a[text()='New Customer']");
-    By nameInputToSearchSelector;
+    By nameInputToSearchSelector = By.xpath("//th/span[text()='Name']/following-sibling::input");
     By customerNameButtonSelector;
     By customerQuantityDropdownListSelector;
     By firstPageButtonSelector;
@@ -20,6 +20,8 @@ public class ShowAllCustomersPage {
     By nextPageButtonSelector;
     By lastPageButtonSelector;
     By openCreateCustomerPageSelector = By.xpath("//h5[text()='Add Customer']");
+
+    By messageWhenSearchNameDoesNotExistSelector = By.xpath("//td[text()='No records found.']");
 
     By nameOfCustomerAtTheTopOfTheListSelector = By.xpath("//tr/td/a[1]");
     By emailOfCustomerAtTheTopOfTheListSelector = By.xpath("//tr/td[2]");
@@ -69,5 +71,13 @@ public class ShowAllCustomersPage {
 
     public String addressOfCustomerAtTheTopOfTheList() {
         return driver.findElement(addressOfCustomerAtTheTopOfTheListSelector).getText();
+    }
+
+    public void inputCustomerNameToSearch(String name) {
+        driver.findElement(nameInputToSearchSelector).sendKeys(name);
+    }
+
+    public String messageWhenSearchNameDoesNotExist() {
+        return driver.findElement(messageWhenSearchNameDoesNotExistSelector).getText();
     }
 }
