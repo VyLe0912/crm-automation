@@ -12,6 +12,8 @@ public class ConfigReader {
         } catch (Exception e){
             System.out.println(e);
         }
+        //Get email and pass from properties
+
     }
     public String getUrl(){
         return properties.getProperty("url");
@@ -19,4 +21,13 @@ public class ConfigReader {
     public Duration getTimeOut(){
         return Duration.ofSeconds(Long.parseLong(properties.getProperty("timeout")));
     }
+
+    public String email() {
+        return properties.getProperty("email");
+    }
+
+    public String password() {
+        return properties.getProperty("password");
+    }
+
 }
