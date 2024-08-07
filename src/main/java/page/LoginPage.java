@@ -14,11 +14,15 @@ public class LoginPage {
     By btnLoginSelector = By.xpath("//input[@name='campaigntypeform:j_idt14']");
     By textEmailSelector = By. xpath("(//div[@class='col-lg-10'])[1]");
     By textPassSelector = By.xpath("(//div[@class='col-lg-10'])[2]");
+    By noticeInvalidEmail = By.xpath("(//div[@class='col-sm-4 col-md-offset-4 pull-right'])[1]");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
     }
 
+    public String noticeInvalid() {
+        return driver.findElement(noticeInvalidEmail).getText();
+    }
     public void enterEmail(String email) {
         driver.findElement(txbEmailInputSelector).sendKeys(email);
     }
