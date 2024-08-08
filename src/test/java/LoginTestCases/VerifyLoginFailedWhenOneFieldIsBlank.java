@@ -27,10 +27,9 @@ public class VerifyLoginFailedWhenOneFieldIsBlank {
         //Kiểm tra thông báo trường Email hiển thị
         softAssert.assertEquals(loginPage.emailTextMessage(), "Please enter your email", "Email field error");
 
-        driver.navigate().refresh();
+        loginPage.deleteTxbPass();
 
         loginPage.login("abc@gmail.com","");
-        loginPage.waitForTextAppear();
 
         //Kiểm tra thông báo trường password hiển thị
         softAssert.assertEquals(loginPage.passTextMessage(), "Please enter your password", "Password field error");
