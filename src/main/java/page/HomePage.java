@@ -3,6 +3,10 @@ package page;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class HomePage {
     WebDriver driver;
@@ -29,9 +33,20 @@ public class HomePage {
 
     By ordersMenuButtonSelector = By.xpath("//span[text() = 'Orders']");
     By openShowAllOrdersPageSelector = By.xpath("//a[text() = 'Show All Orders']");
+    By labelHomePageSelector = By.xpath("//span[@class='m-r-sm text-muted welcome-message']");
+    By nameAccountHeaderSelector = By.xpath("(//strong[@class='font-bold'])[2]");
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
+    }
+
+    public void openHomePage() {
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(d->d.findElement(labelHomePageSelector)).isDisplayed();
+    }
+
+    public String headerNameAccount() {
+        return driver.findElement(nameAccountHeaderSelector).getText();
     }
 
     @Step ("Click [Menu/ Customer] button on side bar")

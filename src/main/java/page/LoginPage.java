@@ -1,20 +1,24 @@
 package page;
 
+import models.LoginForm;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.ConfigReader;
 
 import java.time.Duration;
 
 public class LoginPage {
     WebDriver driver;
+    ConfigReader configReader;
+
     By txbEmailInputSelector = By.xpath("//input[@id='campaigntypeform:email']");
     By txbPassInputSelector = By.xpath("//input[@id='campaigntypeform:pass']");
     By btnLoginSelector = By.xpath("//input[@name='campaigntypeform:j_idt14']");
-    By textEmailSelector = By. xpath("(//div[@class='col-lg-10'])[1]");
-    By textPassSelector = By.xpath("(//div[@class='col-lg-10'])[2]");
+    By textEmailSelector = By. xpath("//input[@id='campaigntypeform:email']//preceding::span");
+    By textPassSelector = By.xpath("//input[@id='campaigntypeform:pass']//preceding::span[1]");
     By noticeInvalidEmail = By.xpath("(//div[@class='col-sm-4 col-md-offset-4 pull-right']/p)[1]");
 
     public LoginPage(WebDriver driver) {
@@ -60,6 +64,13 @@ public class LoginPage {
     public void login(String email, String password) {
         enterEmail(email);
         enterPassword(password);
+        clickButtonLogin();
+    }
+
+    public void loginFunction() {
+        configReader = new ConfigReader();
+        enterEmail(configReader.email());
+        enterPassword(configReader.password());
         clickButtonLogin();
     }
 }
