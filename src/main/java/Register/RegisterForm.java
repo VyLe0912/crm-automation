@@ -71,6 +71,11 @@ public class RegisterForm {
 
     public void deleteAllTextbox() {
         driver.findElement(txbEmailInputSelector).clear();
+        driver.findElement(txbPassWordInputSelector).clear();
+        driver.findElement(txbConfirmPassInputSelector).clear();
+        driver.findElement(txbNameInputSelector).clear();
+        driver.findElement(txbCompanyInputSelector).clear();
+        driver.findElement(txbPhoneInputSelector).clear();
     }
 
     public String textMessEmail() {
@@ -98,6 +103,7 @@ public class RegisterForm {
     }
 
     public void SignUp(RegisterUser user) {
+        clickTextBoxEmail();
         enterEmail(user.getEmail());
         enterPassword(user.getPassword());
         enterConfirmPassword(user.getConfirmPassword());
@@ -107,5 +113,19 @@ public class RegisterForm {
         clickBtnRegister();
     }
 
+    public void clickTextBoxEmail() {
+        driver.findElement(txbEmailInputSelector).click();
+    }
+
+    public void register(String email, String pass, String pass2, String name, String company, String phone) {
+        clickTextBoxEmail();
+        enterEmail(email);
+        enterPassword(pass);
+        enterConfirmPassword(pass2);
+        enterName(name);
+        enterCompany(company);
+        enterPhone(phone);
+        clickBtnRegister();
+    }
 
 }
