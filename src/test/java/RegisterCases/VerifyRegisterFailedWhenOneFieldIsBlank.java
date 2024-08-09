@@ -23,6 +23,13 @@ public class VerifyRegisterFailedWhenOneFieldIsBlank {
         registerForm = new RegisterForm(driver);
         driver.manage().window().setSize(new Dimension(1378, 840));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        faker = new Faker();
+        email = faker.internet().emailAddress();
+        password = faker.internet().password();
+        confPassword = faker.internet().password();
+        name = faker.funnyName().name();
+        company = faker.address().buildingNumber();
+        phone = faker.phoneNumber().phoneNumber();
     }
 
     @Test
@@ -30,37 +37,37 @@ public class VerifyRegisterFailedWhenOneFieldIsBlank {
         driver.get(configReader.getUrl());
 
         //De trong truong Email
-        registerUser = new RegisterUser("", "VyLe123!", "VyLe123!", "Vy", "iviettech", "0918937539");
+        registerUser = new RegisterUser("", password, confPassword, name, company,phone);
         registerForm.SignUp(registerUser);
         softAssert.assertEquals(registerForm.textMessEmail(), "Please enter your email", "Error email field");
 
         //De trong truong password
         registerForm.deleteAllTextbox();
-        registerUser = new RegisterUser("abc@gmail.com", "", "VyLe123!", "Vy", "iviettech", "0918937539");
+        registerUser = new RegisterUser(email, "", confPassword, name, company, phone);
         registerForm.SignUp(registerUser);
         softAssert.assertEquals(registerForm.textMessPass(), "Please enter your password", "Error password field");
 
         //De trong truong confirm password
         registerForm.deleteAllTextbox();
-        registerUser = new RegisterUser("abc@gmail.com", "VyLe123!", "", "Vy", "iviettech", "0918937539");
+        registerUser = new RegisterUser(email, password, "", name, company, phone);
         registerForm.SignUp(registerUser);
         softAssert.assertEquals(registerForm.textMessConfPass(), "Please confirm your password", "Error confirm password field");
 
         //De trong truong name
         registerForm.deleteAllTextbox();
-        registerUser = new RegisterUser("abc@gmail.com", "VyLe123!", "VyLe123!", "", "iviettech", "0918937539");
+        registerUser = new RegisterUser(email, password, confPassword, "", company, phone);
         registerForm.SignUp(registerUser);
         softAssert.assertEquals(registerForm.textMessName(), "Please enter your name", "Error name field");
 
         //De trong truong company
         registerForm.deleteAllTextbox();
-        registerUser = new RegisterUser("abc@gmail.com", "VyLe123!", "VyLe123!", "Vy", "", "0918937539");
+        registerUser = new RegisterUser(email, password, confPassword, name, "", phone);
         registerForm.SignUp(registerUser);
         softAssert.assertEquals(registerForm.textMessCompany(), "Please enter your company", "Error company field");
 
         //De trong truong phone
         registerForm.deleteAllTextbox();
-        registerUser = new RegisterUser("abc@gmail.com", "VyLe123!", "VyLe123!", "Vy", "iviettech", "");
+        registerUser = new RegisterUser(email, password, confPassword, name, company, "");
         registerForm.SignUp(registerUser);
         softAssert.assertEquals(registerForm.textMessPhone(), "Please enter your phone", "Error phone field");
 
@@ -78,4 +85,11 @@ public class VerifyRegisterFailedWhenOneFieldIsBlank {
     ConfigReader configReader;
     SoftAssert softAssert;
     RegisterUser registerUser;
+    Faker faker;
+    String email;
+    String password;
+    String confPassword;
+    String name;
+    String company;
+    String phone;
 }
