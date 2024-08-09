@@ -27,6 +27,7 @@ public class RegisterForm {
     By txtMessNameInputSelector = By.xpath("//input[@id='nothing:Name']//preceding::span[1]");
     By txtMessCompanyInputSelector = By.xpath("//input[@id='nothing:Company']//preceding::span[1]");
     By txtMessPhoneInputSelector = By.xpath("//input[@id='nothing:phone']//preceding::span[1]");
+    By messEmailExistSelector = By.xpath("//input[@name='nothing:j_idt30']//preceding::p[1]");
 
     public RegisterForm(WebDriver driver) {
         this.driver = driver;
@@ -111,6 +112,10 @@ public class RegisterForm {
         enterCompany(user.getCompany());
         enterPhone(user.getPhone());
         clickBtnRegister();
+    }
+
+    public String messageEmailExist() {
+        return driver.findElement(messEmailExistSelector).getText();
     }
 
     public void clickTextBoxEmail() {
