@@ -23,7 +23,6 @@ public class VerifyRegisterFailedWhenOneFieldIsBlank {
         registerForm = new RegisterForm(driver);
         driver.manage().window().setSize(new Dimension(1378, 840));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
     }
 
     @Test
