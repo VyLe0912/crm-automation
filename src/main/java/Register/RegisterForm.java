@@ -22,7 +22,7 @@ public class RegisterForm {
 
     //Selector thong bao cua form Register
     By txtMessEmailInputSelector = By.xpath("//input[@id='nothing:email1']//preceding::span");
-    By txtMessPassInputSelector = By.xpath("//input[@id='nothing:p']//preceding::span");
+    By txtMessPassInputSelector = By.xpath("//input[@id='nothing:p']//preceding::span[1]");
     By txtConfPassInputSelector = By.xpath("//input[@id='nothing:cp']//preceding::span[1]");
     By txtMessNameInputSelector = By.xpath("//input[@id='nothing:Name']//preceding::span[1]");
     By txtMessCompanyInputSelector = By.xpath("//input[@id='nothing:Company']//preceding::span[1]");
