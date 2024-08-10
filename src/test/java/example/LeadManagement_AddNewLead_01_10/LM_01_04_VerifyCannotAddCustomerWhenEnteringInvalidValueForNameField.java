@@ -1,7 +1,8 @@
-package example.LeadManagement_AddNewLead_01;
+package example.LeadManagement_AddNewLead_01_10;
 
 import com.github.javafaker.Faker;
 import io.qameta.allure.Allure;
+import models.CustomerInFormationForm;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,7 +17,7 @@ import utils.ConfigReader;
 
 import java.time.Duration;
 
-public class VerifyCannotAddCustomerWhenEnteringInvalidValueForNameField {
+public class LM_01_04_VerifyCannotAddCustomerWhenEnteringInvalidValueForNameField {
     WebDriver driver;
     ConfigReader configReader;
     LoginPage loginPage;
@@ -24,6 +25,7 @@ public class VerifyCannotAddCustomerWhenEnteringInvalidValueForNameField {
     CreateCustomerPage createCustomerPage;
     SoftAssert softAssert;
     Faker faker;
+    CustomerInFormationForm customerInfo;
 
     String name;
     String email;
@@ -47,6 +49,8 @@ public class VerifyCannotAddCustomerWhenEnteringInvalidValueForNameField {
         email = faker.internet().emailAddress();
         phone = RandomStringUtils.randomNumeric(10);
         address = faker.address().fullAddress();
+        customerInfo = new CustomerInFormationForm(name, email, phone, address);
+
     }
 
     @Test
@@ -57,23 +61,14 @@ public class VerifyCannotAddCustomerWhenEnteringInvalidValueForNameField {
 
         Allure.step("Login success");
         loginPage.login("abcTrang@gmail.com", "123123");
-        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
+//        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
 
-        Allure.step("Click [New customer] button");
-        showAllCustomersPage.clickNewCustomerButton();
-        showAllCustomersPage.waitForCreateCustomerPageIsDisplayed();
+        Allure.step("Open [Create Customer] page");
+        showAllCustomersPage.openCreateCustomerPage();
 
-
-        Allure.step("Input 51 character for [Name] field");
-        createCustomerPage.nameInput(name);
-
+        Allure.step("Input more than 50 characters for [Name] field");
         Allure.step("Input valid data for [Email], [Phone], [Address] field");
-        createCustomerPage.emailInput(email);
-        createCustomerPage.phoneInput(phone);
-        createCustomerPage.addressInput(address);
-
-        Allure.step("Click [Create a customer] button");
-        createCustomerPage.clickCreateACustomerButton();
+        createCustomerPage.createCustomerInformation(customerInfo);
 
         //kiem tra thong bao tren cac truong
         softAssert.assertTrue(createCustomerPage.isCreateCustomerPageDisplayed(), "Create success");

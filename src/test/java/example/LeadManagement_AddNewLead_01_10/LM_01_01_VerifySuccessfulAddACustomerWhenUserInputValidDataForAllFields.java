@@ -1,7 +1,8 @@
-package example.LeadManagement_AddNewLead_01;
+package example.LeadManagement_AddNewLead_01_10;
 
 import com.github.javafaker.Faker;
 import io.qameta.allure.Allure;
+import models.CustomerInFormationForm;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,7 +16,7 @@ import page.ShowAllCustomersPage;
 import utils.ConfigReader;
 import java.time.Duration;
 
-public class VerifySuccessfulAddACustomerWhenUserInputValidDataForAllFields {
+public class LM_01_01_VerifySuccessfulAddACustomerWhenUserInputValidDataForAllFields {
     WebDriver driver;
     ConfigReader configReader;
     LoginPage loginPage;
@@ -23,6 +24,7 @@ public class VerifySuccessfulAddACustomerWhenUserInputValidDataForAllFields {
     CreateCustomerPage createCustomerPage;
     Faker faker;
     SoftAssert softAssert;
+    CustomerInFormationForm customerInfor;
 
     String name;
     String email;
@@ -46,6 +48,7 @@ public class VerifySuccessfulAddACustomerWhenUserInputValidDataForAllFields {
         email = faker.internet().emailAddress();
         phone = RandomStringUtils.randomNumeric(10);
         address = faker.address().fullAddress();
+        customerInfor = new CustomerInFormationForm(name,email, phone, address);
     }
 
     @Test
@@ -56,28 +59,23 @@ public class VerifySuccessfulAddACustomerWhenUserInputValidDataForAllFields {
 
         Allure.step("Login success");
         loginPage.login("abcTrang@gmail.com", "123123");
-        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
+//        softAssert.assertTrue(loginPage.isDisappearLoginForm(), "[Login] page is still display");
 
-        softAssert.assertTrue(showAllCustomersPage.isShowAllCustomerPageDisplayed(), "[Show all customers] page is not displayed");
-        Allure.step("Click [New customer] button");
-        showAllCustomersPage.clickNewCustomerButton();
-        showAllCustomersPage.waitForCreateCustomerPageIsDisplayed();
+        Allure.step("Open [Create Customer] page");
+        showAllCustomersPage.openCreateCustomerPage();
 
         softAssert.assertTrue(createCustomerPage.isCreateCustomerPageDisplayed(), "[Create customer] page is not displayed");
-        Allure.step("Input valid data for all fields");
-        createCustomerPage.createCustomer(name, email, phone, address);
 
-        Allure.step("Click [Create a customer] button");
-        createCustomerPage.clickCreateACustomerButton();
-//        createCustomerPage.waitForCreateCustomerPageIsDisappear();
+        Allure.step("Input valid data for all fields");
+        createCustomerPage.createCustomerInformation(customerInfor);
 
         softAssert.assertTrue(showAllCustomersPage.isShowAllCustomerPageDisplayed(), "[Show all customers] page is not displayed");
 
         //xác minh Customer vừa được thêm vào hiển thị ở đầu danh sách customer
-        softAssert.assertEquals(showAllCustomersPage.nameOfCustomerAtTheTopOfTheList(), name, "The newly created customer is not at the top of the list.");
-        softAssert.assertEquals(showAllCustomersPage.emailOfCustomerAtTheTopOfTheList(), email, "The newly created customer is not at the top of the list.");
-        softAssert.assertEquals(showAllCustomersPage.phoneOfCustomerAtTheTopOfTheList(), phone, "The newly created customer is not at the top of the list.");
-        softAssert.assertEquals(showAllCustomersPage.addressOfCustomerAtTheTopOfTheList(), address, "The newly created customer is not at the top of the list.");
+        softAssert.assertEquals(showAllCustomersPage.getCustomerNameByIndex(1), name, "The newly created customer is not at the top of the list.");
+        softAssert.assertEquals(showAllCustomersPage.getCustomerEmailByIndex(1), email, "The newly created customer is not at the top of the list.");
+        softAssert.assertEquals(showAllCustomersPage.getCustomerPhoneByIndex(1), phone, "The newly created customer is not at the top of the list.");
+        softAssert.assertEquals(showAllCustomersPage.getCustomerAddressByIndex(1), address, "The newly created customer is not at the top of the list.");
 
         softAssert.assertAll();
     }

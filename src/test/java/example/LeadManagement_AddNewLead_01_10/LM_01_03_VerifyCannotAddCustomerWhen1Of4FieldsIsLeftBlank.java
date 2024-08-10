@@ -1,4 +1,4 @@
-package example.LeadManagement_AddNewLead_01;
+package example.LeadManagement_AddNewLead_01_10;
 
 import com.github.javafaker.Faker;
 import io.qameta.allure.Allure;
@@ -16,7 +16,7 @@ import utils.ConfigReader;
 
 import java.time.Duration;
 
-public class VerifyCannotAddCustomerWhen1Of4FieldsIsLeftBlank {
+public class LM_01_03_VerifyCannotAddCustomerWhen1Of4FieldsIsLeftBlank {
     WebDriver driver;
     ConfigReader configReader;
     LoginPage loginPage;
@@ -57,17 +57,16 @@ public class VerifyCannotAddCustomerWhen1Of4FieldsIsLeftBlank {
 
         Allure.step("Login success");
         loginPage.login("abcTrang@gmail.com", "123123");
-        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
+//        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
 
-        Allure.step("Click [New customer] button");
-        showAllCustomersPage.clickNewCustomerButton();
-        showAllCustomersPage.waitForCreateCustomerPageIsDisplayed();
+        Allure.step("Open [Create Customer] page");
+        showAllCustomersPage.openCreateCustomerPage();
 
         // 1. Bo trong truong [Name]
         Allure.step("Leave [Name] field blank");
-        createCustomerPage.emailInput(email);
-        createCustomerPage.phoneInput(phone);
-        createCustomerPage.addressInput(address);
+        createCustomerPage.inputEmail(email);
+        createCustomerPage.inputPhone(phone);
+        createCustomerPage.inputAddress(address);
 
         Allure.step("Click [Create a customer] button");
         createCustomerPage.clickCreateACustomerButton();
@@ -79,7 +78,7 @@ public class VerifyCannotAddCustomerWhen1Of4FieldsIsLeftBlank {
 
         // 2. Bo trong truong [Email]
         Allure.step("Leave [Email] field blank");
-        createCustomerPage.nameInput(name);
+        createCustomerPage.inputName(name);
         createCustomerPage.clearEmail();
 
         Allure.step("Click [Create a customer] button");
@@ -92,7 +91,7 @@ public class VerifyCannotAddCustomerWhen1Of4FieldsIsLeftBlank {
 
         // 3. Bo trong truong [Phone]
         Allure.step("Leave [Phone] field blank");
-        createCustomerPage.emailInput(email);
+        createCustomerPage.inputEmail(email);
         createCustomerPage.clearPhone();
 
         Allure.step("Click [Create a customer] button");
@@ -105,7 +104,7 @@ public class VerifyCannotAddCustomerWhen1Of4FieldsIsLeftBlank {
 
         // 4. Bo trong truong [Address]
         Allure.step("Leave [Email] field blank");
-        createCustomerPage.phoneInput(phone);
+        createCustomerPage.inputPhone(phone);
         createCustomerPage.clearAddress();
 
         Allure.step("Click [Create a customer] button");

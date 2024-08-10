@@ -4,7 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class HomePage {
+public class SideBar {
     WebDriver driver;
 
     By customerMenuButtonSelector = By.xpath("//span[text() = 'Customer']");
@@ -30,7 +30,7 @@ public class HomePage {
     By ordersMenuButtonSelector = By.xpath("//span[text() = 'Orders']");
     By openShowAllOrdersPageSelector = By.xpath("//a[text() = 'Show All Orders']");
 
-    public HomePage(WebDriver driver) {
+    public SideBar(WebDriver driver) {
         this.driver = driver;
     }
 

@@ -1,7 +1,8 @@
-package example.LeadManagement_AddNewLead_01;
+package example.LeadManagement_AddNewLead_01_10;
 
 import com.github.javafaker.Faker;
 import io.qameta.allure.Allure;
+import models.CustomerInFormationForm;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,7 +17,7 @@ import utils.ConfigReader;
 
 import java.time.Duration;
 
-public class VerrifyCannotAddCustomerWhenEnteringInvalidValueForEmailField {
+public class LM_01_06_VerrifyCannotAddCustomerWhenEnteringInvalidValueForEmailField {
     WebDriver driver;
     ConfigReader configReader;
     LoginPage loginPage;
@@ -24,6 +25,7 @@ public class VerrifyCannotAddCustomerWhenEnteringInvalidValueForEmailField {
     CreateCustomerPage createCustomerPage;
     SoftAssert softAssert;
     Faker faker;
+    CustomerInFormationForm customerInFor1, customerInFor2, customerInFor3;
 
     String name;
     String email1, email2, email3;
@@ -49,6 +51,10 @@ public class VerrifyCannotAddCustomerWhenEnteringInvalidValueForEmailField {
         email3 = "username@domain";
         phone = RandomStringUtils.randomNumeric(10);
         address = faker.address().fullAddress();
+
+        customerInFor1 = new CustomerInFormationForm(name, email1, phone, address);
+        customerInFor2 = new CustomerInFormationForm(name, email2, phone, address);
+        customerInFor3 = new CustomerInFormationForm(name, email3, phone, address);
     }
 
     @Test
@@ -59,44 +65,30 @@ public class VerrifyCannotAddCustomerWhenEnteringInvalidValueForEmailField {
 
         Allure.step("Login success");
         loginPage.login("abcTrang@gmail.com", "123123");
-        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
+//        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
 
 
         //'username' for [Email] field
-        Allure.step("Click [New customer] button");
-        showAllCustomersPage.clickNewCustomerButton();
-        showAllCustomersPage.waitForCreateCustomerPageIsDisplayed();
+        Allure.step("Open [Create Customer] page");
+        showAllCustomersPage.openCreateCustomerPage();
 
         Allure.step("Input 'username' for [Email] field");
-        createCustomerPage.emailInput(email1);
-
         Allure.step("Input valid data for [Name], [Phone], [Address] field");
-        createCustomerPage.nameInput(name);
-        createCustomerPage.phoneInput(phone);
-        createCustomerPage.addressInput(address);
-
-        Allure.step("Click [Create a customer] button");
-        createCustomerPage.clickCreateACustomerButton();
+        createCustomerPage.createCustomerInformation(customerInFor1);
 
         softAssert.assertTrue(createCustomerPage.isCreateCustomerPageDisplayed(), "Create success");
         softAssert.assertEquals(createCustomerPage.getErrorForEmailField(), "The email is not valid (ex: abc@abc)", "No message in email field");
 
         //'username.domain' for [Email] field
         Allure.step("Input 'username.domain' for [Email] field");
-        createCustomerPage.emailInput(email2);
-
-        Allure.step("Click [Create a customer] button");
-        createCustomerPage.clickCreateACustomerButton();
+        createCustomerPage.createCustomerInformation(customerInFor2);
 
         softAssert.assertTrue(createCustomerPage.isCreateCustomerPageDisplayed(), "Create success");
         softAssert.assertEquals(createCustomerPage.getErrorForEmailField(), "The email is not valid (ex: abc@abc)", "No message in email field");
 
         //'username@domain' for [Email] field
         Allure.step("Input 'username@domain' for [Email] field");
-        createCustomerPage.emailInput(email3);
-
-        Allure.step("Click [Create a customer] button");
-        createCustomerPage.clickCreateACustomerButton();
+        createCustomerPage.createCustomerInformation(customerInFor3);
 
         softAssert.assertTrue(createCustomerPage.isCreateCustomerPageDisplayed(), "Create success");
         softAssert.assertEquals(createCustomerPage.getErrorForEmailField(), "The email is not valid (ex: abc@abc)", "No message in email field");

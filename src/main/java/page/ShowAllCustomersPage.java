@@ -15,18 +15,19 @@ public class ShowAllCustomersPage {
     By nameInputToSearchSelector = By.xpath("//th/span[text()='Name']/following-sibling::input");
     By customerNameButtonSelector;
     By customerQuantityDropdownListSelector;
-    By firstPageButtonSelector;
-    By previousPageButtonSelector;
-    By nextPageButtonSelector;
-    By lastPageButtonSelector;
+    By firstPageButtonSelector = By.xpath("//span[@class='ui-icon ui-icon-seek-first']");
+    By previousPageButtonSelector = By.xpath("//span[@class='ui-icon ui-icon-seek-prev']");
+    By nextPageButtonSelector = By.xpath("//span[@class='ui-icon ui-icon-seek-next']");
+    By lastPageButtonSelector = By.xpath("//span[@class='ui-icon ui-icon-seek-end']");
     By openCreateCustomerPageSelector = By.xpath("//h5[text()='Add Customer']");
 
-    By messageWhenSearchNameDoesNotExistSelector = By.xpath("//td[text()='No records found.']");
+    By noRecordFoundLabelSelector = By.xpath("//td[text()='No records found.']");
+    By tableRowSelector = By.xpath("//tbody/tr");
 
-    By nameOfCustomerAtTheTopOfTheListSelector = By.xpath("//tr/td/a[1]");
-    By emailOfCustomerAtTheTopOfTheListSelector = By.xpath("//tr/td[2]");
-    By addressOfCustomerAtTheTopOfTheListSelector = By.xpath("//tr/td[3]");
-    By phoneOfCustomerAtTheTopOfTheListSelector = By.xpath("//tr/td[4]");
+    By customerNameLabelSelector = By.xpath("//tr/td/a[1]");
+    By customerEmailLabelSelector = By.xpath("//tr/td[2]");
+    By customerAddressLabelSelector = By.xpath("//tr/td[3]");
+    By customerPhoneLabelSelector = By.xpath("//tr/td[4]");
 
     public ShowAllCustomersPage(WebDriver driver) {
         this.driver = driver;
@@ -57,27 +58,58 @@ public class ShowAllCustomersPage {
         driver.findElement(newCustomerButtonSelector).click();
     }
 
-    public String nameOfCustomerAtTheTopOfTheList() {
-        return driver.findElement(nameOfCustomerAtTheTopOfTheListSelector).getText();
+    @Step("Open [Create Customer] page")
+    public void openCreateCustomerPage() {
+        clickNewCustomerButton();
+        waitForCreateCustomerPageIsDisplayed();
     }
 
-    public String emailOfCustomerAtTheTopOfTheList() {
-        return driver.findElement(emailOfCustomerAtTheTopOfTheListSelector).getText();
+    public String getCustomerNameByIndex(int i) {
+        return driver.findElements(customerNameLabelSelector).get(i-1).getText();
     }
 
-    public String phoneOfCustomerAtTheTopOfTheList() {
-        return driver.findElement(phoneOfCustomerAtTheTopOfTheListSelector).getText();
+    public String getCustomerEmailByIndex(int i) {
+        return driver.findElements(customerEmailLabelSelector).get(i-1).getText();
     }
 
-    public String addressOfCustomerAtTheTopOfTheList() {
-        return driver.findElement(addressOfCustomerAtTheTopOfTheListSelector).getText();
+    public String getCustomerPhoneByIndex(int i) {
+        return driver.findElements(customerPhoneLabelSelector).get(i-1).getText();
+    }
+
+    public String getCustomerAddressByIndex(int i) {
+        return driver.findElements(customerAddressLabelSelector).get(i-1).getText();
     }
 
     public void inputCustomerNameToSearch(String name) {
         driver.findElement(nameInputToSearchSelector).sendKeys(name);
     }
 
-    public String messageWhenSearchNameDoesNotExist() {
-        return driver.findElement(messageWhenSearchNameDoesNotExistSelector).getText();
+    public String getMessageWhenSearch() {
+        return driver.findElement(noRecordFoundLabelSelector).getText();
+    }
+
+    @Step("Get number of row customer in first page")
+    public int countRowInCurrentPage() {
+        return driver.findElements(tableRowSelector).size();
+    }
+
+    @Step("Click first customer page button")
+    public void openFirstCustomerPage() {
+        driver.findElement(firstPageButtonSelector).click();
+    }
+
+    @Step("Click previous customer page button")
+    public void openPreviousCustomerPage() {
+        driver.findElement(previousPageButtonSelector).click();
+    }
+
+    @Step("Click next customer page button")
+    public void openNextCustomerPage() {
+        driver.findElement(nextPageButtonSelector).click();
+    }
+
+    @Step("Click last customer page button")
+    public void openLastCustomerPage() {
+        driver.findElement(lastPageButtonSelector).click();
     }
 }

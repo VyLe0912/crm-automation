@@ -1,6 +1,9 @@
-package example.LeadManagement_AddNewLead_01;
+package example.LeadManagement_AddNewLead_01_10;
 
+import com.github.javafaker.Faker;
 import io.qameta.allure.Allure;
+import models.CustomerInFormationForm;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -14,13 +17,20 @@ import utils.ConfigReader;
 
 import java.time.Duration;
 
-public class VerifyCannotSuccessCreateACustomerWhenLeaveBlankAllFields {
+public class LM_01_08_VerifyCannotAddCustomerWhenEnteringInvalidValueForAddressField {
     WebDriver driver;
     ConfigReader configReader;
     LoginPage loginPage;
     ShowAllCustomersPage showAllCustomersPage;
     CreateCustomerPage createCustomerPage;
     SoftAssert softAssert;
+    Faker faker;
+    CustomerInFormationForm customerInFor;
+
+    String name;
+    String email;
+    String phone;
+    String address;
 
     @BeforeMethod
     public void setUp() {
@@ -30,43 +40,40 @@ public class VerifyCannotSuccessCreateACustomerWhenLeaveBlankAllFields {
         loginPage = new LoginPage(driver);
         showAllCustomersPage = new ShowAllCustomersPage(driver);
         createCustomerPage = new CreateCustomerPage(driver);
+        faker = new Faker();
+
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+        name = faker.name().name();
+        email = faker.internet().emailAddress();
+        phone = RandomStringUtils.randomNumeric(10);
+        address = RandomStringUtils.randomAlphanumeric(101);
+        customerInFor = new CustomerInFormationForm(name, email, phone, address);
     }
 
     @Test
-    public void testLM_01_02() {
+    public void testLM_01_08() {
 
         Allure.step("Open CRM website");
         driver.get(configReader.getUrl());
 
         Allure.step("Login success");
         loginPage.login("abcTrang@gmail.com", "123123");
-        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
+//        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
 
-        Allure.step("Click [New customer] button");
-        showAllCustomersPage.clickNewCustomerButton();
-        showAllCustomersPage.waitForCreateCustomerPageIsDisplayed();
+        Allure.step("Open [Create Customer] page");
+        showAllCustomersPage.openCreateCustomerPage();
 
-        Allure.step("Click [Create a customer] button");
-        createCustomerPage.clickCreateACustomerButton();
+        Allure.step("Input valid data for [Name], [Email], [Phone] field");
+        Allure.step("Input 101 character for [Address] field");
+        createCustomerPage.createCustomerInformation(customerInFor);
 
+        //kiem tra thong bao tren cac truong
         softAssert.assertTrue(createCustomerPage.isCreateCustomerPageDisplayed(), "Create success");
-
-        // kiem tra thong bao hien thi o truong [Name]
-        softAssert.assertEquals(createCustomerPage.getErrorForNameField(), "Please enter your name", "No message in name field");
-
-        // kiem tra thong bao hien thi o truong [Email]
-        softAssert.assertEquals(createCustomerPage.getErrorForEmailField(), "Please enter your email", "No message in email field");
-
-        // kiem tra thong bao hien thi o truong [Phone]
-        softAssert.assertEquals(createCustomerPage.getErrorForPhoneField(), "Please enter your phone", "No message in phone field");
-
-        // kiem tra thong bao hien thi o truong [Address]
-        softAssert.assertEquals(createCustomerPage.getErrorForAddressField(), "Please enter your address", "No message in address field");
+        softAssert.assertEquals(createCustomerPage.getErrorForAddressField(), "size must be between 0 and 100", "No message in address field");
 
         softAssert.assertAll();
-
     }
 
     @AfterMethod(alwaysRun = true)

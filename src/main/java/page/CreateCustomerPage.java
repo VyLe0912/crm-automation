@@ -1,6 +1,7 @@
 package page;
 
 import io.qameta.allure.Step;
+import models.CustomerInFormationForm;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
@@ -11,10 +12,10 @@ import java.time.Duration;
 public class CreateCustomerPage {
     WebDriver driver;
 
-    By nameInputSelector = By.id("j_idt70:name");
-    By emailInputSelector = By.id("j_idt70:email");
-    By phoneInputSelector = By.id("j_idt70:phone");
-    By addressInputSelector = By.id("j_idt70:address");
+    By nameInputSelector = By.xpath("(//div[preceding-sibling::label[text()='Name']])/input[@class='form-control m-b']");
+    By emailInputSelector = By.xpath("(//div[preceding-sibling::label[text()='Email']])/input[@class='form-control m-b']");
+    By phoneInputSelector = By.xpath("(//div[preceding-sibling::label[text()='Phone']])/input[@class='form-control m-b']");
+    By addressInputSelector = By.xpath("(//div[preceding-sibling::label[text()='Address']])/input[@class='form-control m-b']");
     By createACustomerButtonSelector = By.name("j_idt70:j_idt80");
     By cancelButtonSelector = By.xpath("//a[text()='Cancel']");
     By newCustomerButtonSelector = By.xpath("//a[text()='New Customer']");
@@ -29,25 +30,25 @@ public class CreateCustomerPage {
     }
 
     @Step ("Input Name")
-    public void nameInput(String name) {
+    public void inputName(String name) {
         driver.findElement(nameInputSelector).clear();
         driver.findElement(nameInputSelector).sendKeys(name);
     }
 
     @Step ("Input Email")
-    public void emailInput(String email) {
+    public void inputEmail(String email) {
         driver.findElement(emailInputSelector).clear();
         driver.findElement(emailInputSelector).sendKeys(email);
     }
 
     @Step ("Input Phone")
-    public void phoneInput(String phone) {
+    public void inputPhone(String phone) {
         driver.findElement(phoneInputSelector).clear();
         driver.findElement(phoneInputSelector).sendKeys(phone);
     }
 
     @Step ("Input Address")
-    public void addressInput(String address) {
+    public void inputAddress(String address) {
         driver.findElement(addressInputSelector).clear();
         driver.findElement(addressInputSelector).sendKeys(address);
     }
@@ -78,11 +79,24 @@ public class CreateCustomerPage {
     }
 
     @Step ("Create a customer")
-    public void createCustomer(String name, String email, String phone, String address) {
-        nameInput(name);
-        emailInput(email);
-        phoneInput(phone);
-        addressInput(address);
+//    public void enterCustomerInformation(String name, String email, String phone, String address) {
+//        inputName(name);
+//        inputEmail(email);
+//        inputPhone(phone);
+//        inputAddress(address);
+//        clickCreateACustomerButton();
+//    }
+
+    public void enterCustomerInformation( CustomerInFormationForm customerInfo) {
+        inputName(customerInfo.getName());
+        inputEmail(customerInfo.getEmail());
+        inputPhone(customerInfo.getPhone());
+        inputAddress(customerInfo.getAddress());
+    }
+
+    public void createCustomerInformation(CustomerInFormationForm customerInfo) {
+        enterCustomerInformation(customerInfo);
+        clickCreateACustomerButton();
     }
 
     @Step ("Clear data for [Name] field")
@@ -120,4 +134,5 @@ public class CreateCustomerPage {
     public String getErrorForAddressField() {
         return driver.findElement(addressFieldTextMessageSelector).getText();
     }
+
 }

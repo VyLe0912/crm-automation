@@ -1,7 +1,8 @@
-package example.LeadManagement_AddNewLead_01;
+package example.LeadManagement_AddNewLead_01_10;
 
 import com.github.javafaker.Faker;
 import io.qameta.allure.Allure;
+import models.CustomerInFormationForm;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,7 +17,7 @@ import utils.ConfigReader;
 
 import java.time.Duration;
 
-public class VerifyCanAddCustomerWhenEnteringValidValueForAddressField {
+public class LM_01_09_VerifyCanAddCustomerWhenEnteringValidValueForAddressField {
     WebDriver driver;
     ConfigReader configReader;
     LoginPage loginPage;
@@ -24,6 +25,7 @@ public class VerifyCanAddCustomerWhenEnteringValidValueForAddressField {
     CreateCustomerPage createCustomerPage;
     SoftAssert softAssert;
     Faker faker;
+    CustomerInFormationForm customerInFormationForm1, customerInFormationForm99, customerInFormationForm100;
 
     String name;
     String email;
@@ -49,6 +51,9 @@ public class VerifyCanAddCustomerWhenEnteringValidValueForAddressField {
         address1 = RandomStringUtils.randomAlphanumeric(1);
         address99 = RandomStringUtils.randomAlphanumeric(99);
         address100 = RandomStringUtils.randomAlphanumeric(100);
+        customerInFormationForm1 = new CustomerInFormationForm(name, email, phone, address1);
+        customerInFormationForm99 = new CustomerInFormationForm(name, email, phone, address99);
+        customerInFormationForm100 = new CustomerInFormationForm(name, email, phone, address100);
     }
 
     @Test
@@ -59,60 +64,35 @@ public class VerifyCanAddCustomerWhenEnteringValidValueForAddressField {
 
         Allure.step("Login success");
         loginPage.login("abcTrang@gmail.com", "123123");
-        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
-
+//        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
 
         //1 ki tu cho truong [Address]
-        Allure.step("Click [New customer] button");
-        showAllCustomersPage.clickNewCustomerButton();
-        showAllCustomersPage.waitForCreateCustomerPageIsDisplayed();
+        Allure.step("Open [Create Customer] Page");
+        showAllCustomersPage.openCreateCustomerPage();
 
         Allure.step("Input valid data for [Name], [Email], [Phone] field");
-        createCustomerPage.nameInput(name);
-        createCustomerPage.emailInput(email);
-        createCustomerPage.phoneInput(phone);
-
         Allure.step("Input 1 character for [Address] field");
-        createCustomerPage.addressInput(address1);
-
-        Allure.step("Click [Create a customer] button");
-        createCustomerPage.clickCreateACustomerButton();
+        createCustomerPage.createCustomerInformation(customerInFormationForm1);
 
         softAssert.assertTrue(showAllCustomersPage.isShowAllCustomerPageDisplayed(), "[Show all customers] page is not displayed");
 
         //99 ki tu cho truong [Address]
-        Allure.step("Click [New customer] button");
-        showAllCustomersPage.clickNewCustomerButton();
-        showAllCustomersPage.waitForCreateCustomerPageIsDisplayed();
+        Allure.step("Open [Create Customer] page");
+        showAllCustomersPage.openCreateCustomerPage();
 
         Allure.step("Input valid data for [Name], [Email], [Phone] field");
-        createCustomerPage.nameInput(name);
-        createCustomerPage.emailInput(email);
-        createCustomerPage.phoneInput(phone);
-
         Allure.step("Input 99 character for [Address] field");
-        createCustomerPage.addressInput(address99);
-
-        Allure.step("Click [Create a customer] button");
-        createCustomerPage.clickCreateACustomerButton();
+        createCustomerPage.createCustomerInformation(customerInFormationForm99);
 
         softAssert.assertTrue(showAllCustomersPage.isShowAllCustomerPageDisplayed(), "[Show all customers] page is not displayed");
 
         //100 ki tu cho truong [Address]
-        Allure.step("Click [New customer] button");
-        showAllCustomersPage.clickNewCustomerButton();
-        showAllCustomersPage.waitForCreateCustomerPageIsDisplayed();
+        Allure.step("Open [Create Customer] page");
+        showAllCustomersPage.openCreateCustomerPage();
 
         Allure.step("Input valid data for [Name], [Email], [Phone] field");
-        createCustomerPage.nameInput(name);
-        createCustomerPage.emailInput(email);
-        createCustomerPage.phoneInput(phone);
-
         Allure.step("Input 100 character for [Address] field");
-        createCustomerPage.addressInput(address100);
-
-        Allure.step("Click [Create a customer] button");
-        createCustomerPage.clickCreateACustomerButton();
+        createCustomerPage.createCustomerInformation(customerInFormationForm100);
 
         softAssert.assertTrue(showAllCustomersPage.isShowAllCustomerPageDisplayed(), "[Show all customers] page is not displayed");
 

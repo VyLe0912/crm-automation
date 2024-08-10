@@ -1,7 +1,8 @@
-package example.LeadManagement_AddNewLead_01;
+package example.LeadManagement_AddNewLead_01_10;
 
 import com.github.javafaker.Faker;
 import io.qameta.allure.Allure;
+import models.CustomerInFormationForm;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,7 +17,7 @@ import utils.ConfigReader;
 
 import java.time.Duration;
 
-public class VerifyCannotAddCustomerWhenEnteringInvalidValueForPhoneField {
+public class LM_01_07_VerifyCannotAddCustomerWhenEnteringInvalidValueForPhoneField {
     WebDriver driver;
     ConfigReader configReader;
     LoginPage loginPage;
@@ -24,6 +25,7 @@ public class VerifyCannotAddCustomerWhenEnteringInvalidValueForPhoneField {
     CreateCustomerPage createCustomerPage;
     SoftAssert softAssert;
     Faker faker;
+    CustomerInFormationForm customerInFor1, customerInFor2;
 
     String name;
     String email;
@@ -48,6 +50,8 @@ public class VerifyCannotAddCustomerWhenEnteringInvalidValueForPhoneField {
         phoneAbc = RandomStringUtils.randomAlphabetic(10);
         phoneAbc123 = RandomStringUtils.randomAlphanumeric(10);
         address = faker.address().fullAddress();
+        customerInFor1 = new CustomerInFormationForm(name, email, phoneAbc, address);
+        customerInFor2 = new CustomerInFormationForm(name, email, phoneAbc123, address);
     }
 
     @Test
@@ -58,40 +62,24 @@ public class VerifyCannotAddCustomerWhenEnteringInvalidValueForPhoneField {
 
         Allure.step("Login success");
         loginPage.login("abcTrang@gmail.com", "123123");
-        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
+//        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
 
-        Allure.step("Click [New customer] button");
-        showAllCustomersPage.clickNewCustomerButton();
-        showAllCustomersPage.waitForCreateCustomerPageIsDisplayed();
+        Allure.step("Open [Create Customer] page");
+        showAllCustomersPage.openCreateCustomerPage();
 
         // nhap ki tu cho truong [Phone]
         Allure.step("Input character for [Phone] field");
-        createCustomerPage.phoneInput(phoneAbc);
-
         Allure.step("Input valid data for [Email], [Phone], [Address] field");
-        createCustomerPage.nameInput(name);
-        createCustomerPage.emailInput(email);
-        createCustomerPage.addressInput(address);
-
-        Allure.step("Click [Create a customer] button");
-        createCustomerPage.clickCreateACustomerButton();
+        createCustomerPage.createCustomerInformation(customerInFor1);
 
         //kiem tra thong bao tren cac truong
         softAssert.assertTrue(createCustomerPage.isCreateCustomerPageDisplayed(), "Create success");
         softAssert.assertEquals(createCustomerPage.getErrorForPhoneField(), "Only numbers 0-9", "No message in name field");
 
-
         // nhap ki tu va so cho truong [Phone]
         Allure.step("Input character for [Phone] field");
-        createCustomerPage.phoneInput(phoneAbc123);
-
         Allure.step("Input valid data for [Email], [Phone], [Address] field");
-        createCustomerPage.nameInput(name);
-        createCustomerPage.emailInput(email);
-        createCustomerPage.addressInput(address);
-
-        Allure.step("Click [Create a customer] button");
-        createCustomerPage.clickCreateACustomerButton();
+        createCustomerPage.createCustomerInformation(customerInFor2);
 
         //kiem tra thong bao tren cac truong
         softAssert.assertTrue(createCustomerPage.isCreateCustomerPageDisplayed(), "Create success");
