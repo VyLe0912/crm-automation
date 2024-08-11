@@ -3,6 +3,10 @@ package page;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class EditCustomerInformationPage extends CreateCustomerPage {
     WebDriver driver;
@@ -17,6 +21,7 @@ public class EditCustomerInformationPage extends CreateCustomerPage {
     By informationBreadcrumbButtonSelector = By.xpath("//a[text()='Information']");
     By showAllCustomersBreadcrumbButtonSelector = By.xpath("//ol/li/a[@href='listCustomer.xhtml']");
     By homeBreadcrumbButtonSelector = By.xpath("//i[@class='fa fa-home']");
+    By editCustomerInformationBreadCrumbSelector = By.xpath("//strong[text()='Edit Customer Information']");
 
     public EditCustomerInformationPage(WebDriver driver) {
         super(driver);
@@ -68,5 +73,30 @@ public class EditCustomerInformationPage extends CreateCustomerPage {
     @Step("Click [Home] button on breadcrumb")
     public void clickHomeBreadcrumbButton() {
         driver.findElement(homeBreadcrumbButtonSelector).click();
+    }
+
+    @Step("Get customer name in [Edit Customer Information] page")
+    public String getCustomerName() {
+        return driver.findElement(nameInputSelector).getAttribute("value");
+    }
+
+    @Step("Get customer email in [Edit Customer Information] page")
+    public String getCustomerEmail() {
+        return driver.findElement(emailInputSelector).getAttribute("value");
+    }
+
+    @Step("Get customer phone in [Edit Customer Information] page")
+    public String getCustomerPhone() {
+        return driver.findElement(phoneInputSelector).getAttribute("value");
+    }
+
+    @Step("Get customer address in [Edit Customer Information] page")
+    public String getCustomerAddress() {
+        return driver.findElement(addressInputSelector).getAttribute("value");
+    }
+
+    public boolean isEditCustomerInformationDisplayed() {
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        return wait.until(d->d.findElement(editCustomerInformationBreadCrumbSelector).isDisplayed());
     }
 }

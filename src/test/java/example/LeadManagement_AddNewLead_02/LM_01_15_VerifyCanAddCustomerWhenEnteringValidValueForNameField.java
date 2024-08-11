@@ -1,0 +1,110 @@
+package example.LeadManagement_AddNewLead_02;
+
+import com.github.javafaker.Faker;
+import io.qameta.allure.Allure;
+import models.CustomerInFormationForm;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+import page.CreateCustomerPage;
+import page.LoginPage;
+import page.ShowAllCustomersPage;
+import page.SideBar;
+import utils.ConfigReader;
+
+import java.time.Duration;
+
+public class LM_01_15_VerifyCanAddCustomerWhenEnteringValidValueForNameField {
+    WebDriver driver;
+    ConfigReader configReader;
+    LoginPage loginPage;
+    ShowAllCustomersPage showAllCustomersPage;
+    CreateCustomerPage createCustomerPage;
+    SoftAssert softAssert;
+    Faker faker;
+    SideBar sideBar;
+    CustomerInFormationForm customerInFor1, customerInFor49, customerInFor50;
+
+    String name1, name49, name50;
+    String email;
+    String phone;
+    String address;
+
+    @BeforeMethod
+    public void setUp() {
+        softAssert = new SoftAssert();
+        driver = new ChromeDriver();
+        configReader = new ConfigReader();
+        loginPage = new LoginPage(driver);
+        showAllCustomersPage = new ShowAllCustomersPage(driver);
+        createCustomerPage = new CreateCustomerPage(driver);
+        sideBar = new SideBar(driver);
+        faker = new Faker();
+
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+        name1 = RandomStringUtils.randomAlphabetic(1);
+        name49 = RandomStringUtils.randomAlphabetic(49);
+        name50 = RandomStringUtils.randomAlphabetic(50);
+        email = faker.internet().emailAddress();
+        phone = RandomStringUtils.randomNumeric(10);
+        address = faker.address().fullAddress();
+
+        customerInFor1 = new CustomerInFormationForm(name1, email, phone, address);
+        customerInFor49 = new CustomerInFormationForm(name49, email, phone, address);
+        customerInFor50 = new CustomerInFormationForm(name50, email, phone,address);
+    }
+
+    @Test
+    public void testLM_01_15() {
+
+        Allure.step("Open CRM website");
+        driver.get(configReader.getUrl());
+
+        Allure.step("Login success");
+        loginPage.login("abcTrang@gmail.com", "123123");
+//        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
+
+        //1 ki tu cho truong [name]
+        Allure.step("Open [Create Customer] page");
+        sideBar.openCreateCustomerPage();
+
+        Allure.step("Input 1 character for [Name] field");
+        Allure.step("Input valid data for [Email], [Phone], [Address] field");
+        createCustomerPage.createCustomerInformation(customerInFor1);
+
+        softAssert.assertTrue(showAllCustomersPage.isShowAllCustomerPageDisplayed(), "[Show all customers] page is not displayed");
+
+        //49 ki tu cho truong [name]
+        Allure.step("Open [Create Customer] page");
+        sideBar.openCreateCustomerPage();
+
+        Allure.step("Input 49 character for [Name] field");
+        Allure.step("Input valid data for [Email], [Phone], [Address] field");
+        createCustomerPage.createCustomerInformation(customerInFor49);
+
+        softAssert.assertTrue(showAllCustomersPage.isShowAllCustomerPageDisplayed(), "[Show all customers] page is not displayed");
+
+        //50 ki tu cho truong [name]
+        Allure.step("Open [Create Customer] page");
+        sideBar.openCreateCustomerPage();
+
+        Allure.step("Input 50 character for [Name] field");
+        Allure.step("Input valid data for [Email], [Phone], [Address] field");
+        createCustomerPage.createCustomerInformation(customerInFor50);
+
+        softAssert.assertTrue(showAllCustomersPage.isShowAllCustomerPageDisplayed(), "[Show all customers] page is not displayed");
+
+        softAssert.assertAll();
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void cleanUp() {
+        driver.quit();
+    }
+}

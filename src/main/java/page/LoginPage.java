@@ -2,6 +2,10 @@ package page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class LoginPage {
     WebDriver driver;
@@ -25,9 +29,16 @@ public class LoginPage {
         driver.findElement(btnLoginSelector).click();
     }
 
+//    public boolean isDisappearLoginForm() {
+//        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        return wait.until(d->!d.findElement(btnLoginSelector).isDisplayed());
+//    }
+
     public void login(String email, String password) {
         enterEmail(email);
         enterPassword(password);
         clickButtonLogin();
     }
+
+
 }

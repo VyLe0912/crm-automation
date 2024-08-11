@@ -29,6 +29,8 @@ public class ShowAllCustomersPage {
     By customerAddressLabelSelector = By.xpath("//tr/td[3]");
     By customerPhoneLabelSelector = By.xpath("//tr/td[4]");
 
+    By pageCurrentLabelSelector = By.xpath("//div[@id='j_idt71:tbl_paginator_top']/span[@class='ui-paginator-current']");
+
     public ShowAllCustomersPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -64,22 +66,32 @@ public class ShowAllCustomersPage {
         waitForCreateCustomerPageIsDisplayed();
     }
 
+    @Step("Open [Customer Information] page")
+    public void openCustomerInformationPage(int i) {
+        driver.findElements(customerNameLabelSelector).get(i).click();
+    }
+
+    @Step("Get customer name by index")
     public String getCustomerNameByIndex(int i) {
         return driver.findElements(customerNameLabelSelector).get(i-1).getText();
     }
 
+    @Step("Get customer email by index")
     public String getCustomerEmailByIndex(int i) {
         return driver.findElements(customerEmailLabelSelector).get(i-1).getText();
     }
 
+    @Step("Get customer phone by index")
     public String getCustomerPhoneByIndex(int i) {
         return driver.findElements(customerPhoneLabelSelector).get(i-1).getText();
     }
 
+    @Step("Get customer address by index")
     public String getCustomerAddressByIndex(int i) {
         return driver.findElements(customerAddressLabelSelector).get(i-1).getText();
     }
 
+    @Step("Input customer name to search")
     public void inputCustomerNameToSearch(String name) {
         driver.findElement(nameInputToSearchSelector).sendKeys(name);
     }
@@ -111,5 +123,36 @@ public class ShowAllCustomersPage {
     @Step("Click last customer page button")
     public void openLastCustomerPage() {
         driver.findElement(lastPageButtonSelector).click();
+    }
+
+    public String getPageCurrentLabel() {
+        return driver.findElement(pageCurrentLabelSelector).getText();
+    }
+
+//    String str = getPageCurrentLabel();
+//    int start1 = str.indexOf('(');
+//    int end1 = str.indexOf(' ');
+//    String currentPage = str.substring(start1 + 1, end1);
+//    int currentPageNumber = Integer.parseInt(currentPage);
+//
+//    int start2 = str.indexOf(' ');
+//    int end2 = str.indexOf(')');
+//    String totalPage = str.substring(start2 + 1, end2);
+//    int totalPageNumber = Integer.parseInt(totalPage);
+
+    public int getCurrentPage() {
+//        String str = getPageCurrentLabel();
+        int start1 = getPageCurrentLabel().indexOf('(');
+        int end1 = getPageCurrentLabel().indexOf(' ');
+        String currentPage = getPageCurrentLabel().substring(start1 + 1, end1);
+        return Integer.parseInt(currentPage);
+    }
+
+    public int getTotalPage() {
+//        String str = getPageCurrentLabel();
+        int start2 = getPageCurrentLabel().lastIndexOf(' ');
+        int end2 = getPageCurrentLabel().indexOf(')');
+        String totalPage = getPageCurrentLabel().substring(start2 + 1, end2);
+        return Integer.parseInt(totalPage);
     }
 }
