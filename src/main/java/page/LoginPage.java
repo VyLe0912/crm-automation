@@ -18,7 +18,7 @@ public class LoginPage {
     By textEmailSelector = By. xpath("//input[@id='campaigntypeform:email']//preceding::span");
     By textPassSelector = By.xpath("//input[@id='campaigntypeform:pass']//preceding::span[1]");
     By noticeInvalidEmail = By.xpath("(//div[@class='col-sm-4 col-md-offset-4 pull-right']/p)[1]");
-    By getTxbEmailInputSelector = By.cssSelector("//input[@id='campaigntypeform:email']");
+    By labelCRMWebsiteInputSelector = By.xpath("//strong[@class='text-navy']");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -83,5 +83,9 @@ public class LoginPage {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public String getLabelWebsite() {
+        return driver.findElement(labelCRMWebsiteInputSelector).getText();
     }
 }
