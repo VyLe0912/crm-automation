@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import page.Objects.User;
 import page.utils.ConfigReader;
 
 import java.time.Duration;
@@ -67,6 +68,12 @@ public class LoginPage {
     public void login(String email, String password) {
         enterEmail(email);
         enterPassword(password);
+        clickButtonLogin();
+    }
+
+    public void loginFunc(User user) {
+        enterEmail(user.getEmail());
+        enterPassword(user.getPassword());
         clickButtonLogin();
     }
 

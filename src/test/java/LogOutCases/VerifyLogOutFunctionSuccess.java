@@ -28,7 +28,7 @@ public class VerifyLogOutFunctionSuccess {
 
         Allure.step("Login funciton");
         loginPage.loginFunction();
-        homePage.clickBtnLogOut();
+        homePage.clickBtnLogOut();// doi action log out
 
         Allure.step("Verify Log out function");
         softAssert.assertEquals(loginPage.getLabelWebsite(), "CRM DEMO", "log out failed" );
