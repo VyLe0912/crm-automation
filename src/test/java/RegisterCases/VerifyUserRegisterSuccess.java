@@ -30,7 +30,6 @@ public class VerifyUserRegisterSuccess {
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
         testBase = new TestBase();
-        driver.manage().window().setSize(new Dimension(1910, 744));
         registerUser = new RegisterUser("vyle12@gmail.com", "abc123", "abc123", "nguyen van a", "due", "0896208700");
     }
 

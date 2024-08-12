@@ -23,13 +23,11 @@ public class VerifyOpenProfilePage {
         softAssert = new SoftAssert();
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @Test
     public void VerifyOpenProfilePage() {
         driver.get(configReader.getUrl());
-        driver.manage().window().setSize(new Dimension(1378, 744));
         loginPage.loginFunction();
         homePage.openHomePage();
         profilePage.clickLinkProfile();

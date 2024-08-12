@@ -21,8 +21,6 @@ public class VerifyRegisterFailedWhenOneFieldIsBlank {
         configReader = new ConfigReader();
         softAssert = new SoftAssert();
         registerForm = new RegisterForm(driver);
-        driver.manage().window().setSize(new Dimension(1378, 840));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         faker = new Faker();
         email = faker.internet().emailAddress();
         password = faker.internet().password();

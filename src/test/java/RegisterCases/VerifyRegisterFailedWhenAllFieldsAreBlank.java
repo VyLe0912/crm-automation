@@ -19,13 +19,11 @@ public class VerifyRegisterFailedWhenAllFieldsAreBlank {
         configReader = new ConfigReader();
         registerForm = new RegisterForm(driver);
         softAssert = new SoftAssert();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @Test
     public void verifyRegisterFailedWhenAllFieldsAreBlank() {
         driver.get(configReader.getUrl());
-        driver.manage().window().setSize(new Dimension(1378, 744));
         registerForm.clickBtnRegister();
 
         // Truong Email

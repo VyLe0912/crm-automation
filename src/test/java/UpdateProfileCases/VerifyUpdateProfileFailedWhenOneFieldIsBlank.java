@@ -19,13 +19,11 @@ public class VerifyUpdateProfileFailedWhenOneFieldIsBlank {
         configReader = new ConfigReader();
         profilePage = new ProfilePage(driver);
         softAssert = new SoftAssert();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @Test
     public void VerifyUpdateProfileFailedWhenOneFieldIsBlank() {
         driver.get(configReader.getUrl());
-        driver.manage().window().setSize(new Dimension(1378, 744));
         profilePage.progressOpenProfile();
         profilePage.updateProfile("", "iviettech", "0913256561");
 

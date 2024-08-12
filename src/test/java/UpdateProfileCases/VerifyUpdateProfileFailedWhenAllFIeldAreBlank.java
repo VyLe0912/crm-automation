@@ -19,13 +19,11 @@ public class VerifyUpdateProfileFailedWhenAllFIeldAreBlank {
         configReader = new ConfigReader();
         profilePage = new ProfilePage(driver);
         softAssert = new SoftAssert();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @Test
     public void VerifyUpdateProfileFailedWhenAllFIeldAreBlank() {
         driver.get(configReader.getUrl());
-        driver.manage().window().setSize(new Dimension(1378, 744));
         profilePage.progressOpenProfile();
         profilePage.clickBtnSaveProfile();
 

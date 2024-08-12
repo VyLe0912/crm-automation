@@ -19,13 +19,11 @@ public class VerifyUpdateProfileFailedWhenTwoFieldsAreBlank {
         configReader = new ConfigReader();
         profilePage = new ProfilePage(driver);
         softAssert = new SoftAssert();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @Test
     public void VerifyUpdateProfileFailedWhenTwoFieldsAreBlank() {
         driver.get(configReader.getUrl());
-        driver.manage().window().setSize(new Dimension(1378, 744));
         profilePage.progressOpenProfile();
 
         profilePage.updateProfile("", "", "0913256561");

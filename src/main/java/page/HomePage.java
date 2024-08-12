@@ -36,6 +36,8 @@ public class HomePage {
     By labelHomePageSelector = By.xpath("//span[@class='m-r-sm text-muted welcome-message']");
     By nameAccountHeaderSelector = By.xpath("(//strong[@class='font-bold'])[2]");
 
+    By btnLogOutInputSelector = By.xpath("//form[@id='j_idt63']");
+
     public HomePage(WebDriver driver) {
         this.driver = driver;
     }
@@ -47,6 +49,10 @@ public class HomePage {
 
     public String headerNameAccount() {
         return driver.findElement(nameAccountHeaderSelector).getText();
+    }
+
+    public void clickBtnLogOut() {
+        driver.findElement(btnLogOutInputSelector).click();
     }
 
     @Step ("Click [Menu/ Customer] button on side bar")
