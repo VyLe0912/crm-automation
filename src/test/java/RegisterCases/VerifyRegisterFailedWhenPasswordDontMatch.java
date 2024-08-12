@@ -1,7 +1,5 @@
 package RegisterCases;
 
-import page.Register.RegisterForm;
-import page.Register.RegisterUser;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -10,9 +8,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import page.Register.RegisterForm;
+import page.Register.RegisterUser;
 import page.utils.ConfigReader;
 
-public class VerifyRegisterFailedWithEmailAlreadyExist {
+public class VerifyRegisterFailedWhenPasswordDontMatch {
     @BeforeMethod
     public void setUp() {
         driver = new ChromeDriver();
@@ -20,21 +20,22 @@ public class VerifyRegisterFailedWithEmailAlreadyExist {
         configReader = new ConfigReader();
         softAssert = new SoftAssert();
         registerForm = new RegisterForm(driver);
-        password = faker.internet().password();
-        confPassword = faker.internet().password();
+        email = faker.internet().emailAddress();
         name = faker.funnyName().name();
         company = faker.address().buildingNumber();
         phone = faker.phoneNumber().phoneNumber();
-        registerUser = new RegisterUser("abc@gmail.com", "VyLe123!", "VyLe123!", "Vy", "iviettech", "0896208700");
+        registerUser = new RegisterUser("abc123@gmail.com", "abc123", "123abc", "vy", "due", "0896208700");
     }
 
     @Test
-    public void VerifyRegisterFailedWithEmailAlreadyExist() {
+    public void VerifyRegisterFailedWhenPasswordDontMatch() {
         driver.get(configReader.getUrl());
+
         registerForm.SignUp(registerUser);
-        softAssert.assertEquals(registerForm.messageEmailExist(), "Email already exists!", "Error data email");
+        softAssert.assertEquals(registerForm.getMessagePasswordDontMatch(), "Password does not match the confirm password!", "Error password and confirm password fields");
         softAssert.assertAll();
     }
+
 
     @AfterMethod(alwaysRun = true)
     public void cleanUp() {
@@ -47,8 +48,7 @@ public class VerifyRegisterFailedWithEmailAlreadyExist {
     SoftAssert softAssert;
     RegisterUser registerUser;
     Faker faker;
-    String password;
-    String confPassword;
+    String email;
     String name;
     String company;
     String phone;

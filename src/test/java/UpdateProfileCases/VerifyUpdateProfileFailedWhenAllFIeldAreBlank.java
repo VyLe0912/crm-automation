@@ -1,6 +1,6 @@
 package UpdateProfileCases;
 
-import ProfilePage.ProfilePage;
+import page.ProfilePage.ProfilePage;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,9 +8,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.HomePage;
-import page.LoginPage;
-import utils.ConfigReader;
+import page.utils.ConfigReader;
 
 import java.time.Duration;
 

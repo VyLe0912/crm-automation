@@ -1,4 +1,4 @@
-package Register;
+package page.Register;
 
 public class RegisterUser {
     private String email;

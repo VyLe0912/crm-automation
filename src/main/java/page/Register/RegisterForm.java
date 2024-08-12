@@ -1,4 +1,4 @@
-package Register;
+package page.Register;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -114,7 +114,15 @@ public class RegisterForm {
         clickBtnRegister();
     }
 
+    public void waitForRegisterLoading() {
+
+    }
+
     public String messageEmailExist() {
+        return driver.findElement(messEmailExistSelector).getText();
+    }
+
+    public String getMessagePasswordDontMatch() {
         return driver.findElement(messEmailExistSelector).getText();
     }
 

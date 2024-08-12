@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.LoginPage;
-import utils.ConfigReader;
+import page.utils.ConfigReader;
 
 public class VerifyUserOpenLoginModal {
     By labelLoginSelector = By.xpath("(//div[@class = 'ibox-title'])[1]");
