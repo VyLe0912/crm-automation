@@ -22,7 +22,6 @@ public class VerifyLoginFailedWhenOneFieldIsBlank {
     public void VerifyLoginFailedWhenOneFieldIsBlank() {
         driver.get(configReader.getUrl());
         loginPage.login("", "VyLe123!");
-        loginPage.waitForTextAppear();
 
         //Kiểm tra thông báo trường Email hiển thị
         softAssert.assertEquals(loginPage.emailTextMessage(), "Please enter your email", "Email field error");

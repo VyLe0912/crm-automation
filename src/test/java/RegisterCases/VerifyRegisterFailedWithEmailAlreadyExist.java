@@ -26,13 +26,12 @@ public class VerifyRegisterFailedWithEmailAlreadyExist {
         name = faker.funnyName().name();
         company = faker.address().buildingNumber();
         phone = faker.phoneNumber().phoneNumber();
+        registerUser = new RegisterUser("abc@gmail.com", "VyLe123!", "VyLe123!", "Vy", "iviettech", "0896208700");
     }
 
     @Test
     public void VerifyRegisterFailedWithEmailAlreadyExist() {
         driver.get(configReader.getUrl());
-
-        registerUser = new RegisterUser("abc@gmail.com", "VyLe123!", "VyLe123!", "Vy", "iviettech", "0896208700");
         registerForm.SignUp(registerUser);
         softAssert.assertEquals(registerForm.messageEmailExist(), "Email already exists!", "Error data email");
         softAssert.assertAll();

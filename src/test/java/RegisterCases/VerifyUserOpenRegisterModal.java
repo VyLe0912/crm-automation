@@ -19,14 +19,12 @@ public class VerifyUserOpenRegisterModal {
         configReader = new ConfigReader();
         registerForm = new RegisterForm(driver);
         softAssert = new SoftAssert();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @Test
     public void verifyUserOpenRegisterModal() {
         driver.get(configReader.getUrl());
-        driver.manage().window().setSize(new Dimension(1378, 744));
-        softAssert.assertEquals(registerForm.labelRegisterForm(), "Register", "Open register form failed");
+        softAssert.assertEquals(registerForm.getLabelRegisterForm(), "Register", "Open register form failed");
         softAssert.assertAll();
     }
 

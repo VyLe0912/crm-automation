@@ -61,7 +61,7 @@ public class RegisterForm {
         driver.findElement(btnRegisterInputSelector).click();
     }
 
-    public String labelRegisterForm() {
+    public String getLabelRegisterForm() {
         return driver.findElement(labelRegisterInputSelector).getText();
     }
 

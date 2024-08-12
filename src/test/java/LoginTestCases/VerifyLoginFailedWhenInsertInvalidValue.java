@@ -23,27 +23,24 @@ public class VerifyLoginFailedWhenInsertInvalidValue {
         loginPage = new LoginPage(driver);
         softAssert = new SoftAssert();
         actions = new Actions(driver);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @Test
     public void VerifyLoginFailedWhenInsertInvalidValue() throws InterruptedException {
         Allure.step("Open CRM Website");
         driver.get(configReader.getUrl());
-        driver.manage().window().setSize(new Dimension(1920, 1080));
 
         Allure.step("Test invalid email");
         loginPage.login("abcmskldmgmail.com", "VyLe123!");
         softAssert.assertEquals(loginPage.emailTextMessage(), "The email is not valid (ex: abc@abc)", "Error");
         loginPage.deleteTxbEmail();
 
+        // viet them method cho
         loginPage.login("abc@abcgmail.com", "VyLe123!");
-        Thread.sleep(3000);
         softAssert.assertEquals(loginPage.noticeInvalid(), "The email or password is incorrect!", "Error message 1");
         loginPage.deleteTxbEmail();
 
         loginPage.login("abc@gmail.com", "VyLe");
-        Thread.sleep(3000);
         softAssert.assertEquals(loginPage.noticeInvalid(), "The email or password is incorrect!", "Error mess 2");
 
         softAssert.assertAll();
