@@ -26,16 +26,20 @@ public class VerifyLoginFailedWhenInsertInvalidValue {
         Allure.step("Open CRM Website");
         driver.get(configReader.getUrl());
 
+        //Kiem tra dia chi email khong hop le
         Allure.step("Test invalid email");
         loginPage.login("abcmskldmgmail.com", "VyLe123!");
         softAssert.assertEquals(loginPage.emailTextMessage(), "The email is not valid (ex: abc@abc)", "Error");
         loginPage.deleteTxbEmail();
 
-        // viet them method cho
+        //Kiem tra dia chi email chua dang ky
+        Allure.step("Check email unregistered");
         loginPage.login("abc@abcgmail.com", "VyLe123!");
         softAssert.assertEquals(loginPage.noticeInvalid(), "The email or password is incorrect!", "Error message 1");
         loginPage.deleteTxbEmail();
 
+        //Kiem tra dung dia chi email sai mat khau
+        Allure.step("Check with valid email wrong password");
         loginPage.login("abc@gmail.com", "VyLe");
         softAssert.assertEquals(loginPage.noticeInvalid(), "The email or password is incorrect!", "Error mess 2");
 

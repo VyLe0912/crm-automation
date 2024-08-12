@@ -1,5 +1,6 @@
 package RegisterCases;
 
+import io.qameta.allure.Allure;
 import page.Register.RegisterForm;
 import page.Register.RegisterUser;
 import com.github.javafaker.Faker;
@@ -23,8 +24,13 @@ public class VerifyRegisterFailedWithEmailAlreadyExist {
 
     @Test
     public void VerifyRegisterFailedWithEmailAlreadyExist() {
+        Allure.step("Open CRM Website");
         driver.get(configReader.getUrl());
+
+        Allure.step("Register function");
         registerForm.SignUp(registerUser);
+
+        Allure.step("Check email is already exist");
         softAssert.assertEquals(registerForm.getMessageEmailExist(), "Email already exists!", "Error data email");
         softAssert.assertAll();
     }

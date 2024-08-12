@@ -1,5 +1,6 @@
 package UpdateProfileCases;
 
+import io.qameta.allure.Allure;
 import page.ProfilePage.ProfilePage;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -27,9 +28,14 @@ public class VerifyOpenProfilePage {
 
     @Test
     public void VerifyOpenProfilePage() {
+        Allure.step("Open CRM Website");
         driver.get(configReader.getUrl());
+
+        Allure.step("Login function");
         loginPage.loginFunction();
         homePage.openHomePage();
+
+        Allure.step("Open profile page");
         profilePage.clickLinkProfile();
         profilePage.waitForProfilePageAppear();
         softAssert.assertEquals(profilePage.labelProfilePage(), "User Information", "Can't open profile page");
