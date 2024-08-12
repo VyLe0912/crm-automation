@@ -18,6 +18,7 @@ public class LoginPage {
     By textEmailSelector = By. xpath("//input[@id='campaigntypeform:email']//preceding::span");
     By textPassSelector = By.xpath("//input[@id='campaigntypeform:pass']//preceding::span[1]");
     By noticeInvalidEmail = By.xpath("(//div[@class='col-sm-4 col-md-offset-4 pull-right']/p)[1]");
+    By getTxbEmailInputSelector = By.cssSelector("//input[@id='campaigntypeform:email']");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -36,6 +37,10 @@ public class LoginPage {
     }
     public void enterEmail(String email) {
         driver.findElement(txbEmailInputSelector).sendKeys(email);
+    }
+
+    public String getValueTxbEmail() {
+        return driver.findElement(txbEmailInputSelector).getAttribute("value");
     }
 
     public void enterPassword(String password) {
@@ -70,5 +75,13 @@ public class LoginPage {
         enterEmail(configReader.email());
         enterPassword(configReader.password());
         clickButtonLogin();
+    }
+
+    public void waitToDownloadPage() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

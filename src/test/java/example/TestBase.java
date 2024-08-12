@@ -17,7 +17,7 @@ public class TestBase {
         driver = new ChromeDriver();
         driver.get(configReader.getUrl());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().setSize(new Dimension(1378, 744));
+        driver.manage().window().setSize(new Dimension(1910, 744));
     }
 
 

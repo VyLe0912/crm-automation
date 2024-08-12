@@ -115,14 +115,22 @@ public class RegisterForm {
     }
 
     public void waitForRegisterLoading() {
-
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public String messageEmailExist() {
+    public String getMessageEmailExist() {
         return driver.findElement(messEmailExistSelector).getText();
     }
 
     public String getMessagePasswordDontMatch() {
+        return driver.findElement(messEmailExistSelector).getText();
+    }
+
+    public String getMessageRegisterSuccess() {
         return driver.findElement(messEmailExistSelector).getText();
     }
 
