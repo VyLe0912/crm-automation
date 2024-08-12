@@ -1,5 +1,6 @@
 package UpdateProfileCases;
 
+import io.qameta.allure.Allure;
 import page.ProfilePage.ProfilePage;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -19,30 +20,39 @@ public class VerifyUpdateProfileFailedWhenTwoFieldsAreBlank {
         configReader = new ConfigReader();
         profilePage = new ProfilePage(driver);
         softAssert = new SoftAssert();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @Test
     public void VerifyUpdateProfileFailedWhenTwoFieldsAreBlank() {
+        Allure.step("Open CRM Website");
         driver.get(configReader.getUrl());
-        driver.manage().window().setSize(new Dimension(1378, 744));
+
+        Allure.step("Progress open profile page");
         profilePage.progressOpenProfile();
 
+        Allure.step("Update profile with no Name and Company");
         profilePage.updateProfile("", "", "0913256561");
 
         //Hai truong Name va Company
+        Allure.step("Check message at Name and Company fields");
         softAssert.assertEquals(profilePage.nameTextMessage(), "Please enter your name", "Error name field");
         softAssert.assertEquals(profilePage.companyTextMessage(), "Please enter your company", "Error company field");
 
         //Hai truong Name va Phone
         profilePage.deleteAllTextBox();
+        Allure.step("Update profile with no Name and Phone");
         profilePage.updateProfile("", "iviettech", "");
+
+        Allure.step("Check message at Name and Phone fields");
         softAssert.assertEquals(profilePage.nameTextMessage(), "Please enter your name", "Error name field");
         softAssert.assertEquals(profilePage.phoneTextMessage(), "Please enter your phone", "Error phone field");
 
         //Hai truong Phone va Company
         profilePage.deleteTxbCompany();
+        Allure.step("Update profile with no Company and Phone");
         profilePage.updateProfile("Vy", "", "");
+
+        Allure.step("Check message at Company and Phone fields");
         softAssert.assertEquals(profilePage.companyTextMessage(), "Please enter your company", "Error company field");
         softAssert.assertEquals(profilePage.phoneTextMessage(), "Please enter your phone", "Error phone field");
 

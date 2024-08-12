@@ -1,5 +1,6 @@
 package UpdateProfileCases;
 
+import io.qameta.allure.Allure;
 import page.ProfilePage.ProfilePage;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -23,20 +24,24 @@ public class VerifyUpdateProfileSuccess {
         softAssert = new SoftAssert();
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @Test
     public void VerifyUpdateProfileSuccess() {
+        Allure.step("Open CRM Website");
         driver.get(configReader.getUrl());
-        driver.manage().window().setSize(new Dimension(1378, 744));
+
+        Allure.step("Login function");
         loginPage.loginFunction();
         homePage.openHomePage();
         profilePage.clickLinkProfile();
         profilePage.waitForProfilePageAppear();
         profilePage.deleteAllTextBox();
+
+        Allure.step("Update profile with proper values");
         profilePage.updateProfile("Thy", "due", "0845123456");
 
+        Allure.step("Check update success");
         softAssert.assertEquals(profilePage.textMessageUpdateSuccess(), "Edit success!", "Error update");
         softAssert.assertEquals(homePage.headerNameAccount(), "Thy", "Update error");
         softAssert.assertAll();

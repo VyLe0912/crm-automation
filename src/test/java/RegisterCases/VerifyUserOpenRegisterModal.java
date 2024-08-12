@@ -1,5 +1,6 @@
 package RegisterCases;
 
+import io.qameta.allure.Allure;
 import page.Register.RegisterForm;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -20,8 +21,11 @@ public class VerifyUserOpenRegisterModal {
 
     @Test
     public void verifyUserOpenRegisterModal() {
+        Allure.step("Open CRM Website");
         driver.get(configReader.getUrl());
-        softAssert.assertEquals(registerForm.getLabelRegisterForm(), "page/Register", "Open register form failed");
+
+        Allure.step("Verify Open Register Modal");
+        softAssert.assertEquals(registerForm.getLabelRegisterForm(), "Register", "Open register form failed");
         softAssert.assertAll();
     }
 

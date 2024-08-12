@@ -1,5 +1,6 @@
 package RegisterCases;
 
+import io.qameta.allure.Allure;
 import page.Register.RegisterForm;
 import page.Register.RegisterUser;
 import com.github.javafaker.Faker;
@@ -30,17 +31,25 @@ public class VerifyRegisterFailedWithInvalidEmail {
 
     @Test
     public void VerifyRegisterFailedWithInvalidEmail() {
+        Allure.step("Open CRM Website");
         driver.get(configReader.getUrl());
 
         // Dia chi email khong hop le
+        Allure.step("Register function with invalid email");
         registerUser = new RegisterUser("bsdkjfhodsfho;dhfk", password, confPassword, name, company, phone);
         registerForm.SignUp(registerUser);
+
+        Allure.step("Check message at Email field");
         softAssert.assertEquals(registerForm.textMessEmail(), "The email is not valid (ex: abc@abc)", "Error email field");
 
-        // Dia chi email khong dung
+        Allure.step("Delete all text box");
         registerForm.deleteAllTextbox();
+
+        // Dia chi email khong dung
+        Allure.step("Register function with invalid email");
         registerUser = new RegisterUser("abc@abc", password, confPassword, name, company, phone);
         registerForm.SignUp(registerUser);
+        softAssert.assertEquals(registerForm.textMessEmail(), "The email is incorrect", "Error email field");
 
         softAssert.assertAll();
     }

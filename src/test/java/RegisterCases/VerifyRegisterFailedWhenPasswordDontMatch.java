@@ -1,6 +1,7 @@
 package RegisterCases;
 
 import com.github.javafaker.Faker;
+import io.qameta.allure.Allure;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,9 +25,13 @@ public class VerifyRegisterFailedWhenPasswordDontMatch {
 
     @Test
     public void VerifyRegisterFailedWhenPasswordDontMatch() {
+        Allure.step("Open CRM Website");
         driver.get(configReader.getUrl());
 
+        Allure.step("Register function");
         registerForm.SignUp(registerUser);
+
+        Allure.step("Compare password and Confirm password");
         softAssert.assertEquals(registerForm.getMessagePasswordDontMatch(), "Password does not match the confirm password!", "Error password and confirm password fields");
         softAssert.assertAll();
     }

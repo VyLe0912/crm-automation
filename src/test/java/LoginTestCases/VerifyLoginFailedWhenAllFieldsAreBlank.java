@@ -1,5 +1,6 @@
 package LoginTestCases;
 
+import io.qameta.allure.Allure;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -20,13 +21,17 @@ public class VerifyLoginFailedWhenAllFieldsAreBlank {
 
     @Test
     public void VerifyLoginFailedWhenAllFieldsAreBlank() {
+        Allure.step("Open CRM Website");
         driver.get(configReader.getUrl());
-        loginPage.login("","");
-        loginPage.waitForTextAppear();
 
+        Allure.step("Leave fields are blank");
+        loginPage.login("","");
+
+        Allure.step("Inspect message at email field");
         //Kiểm tra thông báo trường Email hiển thị
         softAssert.assertEquals(loginPage.emailTextMessage(), "Please enter your email", "Email field error");
 
+        Allure.step("Inspect message at password field");
         //Kiểm tra thông báo trường Pass hiển thị
         softAssert.assertEquals(loginPage.passTextMessage(), "Please enter your password", "Password field error");
 
