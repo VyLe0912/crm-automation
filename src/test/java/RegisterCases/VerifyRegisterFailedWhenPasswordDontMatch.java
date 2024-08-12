@@ -16,14 +16,9 @@ public class VerifyRegisterFailedWhenPasswordDontMatch {
     @BeforeMethod
     public void setUp() {
         driver = new ChromeDriver();
-        faker = new Faker();
         configReader = new ConfigReader();
         softAssert = new SoftAssert();
         registerForm = new RegisterForm(driver);
-        email = faker.internet().emailAddress();
-        name = faker.funnyName().name();
-        company = faker.address().buildingNumber();
-        phone = faker.phoneNumber().phoneNumber();
         registerUser = new RegisterUser("abc123@gmail.com", "abc123", "123abc", "vy", "due", "0896208700");
     }
 
@@ -47,9 +42,4 @@ public class VerifyRegisterFailedWhenPasswordDontMatch {
     ConfigReader configReader;
     SoftAssert softAssert;
     RegisterUser registerUser;
-    Faker faker;
-    String email;
-    String name;
-    String company;
-    String phone;
 }
