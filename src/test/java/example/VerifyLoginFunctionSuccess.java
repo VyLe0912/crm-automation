@@ -1,5 +1,6 @@
 package example;
 
+import io.qameta.allure.Allure;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -9,28 +10,31 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.LoginPage;
-import utils.ConfigReader;
+import page.Objects.User;
+import page.SideBar;
+import page.utils.ConfigReader;
 
 import java.time.Duration;
 
 public class VerifyLoginFunctionSuccess {
-    By headerLoginSelector = By.xpath("(//strong[@class='font-bold'])[2]");
     @BeforeMethod
     public void setUp() {
         driver = new ChromeDriver();
         configReader = new ConfigReader();
         loginPage = new LoginPage(driver);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        softAssert = new SoftAssert();
+        sideBar = new SideBar(driver);
+        user = new User("abc@gmail.com", "VyLe123!");
     }
 
     @Test
     public void verifyLoginFunction() {
+        Allure.step("Open CRM Website");
         driver.get(configReader.getUrl());
-        driver.manage().window().setSize(new Dimension(1378, 744));
-        loginPage.login("abc@gmail.com", "VyLe123!");
-        String headerLogin = driver.findElement(headerLoginSelector).getText();
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(headerLogin, "Vy", "Login failed");
+
+        Allure.step("Verify Login fucntion success");
+        loginPage.loginFunc(user);
+        softAssert.assertEquals(sideBar.headerNameAccount(), "Thy", "Login failed");
         softAssert.assertAll();
     }
 
@@ -42,4 +46,7 @@ public class VerifyLoginFunctionSuccess {
     WebDriver driver;
     ConfigReader configReader;
     LoginPage loginPage;
+    SideBar sideBar;
+    User user;
+    SoftAssert softAssert;
 }

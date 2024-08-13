@@ -2,20 +2,24 @@ package page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import page.Objects.User;
+import page.utils.ConfigReader;
 
 import java.time.Duration;
 
 public class LoginPage {
     WebDriver driver;
+    ConfigReader configReader;
+
     By txbEmailInputSelector = By.xpath("//input[@id='campaigntypeform:email']");
     By txbPassInputSelector = By.xpath("//input[@id='campaigntypeform:pass']");
     By btnLoginSelector = By.xpath("//input[@name='campaigntypeform:j_idt14']");
-    By textEmailSelector = By. xpath("(//div[@class='col-lg-10'])[1]");
-    By textPassSelector = By.xpath("(//div[@class='col-lg-10'])[2]");
+    By textEmailSelector = By. xpath("//input[@id='campaigntypeform:email']//preceding::span");
+    By textPassSelector = By.xpath("//input[@id='campaigntypeform:pass']//preceding::span[1]");
     By noticeInvalidEmail = By.xpath("(//div[@class='col-sm-4 col-md-offset-4 pull-right']/p)[1]");
+    By labelCRMWebsiteInputSelector = By.xpath("//strong[@class='text-navy']");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -34,6 +38,10 @@ public class LoginPage {
     }
     public void enterEmail(String email) {
         driver.findElement(txbEmailInputSelector).sendKeys(email);
+    }
+
+    public String getValueTxbEmail() {
+        return driver.findElement(txbEmailInputSelector).getAttribute("value");
     }
 
     public void enterPassword(String password) {
@@ -61,5 +69,30 @@ public class LoginPage {
         enterEmail(email);
         enterPassword(password);
         clickButtonLogin();
+    }
+
+    public void loginFunc(User user) {
+        enterEmail(user.getEmail());
+        enterPassword(user.getPassword());
+        clickButtonLogin();
+    }
+
+    public void loginFunction() {
+        configReader = new ConfigReader();
+        enterEmail(configReader.email());
+        enterPassword(configReader.password());
+        clickButtonLogin();
+    }
+
+    public void waitToDownloadPage() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getLabelWebsite() {
+        return driver.findElement(labelCRMWebsiteInputSelector).getText();
     }
 }
