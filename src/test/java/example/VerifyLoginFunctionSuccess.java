@@ -9,9 +9,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.HomePage;
 import page.LoginPage;
 import page.Objects.User;
+import page.SideBar;
 import page.utils.ConfigReader;
 
 import java.time.Duration;
@@ -23,7 +23,7 @@ public class VerifyLoginFunctionSuccess {
         configReader = new ConfigReader();
         loginPage = new LoginPage(driver);
         softAssert = new SoftAssert();
-        homePage = new HomePage(driver);
+        sideBar = new SideBar(driver);
         user = new User("abc@gmail.com", "VyLe123!");
     }
 
@@ -34,7 +34,7 @@ public class VerifyLoginFunctionSuccess {
 
         Allure.step("Verify Login fucntion success");
         loginPage.loginFunc(user);
-        softAssert.assertEquals(homePage.headerNameAccount(), "Thy", "Login failed");
+        softAssert.assertEquals(sideBar.headerNameAccount(), "Thy", "Login failed");
         softAssert.assertAll();
     }
 
@@ -46,7 +46,7 @@ public class VerifyLoginFunctionSuccess {
     WebDriver driver;
     ConfigReader configReader;
     LoginPage loginPage;
-    HomePage homePage;
+    SideBar sideBar;
     User user;
     SoftAssert softAssert;
 }

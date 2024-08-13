@@ -11,10 +11,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.HomePage;
 import page.LoginPage;
 import page.Register.RegisterForm;
 import page.Register.RegisterUser;
+import page.SideBar;
 import page.utils.ConfigReader;
 
 import java.time.Duration;
@@ -28,7 +28,7 @@ public class VerifyUserRegisterSuccess {
         registerForm = new RegisterForm(driver);
         softAssert = new SoftAssert();
         loginPage = new LoginPage(driver);
-        homePage = new HomePage(driver);
+        sideBar = new SideBar(driver);
         testBase = new TestBase();
         registerUser = new RegisterUser("vyle12@gmail.com", "abc123", "abc123", "nguyen van a", "due", "0896208700");
     }
@@ -56,7 +56,7 @@ public class VerifyUserRegisterSuccess {
         Allure.step("Verify login function");
         loginPage.login("", "abc123");
         Allure.step("Verify account's name");
-        softAssert.assertEquals(homePage.headerNameAccount(), "nguyen van a", "login failed");
+        softAssert.assertEquals(sideBar.headerNameAccount(), "nguyen van a", "login failed");
         softAssert.assertAll();
     }
 
@@ -72,6 +72,6 @@ public class VerifyUserRegisterSuccess {
     SoftAssert softAssert;
     RegisterUser registerUser;
     LoginPage loginPage;
-    HomePage homePage;
+    SideBar sideBar;
     TestBase testBase;
 }

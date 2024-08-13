@@ -9,8 +9,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.HomePage;
 import page.LoginPage;
+import page.SideBar;
 import page.utils.ConfigReader;
 
 import java.time.Duration;
@@ -23,7 +23,7 @@ public class VerifyOpenProfilePage {
         profilePage = new ProfilePage(driver);
         softAssert = new SoftAssert();
         loginPage = new LoginPage(driver);
-        homePage = new HomePage(driver);
+        sideBar = new SideBar(driver);
     }
 
     @Test
@@ -33,7 +33,7 @@ public class VerifyOpenProfilePage {
 
         Allure.step("Login function");
         loginPage.loginFunction();
-        homePage.openHomePage();
+        sideBar.openHomePage();
 
         Allure.step("Open profile page");
         profilePage.clickLinkProfile();
@@ -50,7 +50,7 @@ public class VerifyOpenProfilePage {
     WebDriver driver;
     ProfilePage profilePage;
     LoginPage loginPage;
-    HomePage homePage;
+    SideBar sideBar;
     ConfigReader configReader;
     SoftAssert softAssert;
 }

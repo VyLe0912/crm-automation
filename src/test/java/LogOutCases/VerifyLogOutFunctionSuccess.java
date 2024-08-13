@@ -7,8 +7,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.HomePage;
 import page.LoginPage;
+import page.SideBar;
 import page.utils.ConfigReader;
 
 public class VerifyLogOutFunctionSuccess {
@@ -16,7 +16,7 @@ public class VerifyLogOutFunctionSuccess {
     public void setUp() {
         driver = new ChromeDriver();
         configReader = new ConfigReader();
-        homePage = new HomePage(driver);
+        sideBar = new SideBar(driver);
         loginPage = new LoginPage(driver);
         softAssert = new SoftAssert();
     }
@@ -28,7 +28,7 @@ public class VerifyLogOutFunctionSuccess {
 
         Allure.step("Login funciton");
         loginPage.loginFunction();
-        homePage.clickBtnLogOut();// doi action log out
+        sideBar.clickBtnLogOut();// doi action log out
 
         Allure.step("Verify Log out function");
         softAssert.assertEquals(loginPage.getLabelWebsite(), "CRM DEMO", "log out failed" );
@@ -41,7 +41,7 @@ public class VerifyLogOutFunctionSuccess {
     }
 
     WebDriver driver;
-    HomePage homePage;
+    SideBar sideBar;
     LoginPage loginPage;
     ConfigReader configReader;
     SoftAssert softAssert;
