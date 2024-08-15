@@ -1,5 +1,6 @@
 package example.LeadManagement_AddNewLead_01_10;
 
+import example.TestBase;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,9 +15,8 @@ import utils.ConfigReader;
 
 import java.time.Duration;
 
-public class LM_01_02_VerifyCannotSuccessCreateACustomerWhenLeaveBlankAllFields {
-    WebDriver driver;
-    ConfigReader configReader;
+public class LM_01_02_VerifyCannotSuccessCreateACustomerWhenLeaveBlankAllFields extends TestBase {
+
     LoginPage loginPage;
     ShowAllCustomersPage showAllCustomersPage;
     CreateCustomerPage createCustomerPage;
@@ -24,21 +24,15 @@ public class LM_01_02_VerifyCannotSuccessCreateACustomerWhenLeaveBlankAllFields 
 
     @BeforeMethod
     public void setUp() {
+        super.setUp();
         softAssert = new SoftAssert();
-        driver = new ChromeDriver();
-        configReader = new ConfigReader();
         loginPage = new LoginPage(driver);
         showAllCustomersPage = new ShowAllCustomersPage(driver);
         createCustomerPage = new CreateCustomerPage(driver);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @Test
     public void testLM_01_02() {
-
-        Allure.step("Open CRM website");
-        driver.get(configReader.getUrl());
 
         Allure.step("Login success");
         loginPage.login("abcTrang@gmail.com", "123123");
@@ -68,8 +62,4 @@ public class LM_01_02_VerifyCannotSuccessCreateACustomerWhenLeaveBlankAllFields 
 
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void cleanUp() {
-        driver.quit();
-    }
 }

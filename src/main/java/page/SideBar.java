@@ -3,6 +3,10 @@ package page;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class SideBar {
     WebDriver driver;
@@ -20,18 +24,35 @@ public class SideBar {
     By openShowAllCampaignTypesPageSelector;
     By openCreateCampaignTypePageSelector;
 
-    By productsMenuButtonSelector;
-    By openShowAllProductsPageSelector;
-    By openCreateProductPageSelector;
+    By productsMenuButtonSelector = By.xpath("(//span[@class='nav-label'])[4]");
+    By openShowAllProductsPageSelector = By.xpath("(//ul[@class='nav nav-second-level collapse in']/li/a)[1]");
+    By openCreateProductPageSelector = By.xpath("(//ul[@class='nav nav-second-level collapse in']/li/a)[2]");
 
     By opportunitiesMenuButtonSelector = By.xpath("//span[text() = 'Opportunities']");
     By showAllOpportunitiesButtonSelector = By.xpath("//a[text() = 'Show All Opportunitys']");
 
     By ordersMenuButtonSelector = By.xpath("//span[text() = 'Orders']");
+    By labelHomePageSelector = By.xpath("//span[@class='m-r-sm text-muted welcome-message']");
+
+    By nameAccountHeaderSelector = By.xpath("(//strong[@class='font-bold'])[2]");
+    By btnLogOutInputSelector = By.xpath("//form[@id='j_idt63']");
     By showAllOrdersButtonSelector = By.xpath("//a[text() = 'Show All Orders']");
 
     public SideBar(WebDriver driver) {
         this.driver = driver;
+    }
+
+    public void openHomePage() {
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(d->d.findElement(labelHomePageSelector)).isDisplayed();
+    }
+
+    public String headerNameAccount() {
+        return driver.findElement(nameAccountHeaderSelector).getText();
+    }
+
+    public void clickBtnLogOut() {
+        driver.findElement(btnLogOutInputSelector).click();
     }
 
     @Step ("Click [Menu/ Customer] button on side bar")
@@ -92,4 +113,18 @@ public class SideBar {
         expandOrdersMenu();
         clickShowAllOrdersButton();
     }
+
+    @Step("Click [Menu/ Products] button on side bar")
+    public void clickProductMenuButton() {
+        driver.findElement(productsMenuButtonSelector).click();
+    }
+
+    public void openShowAllProductsPage() {
+        driver.findElement(openShowAllProductsPageSelector).click();
+    }
+
+    public void openCreateProductPage() {
+        driver.findElement(openCreateProductPageSelector).click();
+    }
+
 }

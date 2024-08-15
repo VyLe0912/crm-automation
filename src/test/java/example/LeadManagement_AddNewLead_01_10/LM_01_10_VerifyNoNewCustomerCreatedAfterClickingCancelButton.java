@@ -1,6 +1,7 @@
 package example.LeadManagement_AddNewLead_01_10;
 
 import com.github.javafaker.Faker;
+import example.TestBase;
 import io.qameta.allure.Allure;
 import models.CustomerInFormationForm;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -17,9 +18,8 @@ import utils.ConfigReader;
 
 import java.time.Duration;
 
-public class LM_01_10_VerifyNoNewCustomerCreatedAfterClickingCancelButton {
-    WebDriver driver;
-    ConfigReader configReader;
+public class LM_01_10_VerifyNoNewCustomerCreatedAfterClickingCancelButton extends TestBase {
+
     LoginPage loginPage;
     ShowAllCustomersPage showAllCustomersPage;
     CreateCustomerPage createCustomerPage;
@@ -35,14 +35,11 @@ public class LM_01_10_VerifyNoNewCustomerCreatedAfterClickingCancelButton {
     @BeforeMethod
     public void setUp() {
 
-        driver = new ChromeDriver();
-        configReader = new ConfigReader();
+        super.setUp();
         loginPage = new LoginPage(driver);
         showAllCustomersPage = new ShowAllCustomersPage(driver);
         createCustomerPage = new CreateCustomerPage(driver);
         faker = new Faker();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         softAssert = new SoftAssert();
 
         name = faker.name().name();
@@ -54,9 +51,6 @@ public class LM_01_10_VerifyNoNewCustomerCreatedAfterClickingCancelButton {
 
     @Test
     public void testLM_01_10() {
-
-        Allure.step("Open CRM website");
-        driver.get(configReader.getUrl());
 
         Allure.step("Login success");
         loginPage.login("abcTrang@gmail.com", "123123");
@@ -85,8 +79,4 @@ public class LM_01_10_VerifyNoNewCustomerCreatedAfterClickingCancelButton {
         softAssert.assertAll();
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void cleanUp() {
-        driver.quit();
-    }
 }
