@@ -82,6 +82,7 @@ public class LoginPage {
         enterEmail(configReader.email());
         enterPassword(configReader.password());
         clickButtonLogin();
+        waitToDownloadPage();
     }
 
     public void waitToDownloadPage() {

@@ -2,6 +2,10 @@ package page.Product;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class CreateProduct {
     WebDriver driver;
@@ -10,6 +14,7 @@ public class CreateProduct {
     By txbProductPriceInputSelector;
     By txbProductDiscountInputSelector;
     By btnSaveProductInputSelector;
+    By labelCreateProductPageInputSelector = By.xpath("//div[@class='ibox-title']/h5");
 
     //Messages
     By getTxtMessProductInputSelector;
@@ -33,5 +38,14 @@ public class CreateProduct {
     }
 
     public void createProduct() {
+    }
+
+    public String getLabelCreateProductPage() {
+        return driver.findElement(labelCreateProductPageInputSelector).getText();
+    }
+
+    public boolean createProductPageIsDisplay() {
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        return wait.until(d->d.findElement(labelCreateProductPageInputSelector).isDisplayed());
     }
 }

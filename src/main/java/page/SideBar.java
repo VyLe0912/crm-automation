@@ -24,9 +24,9 @@ public class SideBar {
     By openShowAllCampaignTypesPageSelector;
     By openCreateCampaignTypePageSelector;
 
-    By productsMenuButtonSelector;
-    By openShowAllProductsPageSelector;
-    By openCreateProductPageSelector;
+    By productsMenuButtonSelector = By.xpath("(//span[@class='nav-label'])[4]");
+    By openShowAllProductsPageSelector = By.xpath("(//ul[@class='nav nav-second-level collapse in']/li/a)[1]");
+    By openCreateProductPageSelector = By.xpath("(//ul[@class='nav nav-second-level collapse in']/li/a)[2]");
 
     By opportunitiesMenuButtonSelector = By.xpath("//span[text() = 'Opportunities']");
     By openShowAllOpportunitiesPageSelector = By.xpath("//a[text() = 'Show All Opportunitys']");
@@ -34,8 +34,8 @@ public class SideBar {
     By ordersMenuButtonSelector = By.xpath("//span[text() = 'Orders']");
     By openShowAllOrdersPageSelector = By.xpath("//a[text() = 'Show All Orders']");
     By labelHomePageSelector = By.xpath("//span[@class='m-r-sm text-muted welcome-message']");
-    By nameAccountHeaderSelector = By.xpath("(//strong[@class='font-bold'])[2]");
 
+    By nameAccountHeaderSelector = By.xpath("(//strong[@class='font-bold'])[2]");
     By btnLogOutInputSelector = By.xpath("//form[@id='j_idt63']");
 
     public SideBar(WebDriver driver) {
@@ -89,4 +89,18 @@ public class SideBar {
     public void openShowAllOrdersPage() {
         driver.findElement(openShowAllOrdersPageSelector).click();
     }
+
+    @Step("Click [Menu/ Products] button on side bar")
+    public void clickProductMenuButton() {
+        driver.findElement(productsMenuButtonSelector).click();
+    }
+
+    public void openShowAllProductsPage() {
+        driver.findElement(openShowAllProductsPageSelector).click();
+    }
+
+    public void openCreateProductPage() {
+        driver.findElement(openCreateProductPageSelector).click();
+    }
+
 }
