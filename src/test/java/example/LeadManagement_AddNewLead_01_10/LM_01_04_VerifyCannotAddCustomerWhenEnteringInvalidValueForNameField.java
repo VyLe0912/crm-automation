@@ -1,6 +1,7 @@
 package example.LeadManagement_AddNewLead_01_10;
 
 import com.github.javafaker.Faker;
+import example.TestBase;
 import io.qameta.allure.Allure;
 import models.CustomerInFormationForm;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -17,9 +18,8 @@ import utils.ConfigReader;
 
 import java.time.Duration;
 
-public class LM_01_04_VerifyCannotAddCustomerWhenEnteringInvalidValueForNameField {
-    WebDriver driver;
-    ConfigReader configReader;
+public class LM_01_04_VerifyCannotAddCustomerWhenEnteringInvalidValueForNameField extends TestBase {
+
     LoginPage loginPage;
     ShowAllCustomersPage showAllCustomersPage;
     CreateCustomerPage createCustomerPage;
@@ -34,16 +34,12 @@ public class LM_01_04_VerifyCannotAddCustomerWhenEnteringInvalidValueForNameFiel
 
     @BeforeMethod
     public void setUp() {
+        super.setUp();
         softAssert = new SoftAssert();
-        driver = new ChromeDriver();
-        configReader = new ConfigReader();
         loginPage = new LoginPage(driver);
         showAllCustomersPage = new ShowAllCustomersPage(driver);
         createCustomerPage = new CreateCustomerPage(driver);
         faker = new Faker();
-
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         name = RandomStringUtils.randomAlphabetic(51);
         email = faker.internet().emailAddress();
@@ -55,9 +51,6 @@ public class LM_01_04_VerifyCannotAddCustomerWhenEnteringInvalidValueForNameFiel
 
     @Test
     public void testLM_01_04() {
-
-        Allure.step("Open CRM website");
-        driver.get(configReader.getUrl());
 
         Allure.step("Login success");
         loginPage.login("abcTrang@gmail.com", "123123");
@@ -77,8 +70,4 @@ public class LM_01_04_VerifyCannotAddCustomerWhenEnteringInvalidValueForNameFiel
         softAssert.assertAll();
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void cleanUp() {
-        driver.quit();
-    }
 }

@@ -18,7 +18,7 @@ public class TestBase {
         configReader = new ConfigReader();
         driver.get(configReader.getUrl());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().setSize(new Dimension(1387, 744));
+        driver.manage().window().maximize();
     }
 
 
