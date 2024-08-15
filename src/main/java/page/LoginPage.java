@@ -5,13 +5,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import page.Objects.User;
-import page.utils.ConfigReader;
+import utils.ConfigReader;
 
 import java.time.Duration;
 
 public class LoginPage {
-    WebDriver driver;
-    ConfigReader configReader;
+    private WebDriver driver;
+    private ConfigReader configReader;
 
     By txbEmailInputSelector = By.xpath("//input[@id='campaigntypeform:email']");
     By txbPassInputSelector = By.xpath("//input[@id='campaigntypeform:pass']");

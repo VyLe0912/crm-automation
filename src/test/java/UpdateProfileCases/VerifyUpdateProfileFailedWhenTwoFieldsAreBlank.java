@@ -1,6 +1,8 @@
 package UpdateProfileCases;
 
+import example.TestBase;
 import io.qameta.allure.Allure;
+import page.Objects.User;
 import page.ProfilePage.ProfilePage;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -9,17 +11,20 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.utils.ConfigReader;
+import utils.ConfigReader;
+
 
 import java.time.Duration;
 
-public class VerifyUpdateProfileFailedWhenTwoFieldsAreBlank {
+public class VerifyUpdateProfileFailedWhenTwoFieldsAreBlank extends TestBase {
     @BeforeMethod
     public void setUp() {
-        driver = new ChromeDriver();
-        configReader = new ConfigReader();
+        super.setUp();
         profilePage = new ProfilePage(driver);
         softAssert = new SoftAssert();
+        user1 = new User("", "", "0913256561");
+        user2 = new User("", "iviettech", "");
+        user3 = new User("Vy", "", "");
     }
 
     @Test
@@ -31,7 +36,7 @@ public class VerifyUpdateProfileFailedWhenTwoFieldsAreBlank {
         profilePage.progressOpenProfile();
 
         Allure.step("Update profile with no Name and Company");
-        profilePage.updateProfile("", "", "0913256561");
+        profilePage.updateProfile(user1);
 
         //Hai truong Name va Company
         Allure.step("Check message at Name and Company fields");
@@ -41,7 +46,7 @@ public class VerifyUpdateProfileFailedWhenTwoFieldsAreBlank {
         //Hai truong Name va Phone
         profilePage.deleteAllTextBox();
         Allure.step("Update profile with no Name and Phone");
-        profilePage.updateProfile("", "iviettech", "");
+        profilePage.updateProfile(user2);
 
         Allure.step("Check message at Name and Phone fields");
         softAssert.assertEquals(profilePage.nameTextMessage(), "Please enter your name", "Error name field");
@@ -50,7 +55,7 @@ public class VerifyUpdateProfileFailedWhenTwoFieldsAreBlank {
         //Hai truong Phone va Company
         profilePage.deleteTxbCompany();
         Allure.step("Update profile with no Company and Phone");
-        profilePage.updateProfile("Vy", "", "");
+        profilePage.updateProfile(user3);
 
         Allure.step("Check message at Company and Phone fields");
         softAssert.assertEquals(profilePage.companyTextMessage(), "Please enter your company", "Error company field");
@@ -59,13 +64,10 @@ public class VerifyUpdateProfileFailedWhenTwoFieldsAreBlank {
         softAssert.assertAll();
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void cleanUp() {
-        driver.quit();
-    }
 
-    WebDriver driver;
     ProfilePage profilePage;
-    ConfigReader configReader;
+    User user1;
+    User user2;
+    User user3;
     SoftAssert softAssert;
 }

@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import page.utils.ConfigReader;
+import utils.ConfigReader;
 
 import java.time.Duration;
 
@@ -15,9 +15,10 @@ public class TestBase {
     public void setUp() {
         // Set up the test environment
         driver = new ChromeDriver();
+        configReader = new ConfigReader();
         driver.get(configReader.getUrl());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().setSize(new Dimension(1910, 744));
+        driver.manage().window().setSize(new Dimension(1387, 744));
     }
 
 

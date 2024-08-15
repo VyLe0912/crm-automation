@@ -1,5 +1,6 @@
 package UpdateProfileCases;
 
+import example.TestBase;
 import io.qameta.allure.Allure;
 import page.ProfilePage.ProfilePage;
 import org.openqa.selenium.Dimension;
@@ -9,23 +10,20 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.utils.ConfigReader;
+import utils.ConfigReader;
 
 import java.time.Duration;
 
-public class VerifyUpdateProfileFailedWhenAllFIeldAreBlank {
+public class VerifyUpdateProfileFailedWhenAllFIeldAreBlank extends TestBase {
     @BeforeMethod
     public void setUp() {
-        driver = new ChromeDriver();
-        configReader = new ConfigReader();
+        super.setUp();
         profilePage = new ProfilePage(driver);
         softAssert = new SoftAssert();
     }
 
     @Test
     public void VerifyUpdateProfileFailedWhenAllFIeldAreBlank() {
-        Allure.step("Open CRM Website");
-        driver.get(configReader.getUrl());
 
         Allure.step("Progress open profile page");
         profilePage.progressOpenProfile();
@@ -46,13 +44,6 @@ public class VerifyUpdateProfileFailedWhenAllFIeldAreBlank {
         softAssert.assertAll();
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void cleanUp() {
-        driver.quit();
-    }
-
-    WebDriver driver;
     ProfilePage profilePage;
-    ConfigReader configReader;
     SoftAssert softAssert;
 }

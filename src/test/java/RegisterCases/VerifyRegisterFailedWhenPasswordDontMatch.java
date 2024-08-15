@@ -1,6 +1,7 @@
 package RegisterCases;
 
 import com.github.javafaker.Faker;
+import example.TestBase;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -11,22 +12,19 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.Register.RegisterForm;
 import page.Register.RegisterUser;
-import page.utils.ConfigReader;
+import utils.ConfigReader;
 
-public class VerifyRegisterFailedWhenPasswordDontMatch {
+public class VerifyRegisterFailedWhenPasswordDontMatch extends TestBase {
     @BeforeMethod
     public void setUp() {
-        driver = new ChromeDriver();
-        configReader = new ConfigReader();
+        super.setUp();
         softAssert = new SoftAssert();
         registerForm = new RegisterForm(driver);
-        registerUser = new RegisterUser("abc123@gmail.com", "abc123", "123abc", "vy", "due", "0896208700");
+        registerUser = new RegisterUser("vyth@gmail.com", "abc123", "123abc", "vy", "due", "0896208700");
     }
 
     @Test
     public void VerifyRegisterFailedWhenPasswordDontMatch() {
-        Allure.step("Open CRM Website");
-        driver.get(configReader.getUrl());
 
         Allure.step("Register function");
         registerForm.SignUp(registerUser);
@@ -36,15 +34,7 @@ public class VerifyRegisterFailedWhenPasswordDontMatch {
         softAssert.assertAll();
     }
 
-
-    @AfterMethod(alwaysRun = true)
-    public void cleanUp() {
-        driver.quit();
-    }
-
-    WebDriver driver;
     RegisterForm registerForm;
-    ConfigReader configReader;
     SoftAssert softAssert;
     RegisterUser registerUser;
 }
