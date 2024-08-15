@@ -1,5 +1,6 @@
 package RegisterCases;
 
+import example.TestBase;
 import io.qameta.allure.Allure;
 import page.Register.RegisterForm;
 import page.Register.RegisterUser;
@@ -11,15 +12,14 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.utils.ConfigReader;
+import utils.ConfigReader;
 
 import java.time.Duration;
 
-public class VerifyRegisterFailedWhenOneFieldIsBlank {
+public class VerifyRegisterFailedWhenOneFieldIsBlank extends TestBase {
     @BeforeMethod
     public void setUp() {
-        driver = new ChromeDriver();
-        configReader = new ConfigReader();
+        super.setUp();
         softAssert = new SoftAssert();
         registerForm = new RegisterForm(driver);
         faker = new Faker();
@@ -33,8 +33,6 @@ public class VerifyRegisterFailedWhenOneFieldIsBlank {
 
     @Test
     public void verifyRegisterFailedWhenOneFieldIsBlank() {
-        Allure.step("Open CRM Website");
-        driver.get(configReader.getUrl());
 
         //De trong truong Email
         Allure.step("Check register function with no Email");
@@ -103,14 +101,7 @@ public class VerifyRegisterFailedWhenOneFieldIsBlank {
     }
 
 
-    @AfterMethod(alwaysRun = true)
-    public void cleanUp() {
-        driver.quit();
-    }
-
-    WebDriver driver;
     RegisterForm registerForm;
-    ConfigReader configReader;
     SoftAssert softAssert;
     RegisterUser registerUser;
     Faker faker;

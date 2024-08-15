@@ -10,7 +10,7 @@ import org.testng.asserts.SoftAssert;
 import page.CreateCustomerPage;
 import page.LoginPage;
 import page.ShowAllCustomersPage;
-import page.utils.ConfigReader;
+import utils.ConfigReader;
 
 import java.time.Duration;
 

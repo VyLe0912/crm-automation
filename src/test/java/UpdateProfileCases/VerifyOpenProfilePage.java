@@ -1,5 +1,6 @@
 package UpdateProfileCases;
 
+import example.TestBase;
 import io.qameta.allure.Allure;
 import page.ProfilePage.ProfilePage;
 import org.openqa.selenium.Dimension;
@@ -11,15 +12,14 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.LoginPage;
 import page.SideBar;
-import page.utils.ConfigReader;
+import utils.ConfigReader;
 
 import java.time.Duration;
 
-public class VerifyOpenProfilePage {
+public class VerifyOpenProfilePage extends TestBase {
     @BeforeMethod
     public void setUp() {
-        driver = new ChromeDriver();
-        configReader = new ConfigReader();
+        super.setUp();
         profilePage = new ProfilePage(driver);
         softAssert = new SoftAssert();
         loginPage = new LoginPage(driver);
@@ -28,8 +28,6 @@ public class VerifyOpenProfilePage {
 
     @Test
     public void VerifyOpenProfilePage() {
-        Allure.step("Open CRM Website");
-        driver.get(configReader.getUrl());
 
         Allure.step("Login function");
         loginPage.loginFunction();
@@ -42,15 +40,8 @@ public class VerifyOpenProfilePage {
         softAssert.assertAll();
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void cleanUp() {
-        driver.quit();
-    }
-
-    WebDriver driver;
     ProfilePage profilePage;
     LoginPage loginPage;
     SideBar sideBar;
-    ConfigReader configReader;
     SoftAssert softAssert;
 }

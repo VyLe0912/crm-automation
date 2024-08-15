@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import page.Objects.User;
 
 import java.time.Duration;
 
@@ -103,11 +104,22 @@ public class RegisterForm {
         return driver.findElement(txtMessPhoneInputSelector).getText();
     }
 
-    public void SignUp(RegisterUser user) {
+    public void SignUp(RegisterUser registerUser) {
+        clickTextBoxEmail();
+        enterEmail(registerUser.getEmail());
+        enterPassword(registerUser.getPassword());
+        enterConfirmPassword(registerUser.getConfirmPassword());
+        enterName(registerUser.getName());
+        enterCompany(registerUser.getCompany());
+        enterPhone(registerUser.getPhone());
+        clickBtnRegister();
+    }
+
+    public void Register(User user) {
         clickTextBoxEmail();
         enterEmail(user.getEmail());
         enterPassword(user.getPassword());
-        enterConfirmPassword(user.getConfirmPassword());
+        enterConfirmPassword(user.getConfPass());
         enterName(user.getName());
         enterCompany(user.getCompany());
         enterPhone(user.getPhone());

@@ -1,6 +1,8 @@
 package UpdateProfileCases;
 
+import example.TestBase;
 import io.qameta.allure.Allure;
+import page.Objects.User;
 import page.ProfilePage.ProfilePage;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -9,29 +11,29 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.utils.ConfigReader;
+import utils.ConfigReader;
 
 import java.time.Duration;
 
-public class VerifyUpdateProfileFailedWhenOneFieldIsBlank {
+public class VerifyUpdateProfileFailedWhenOneFieldIsBlank extends TestBase {
     @BeforeMethod
     public void setUp() {
-        driver = new ChromeDriver();
-        configReader = new ConfigReader();
+        super.setUp();
         profilePage = new ProfilePage(driver);
         softAssert = new SoftAssert();
+        user1 = new User("","iviettech", "0913256561" );
+        user2 = new User("Vy", "", "0913256561");
+        user3 = new User("Vy", "iviettech", "" );
     }
 
     @Test
     public void VerifyUpdateProfileFailedWhenOneFieldIsBlank() {
-        Allure.step("Open CRM Website");
-        driver.get(configReader.getUrl());
 
         Allure.step("Progress open profile page");
         profilePage.progressOpenProfile();
 
         Allure.step("Update profile with no Name");
-        profilePage.updateProfile("", "iviettech", "0913256561");
+        profilePage.updateProfile(user1);
 
         //Truong Name
         Allure.step("Check message at Name field");
@@ -40,7 +42,7 @@ public class VerifyUpdateProfileFailedWhenOneFieldIsBlank {
         profilePage.deleteAllTextBox();
 
         Allure.step("Update profile with no Company");
-        profilePage.updateProfile("Vy", "", "0913256561");
+        profilePage.updateProfile(user2);
 
         //Truong Company
         Allure.step("Check message at Company field");
@@ -48,7 +50,7 @@ public class VerifyUpdateProfileFailedWhenOneFieldIsBlank {
 
         profilePage.deleteAllTextBox();
         Allure.step("Update profile with no Phone");
-        profilePage.updateProfile("Vy", "iviettech", "");
+        profilePage.updateProfile(user3);
 
         //Truong Phone
         Allure.step("Check message at Phone field");
@@ -56,13 +58,9 @@ public class VerifyUpdateProfileFailedWhenOneFieldIsBlank {
         softAssert.assertAll();
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void cleanUp() {
-        driver.quit();
-    }
-
-    WebDriver driver;
     ProfilePage profilePage;
-    ConfigReader configReader;
+    User user1;
+    User user2;
+    User user3;
     SoftAssert softAssert;
 }

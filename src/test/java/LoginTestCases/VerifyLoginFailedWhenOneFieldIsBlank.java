@@ -1,5 +1,6 @@
 package LoginTestCases;
 
+import example.TestBase;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,21 +9,18 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.LoginPage;
-import page.utils.ConfigReader;
+import utils.ConfigReader;
 
-public class VerifyLoginFailedWhenOneFieldIsBlank {
+public class VerifyLoginFailedWhenOneFieldIsBlank extends TestBase {
     @BeforeMethod
     public void setUp() {
-        driver = new ChromeDriver();
-        configReader = new ConfigReader();
+        super.setUp();
         loginPage = new LoginPage(driver);
         softAssert = new SoftAssert();
     }
 
     @Test
     public void VerifyLoginFailedWhenOneFieldIsBlank() {
-        Allure.step("Open CRM Website");
-        driver.get(configReader.getUrl());
 
         Allure.step("Login function with no email");
         loginPage.login("", "VyLe123!");
@@ -44,13 +42,6 @@ public class VerifyLoginFailedWhenOneFieldIsBlank {
         softAssert.assertAll();
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void cleanUp() {
-        driver.quit();
-    }
-
-    WebDriver driver;
-    ConfigReader configReader;
     LoginPage loginPage;
     SoftAssert softAssert;
 }

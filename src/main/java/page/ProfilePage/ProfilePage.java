@@ -4,16 +4,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import page.HomePage;
 import page.LoginPage;
-import page.utils.ConfigReader;
+import page.Objects.User;
+import page.SideBar;
+import utils.ConfigReader;
 
 import java.time.Duration;
 
 public class ProfilePage {
     WebDriver driver;
     LoginPage loginPage;
-    HomePage homePage;
+    SideBar sideBar;
     ConfigReader configReader;
 
 
@@ -70,10 +71,10 @@ public class ProfilePage {
         return driver.findElement(notifySuccessSelector).getText();
     }
 
-    public void updateProfile(String name, String company, String phone) {
-        enterName(name);
-        enterCompany(company);
-        enterPhone(phone);
+    public void updateProfile(User user) {
+        enterName(user.getName());
+        enterCompany(user.getCompany());
+        enterPhone(user.getPhone());
         clickBtnSaveProfile();
         try {
             Thread.sleep(1000);
@@ -101,10 +102,10 @@ public class ProfilePage {
 
     public void progressOpenProfile() {
         loginPage = new LoginPage(driver);
-        homePage = new HomePage(driver);
+        sideBar = new SideBar(driver);
         configReader = new ConfigReader();
         loginPage.loginFunction();
-        homePage.openHomePage();
+        sideBar.openHomePage();
         clickLinkProfile();
         waitForProfilePageAppear();
         deleteAllTextBox();

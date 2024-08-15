@@ -1,5 +1,6 @@
 package RegisterCases;
 
+import example.TestBase;
 import io.qameta.allure.Allure;
 import page.Register.RegisterForm;
 import org.openqa.selenium.Dimension;
@@ -9,23 +10,20 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.utils.ConfigReader;
+import utils.ConfigReader;
 
 import java.time.Duration;
 
-public class VerifyRegisterFailedWhenAllFieldsAreBlank {
+public class VerifyRegisterFailedWhenAllFieldsAreBlank extends TestBase {
     @BeforeMethod
     public void setUp() {
-        driver = new ChromeDriver();
-        configReader = new ConfigReader();
+        super.setUp();
         registerForm = new RegisterForm(driver);
         softAssert = new SoftAssert();
     }
 
     @Test
     public void verifyRegisterFailedWhenAllFieldsAreBlank() {
-        Allure.step("Open CRM Website");
-        driver.get(configReader.getUrl());
 
         Allure.step("Check Register function with all fields are blank");
         registerForm.clickBtnRegister();
@@ -57,13 +55,6 @@ public class VerifyRegisterFailedWhenAllFieldsAreBlank {
         softAssert.assertAll();
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void cleanUp() {
-        driver.quit();
-    }
-
-    WebDriver driver;
     RegisterForm registerForm;
-    ConfigReader configReader;
     SoftAssert softAssert;
 }

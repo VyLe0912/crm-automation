@@ -1,5 +1,6 @@
 package RegisterCases;
 
+import example.TestBase;
 import io.qameta.allure.Allure;
 import page.Register.RegisterForm;
 import page.Register.RegisterUser;
@@ -11,14 +12,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.utils.ConfigReader;
+import utils.ConfigReader;
 
-public class VerifyRegisterFailedWithInvalidEmail {
+public class VerifyRegisterFailedWithInvalidEmail extends TestBase {
     @BeforeMethod
     public void setUp() {
-        driver = new ChromeDriver();
+        super.setUp();
         faker = new Faker();
-        configReader = new ConfigReader();
         softAssert = new SoftAssert();
         registerForm = new RegisterForm(driver);
         driver.manage().window().setSize(new Dimension(1378, 840));
@@ -31,8 +31,6 @@ public class VerifyRegisterFailedWithInvalidEmail {
 
     @Test
     public void VerifyRegisterFailedWithInvalidEmail() {
-        Allure.step("Open CRM Website");
-        driver.get(configReader.getUrl());
 
         // Dia chi email khong hop le
         Allure.step("Register function with invalid email");
@@ -55,14 +53,7 @@ public class VerifyRegisterFailedWithInvalidEmail {
     }
 
 
-    @AfterMethod(alwaysRun = true)
-    public void cleanUp() {
-        driver.quit();
-    }
-
-    WebDriver driver;
     RegisterForm registerForm;
-    ConfigReader configReader;
     SoftAssert softAssert;
     RegisterUser registerUser;
     Faker faker;

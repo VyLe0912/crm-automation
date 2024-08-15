@@ -15,28 +15,25 @@ import page.LoginPage;
 import page.Register.RegisterForm;
 import page.Register.RegisterUser;
 import page.SideBar;
-import page.utils.ConfigReader;
+import utils.ConfigReader;
 
 import java.time.Duration;
 
-public class VerifyUserRegisterSuccess {
+public class VerifyUserRegisterSuccess extends TestBase{
 
     @BeforeMethod
     public void setUp() {
-        driver = new ChromeDriver();
-        configReader = new ConfigReader();
+        super.setUp();
         registerForm = new RegisterForm(driver);
         softAssert = new SoftAssert();
         loginPage = new LoginPage(driver);
         sideBar = new SideBar(driver);
         testBase = new TestBase();
-        registerUser = new RegisterUser("vyle12@gmail.com", "abc123", "abc123", "nguyen van a", "due", "0896208700");
+        registerUser = new RegisterUser("vl12@gmail.com", "abc123", "abc123", "nguyen van a", "due", "0896208700");
     }
 
     @Test
     public void VerifyUserRegisterSuccess() {
-        Allure.step("Open CRM Website");
-        driver.get(configReader.getUrl());
 
         //Thuc hien Dang ky tai khoan
         Allure.step("Sign up");
@@ -50,7 +47,7 @@ public class VerifyUserRegisterSuccess {
         //Kiem tra hien thi dia chi email moi
         Allure.step("Verify email text box");
         loginPage.waitToDownloadPage();
-        softAssert.assertEquals(loginPage.getValueTxbEmail(), "vyle12@gmail.com", "doesn't have account");
+        softAssert.assertEquals(loginPage.getValueTxbEmail(), "vl12@gmail.com", "doesn't have account");
 
         //Kiem tra hien thi ten cua tai khoan sau khi Dang nhap
         Allure.step("Verify login function");
@@ -61,14 +58,7 @@ public class VerifyUserRegisterSuccess {
     }
 
 
-    @AfterMethod(alwaysRun = true)
-    public void cleanUp() {
-        driver.quit();
-    }
-
-    WebDriver driver;
     RegisterForm registerForm;
-    ConfigReader configReader;
     SoftAssert softAssert;
     RegisterUser registerUser;
     LoginPage loginPage;

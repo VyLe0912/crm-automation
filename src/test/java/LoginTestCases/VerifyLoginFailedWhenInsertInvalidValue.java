@@ -1,5 +1,6 @@
 package LoginTestCases;
 
+import example.TestBase;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,22 +10,18 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.LoginPage;
-import page.utils.ConfigReader;
+import utils.ConfigReader;
 
-public class VerifyLoginFailedWhenInsertInvalidValue {
+public class VerifyLoginFailedWhenInsertInvalidValue extends TestBase {
     @BeforeMethod
     public void setUp() {
-        driver = new ChromeDriver();
-        configReader = new ConfigReader();
+        super.setUp();
         loginPage = new LoginPage(driver);
         softAssert = new SoftAssert();
-        actions = new Actions(driver);
     }
 
     @Test
-    public void VerifyLoginFailedWhenInsertInvalidValue() throws InterruptedException {
-        Allure.step("Open CRM Website");
-        driver.get(configReader.getUrl());
+    public void VerifyLoginFailedWhenInsertInvalidValue() {
 
         //Kiem tra dia chi email khong hop le
         Allure.step("Test invalid email");
@@ -46,14 +43,6 @@ public class VerifyLoginFailedWhenInsertInvalidValue {
         softAssert.assertAll();
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void cleanUp() {
-        driver.quit();
-    }
-
-    WebDriver driver;
-    ConfigReader configReader;
     LoginPage loginPage;
     SoftAssert softAssert;
-    Actions actions;
 }
