@@ -69,7 +69,7 @@ public class LM_01_01_VerifySuccessfulAddACustomerWhenUserInputValidDataForAllFi
         Allure.step("Input valid data for all fields");
         createCustomerPage.createCustomerInformation(customerInfor);
 
-        softAssert.assertTrue(showAllCustomersPage.isShowAllCustomerPageDisplayed(), "[Show all customers] page is not displayed");
+        softAssert.assertTrue(showAllCustomersPage.isNewCustomerButtonDisplayed(), "[Show all customers] page is not displayed");
 
         //xác minh Customer vừa được thêm vào hiển thị ở đầu danh sách customer
         softAssert.assertEquals(showAllCustomersPage.getCustomerNameByIndex(1), name, "The newly created customer is not at the top of the list.");

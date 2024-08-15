@@ -25,7 +25,7 @@ public class LM_01_09_VerifyCanAddCustomerWhenEnteringValidValueForAddressField 
     CreateCustomerPage createCustomerPage;
     SoftAssert softAssert;
     Faker faker;
-    CustomerInFormationForm customerInFormationForm1, customerInFormationForm99, customerInFormationForm100;
+    CustomerInFormationForm customerInFor;
 
     String name;
     String email;
@@ -51,9 +51,7 @@ public class LM_01_09_VerifyCanAddCustomerWhenEnteringValidValueForAddressField 
         address1 = RandomStringUtils.randomAlphanumeric(1);
         address99 = RandomStringUtils.randomAlphanumeric(99);
         address100 = RandomStringUtils.randomAlphanumeric(100);
-        customerInFormationForm1 = new CustomerInFormationForm(name, email, phone, address1);
-        customerInFormationForm99 = new CustomerInFormationForm(name, email, phone, address99);
-        customerInFormationForm100 = new CustomerInFormationForm(name, email, phone, address100);
+        customerInFor = new CustomerInFormationForm(name, email, phone, address1);
     }
 
     @Test
@@ -72,9 +70,9 @@ public class LM_01_09_VerifyCanAddCustomerWhenEnteringValidValueForAddressField 
 
         Allure.step("Input valid data for [Name], [Email], [Phone] field");
         Allure.step("Input 1 character for [Address] field");
-        createCustomerPage.createCustomerInformation(customerInFormationForm1);
+        createCustomerPage.createCustomerInformation(customerInFor);
 
-        softAssert.assertTrue(showAllCustomersPage.isShowAllCustomerPageDisplayed(), "[Show all customers] page is not displayed");
+        softAssert.assertTrue(showAllCustomersPage.isNewCustomerButtonDisplayed(), "[Show all customers] page is not displayed");
 
         //99 ki tu cho truong [Address]
         Allure.step("Open [Create Customer] page");
@@ -82,9 +80,10 @@ public class LM_01_09_VerifyCanAddCustomerWhenEnteringValidValueForAddressField 
 
         Allure.step("Input valid data for [Name], [Email], [Phone] field");
         Allure.step("Input 99 character for [Address] field");
-        createCustomerPage.createCustomerInformation(customerInFormationForm99);
+        customerInFor.setAddress(address99);
+        createCustomerPage.createCustomerInformation(customerInFor);
 
-        softAssert.assertTrue(showAllCustomersPage.isShowAllCustomerPageDisplayed(), "[Show all customers] page is not displayed");
+        softAssert.assertTrue(showAllCustomersPage.isNewCustomerButtonDisplayed(), "[Show all customers] page is not displayed");
 
         //100 ki tu cho truong [Address]
         Allure.step("Open [Create Customer] page");
@@ -92,9 +91,10 @@ public class LM_01_09_VerifyCanAddCustomerWhenEnteringValidValueForAddressField 
 
         Allure.step("Input valid data for [Name], [Email], [Phone] field");
         Allure.step("Input 100 character for [Address] field");
-        createCustomerPage.createCustomerInformation(customerInFormationForm100);
+        customerInFor.setAddress(address100);
+        createCustomerPage.createCustomerInformation(customerInFor);
 
-        softAssert.assertTrue(showAllCustomersPage.isShowAllCustomerPageDisplayed(), "[Show all customers] page is not displayed");
+        softAssert.assertTrue(showAllCustomersPage.isNewCustomerButtonDisplayed(), "[Show all customers] page is not displayed");
 
         softAssert.assertAll();
     }

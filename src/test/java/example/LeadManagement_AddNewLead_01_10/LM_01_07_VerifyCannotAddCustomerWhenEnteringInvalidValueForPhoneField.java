@@ -25,7 +25,7 @@ public class LM_01_07_VerifyCannotAddCustomerWhenEnteringInvalidValueForPhoneFie
     CreateCustomerPage createCustomerPage;
     SoftAssert softAssert;
     Faker faker;
-    CustomerInFormationForm customerInFor1, customerInFor2;
+    CustomerInFormationForm customerInFor;
 
     String name;
     String email;
@@ -50,8 +50,7 @@ public class LM_01_07_VerifyCannotAddCustomerWhenEnteringInvalidValueForPhoneFie
         phoneAbc = RandomStringUtils.randomAlphabetic(10);
         phoneAbc123 = RandomStringUtils.randomAlphanumeric(10);
         address = faker.address().fullAddress();
-        customerInFor1 = new CustomerInFormationForm(name, email, phoneAbc, address);
-        customerInFor2 = new CustomerInFormationForm(name, email, phoneAbc123, address);
+        customerInFor = new CustomerInFormationForm(name, email, phoneAbc, address);
     }
 
     @Test
@@ -70,7 +69,7 @@ public class LM_01_07_VerifyCannotAddCustomerWhenEnteringInvalidValueForPhoneFie
         // nhap ki tu cho truong [Phone]
         Allure.step("Input character for [Phone] field");
         Allure.step("Input valid data for [Email], [Phone], [Address] field");
-        createCustomerPage.createCustomerInformation(customerInFor1);
+        createCustomerPage.createCustomerInformation(customerInFor);
 
         //kiem tra thong bao tren cac truong
         softAssert.assertTrue(createCustomerPage.isCreateCustomerPageDisplayed(), "Create success");
@@ -79,7 +78,8 @@ public class LM_01_07_VerifyCannotAddCustomerWhenEnteringInvalidValueForPhoneFie
         // nhap ki tu va so cho truong [Phone]
         Allure.step("Input character for [Phone] field");
         Allure.step("Input valid data for [Email], [Phone], [Address] field");
-        createCustomerPage.createCustomerInformation(customerInFor2);
+        customerInFor.setPhone(phoneAbc123);
+        createCustomerPage.createCustomerInformation(customerInFor);
 
         //kiem tra thong bao tren cac truong
         softAssert.assertTrue(createCustomerPage.isCreateCustomerPageDisplayed(), "Create success");

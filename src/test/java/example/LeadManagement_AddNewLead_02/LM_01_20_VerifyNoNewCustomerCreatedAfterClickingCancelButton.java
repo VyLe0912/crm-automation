@@ -65,7 +65,7 @@ public class LM_01_20_VerifyNoNewCustomerCreatedAfterClickingCancelButton {
         loginPage.login("abcTrang@gmail.com", "123123");
 //        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
 
-        softAssert.assertTrue(showAllCustomersPage.isShowAllCustomerPageDisplayed(), "[Show all customers] page is not displayed");
+        softAssert.assertTrue(showAllCustomersPage.isNewCustomerButtonDisplayed(), "[Show all customers] page is not displayed");
         Allure.step("Open [Create Customer] page");
         sideBar.openCreateCustomerPage();
 
@@ -76,12 +76,14 @@ public class LM_01_20_VerifyNoNewCustomerCreatedAfterClickingCancelButton {
         Allure.step("Click [Cancel] button");
         createCustomerPage.clickCancelButton();
 
-        softAssert.assertTrue(showAllCustomersPage.isShowAllCustomerPageDisplayed());
+        softAssert.assertTrue(showAllCustomersPage.isNewCustomerButtonDisplayed());
 
         Allure.step("Search with name of customer just created");
-        showAllCustomersPage.inputCustomerNameToSearch(name);
+        showAllCustomersPage.searchCustomer(name);
 
-        softAssert.assertEquals(showAllCustomersPage.getMessageWhenSearch(), "No records found.", "Success create customer when clicking [Cancel] button");
+//        softAssert.assertEquals(showAllCustomersPage.getMessageWhenSearch(), "No records found.", "Success create customer when clicking [Cancel] button");
+
+        softAssert.assertTrue(showAllCustomersPage.isNoRecordFoundIsDisplayed());
 
         softAssert.assertAll();
     }

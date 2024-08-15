@@ -78,7 +78,7 @@ public class LM_01_15_VerifyCanAddCustomerWhenEnteringValidValueForNameField {
         Allure.step("Input valid data for [Email], [Phone], [Address] field");
         createCustomerPage.createCustomerInformation(customerInFor1);
 
-        softAssert.assertTrue(showAllCustomersPage.isShowAllCustomerPageDisplayed(), "[Show all customers] page is not displayed");
+        softAssert.assertTrue(showAllCustomersPage.isNewCustomerButtonDisplayed(), "[Show all customers] page is not displayed");
 
         //49 ki tu cho truong [name]
         Allure.step("Open [Create Customer] page");
@@ -88,7 +88,7 @@ public class LM_01_15_VerifyCanAddCustomerWhenEnteringValidValueForNameField {
         Allure.step("Input valid data for [Email], [Phone], [Address] field");
         createCustomerPage.createCustomerInformation(customerInFor49);
 
-        softAssert.assertTrue(showAllCustomersPage.isShowAllCustomerPageDisplayed(), "[Show all customers] page is not displayed");
+        softAssert.assertTrue(showAllCustomersPage.isNewCustomerButtonDisplayed(), "[Show all customers] page is not displayed");
 
         //50 ki tu cho truong [name]
         Allure.step("Open [Create Customer] page");
@@ -98,7 +98,7 @@ public class LM_01_15_VerifyCanAddCustomerWhenEnteringValidValueForNameField {
         Allure.step("Input valid data for [Email], [Phone], [Address] field");
         createCustomerPage.createCustomerInformation(customerInFor50);
 
-        softAssert.assertTrue(showAllCustomersPage.isShowAllCustomerPageDisplayed(), "[Show all customers] page is not displayed");
+        softAssert.assertTrue(showAllCustomersPage.isNewCustomerButtonDisplayed(), "[Show all customers] page is not displayed");
 
         softAssert.assertAll();
     }

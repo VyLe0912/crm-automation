@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Random;
 
 public class ShowAllCustomersPage {
     WebDriver driver;
@@ -19,7 +20,7 @@ public class ShowAllCustomersPage {
     By previousPageButtonSelector = By.xpath("//span[@class='ui-icon ui-icon-seek-prev']");
     By nextPageButtonSelector = By.xpath("//span[@class='ui-icon ui-icon-seek-next']");
     By lastPageButtonSelector = By.xpath("//span[@class='ui-icon ui-icon-seek-end']");
-    By openCreateCustomerPageSelector = By.xpath("//h5[text()='Add Customer']");
+    By openCreateCustomerPageSelector = By.xpath("//h2[text()='Create Customer']");
 
     By noRecordFoundLabelSelector = By.xpath("//td[text()='No records found.']");
     By tableRowSelector = By.xpath("//tbody/tr");
@@ -35,12 +36,12 @@ public class ShowAllCustomersPage {
         this.driver = driver;
     }
 
-    public boolean isShowAllCustomerPageDisplayed() {
+    public boolean isNewCustomerButtonDisplayed() {
         Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(d->d.findElement(newCustomerButtonSelector).isDisplayed());
     }
 
-    public void waitForShowAllCustomersPageIsDisplayed() {
+    public void waitForNewCustomerButtonIsDisplayed() {
         Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(d->d.findElement(newCustomerButtonSelector).isDisplayed());
     }
@@ -68,7 +69,7 @@ public class ShowAllCustomersPage {
 
     @Step("Open [Customer Information] page")
     public void openCustomerInformationPage(int i) {
-        driver.findElements(customerNameLabelSelector).get(i).click();
+        driver.findElements(customerNameLabelSelector).get(i-1).click();
     }
 
     @Step("Get customer name by index")
@@ -92,12 +93,16 @@ public class ShowAllCustomersPage {
     }
 
     @Step("Input customer name to search")
-    public void inputCustomerNameToSearch(String name) {
+    public void searchCustomer(String name) {
         driver.findElement(nameInputToSearchSelector).sendKeys(name);
     }
 
-    public String getMessageWhenSearch() {
-        return driver.findElement(noRecordFoundLabelSelector).getText();
+//    public String getMessageWhenSearch() {
+//        return driver.findElement(noRecordFoundLabelSelector).getText();
+//    }
+
+    public boolean isNoRecordFoundIsDisplayed() {
+        return driver.findElement(noRecordFoundLabelSelector).isDisplayed();
     }
 
     @Step("Get number of row customer in first page")
@@ -154,5 +159,12 @@ public class ShowAllCustomersPage {
         int end2 = getPageCurrentLabel().indexOf(')');
         String totalPage = getPageCurrentLabel().substring(start2 + 1, end2);
         return Integer.parseInt(totalPage);
+    }
+
+//    Random random = new Random();
+//
+    public int randomCustomer() {
+        Random random = new Random();
+        return random.nextInt(10) + 1;
     }
 }

@@ -77,7 +77,7 @@ public class LM_01_19_VerifyCanAddCustomerWhenEnteringValidValueForAddressField 
         Allure.step("Input 1 character for [Address] field");
         createCustomerPage.createCustomerInformation(customerInFormationForm1);
 
-        softAssert.assertTrue(showAllCustomersPage.isShowAllCustomerPageDisplayed(), "[Show all customers] page is not displayed");
+        softAssert.assertTrue(showAllCustomersPage.isNewCustomerButtonDisplayed(), "[Show all customers] page is not displayed");
 
         //99 ki tu cho truong [Address]
         Allure.step("Open [Create Customer] page");
@@ -87,7 +87,7 @@ public class LM_01_19_VerifyCanAddCustomerWhenEnteringValidValueForAddressField 
         Allure.step("Input 99 character for [Address] field");
         createCustomerPage.createCustomerInformation(customerInFormationForm99);
 
-        softAssert.assertTrue(showAllCustomersPage.isShowAllCustomerPageDisplayed(), "[Show all customers] page is not displayed");
+        softAssert.assertTrue(showAllCustomersPage.isNewCustomerButtonDisplayed(), "[Show all customers] page is not displayed");
 
         //100 ki tu cho truong [Address]
         Allure.step("Open [Create Customer] page");
@@ -97,7 +97,7 @@ public class LM_01_19_VerifyCanAddCustomerWhenEnteringValidValueForAddressField 
         Allure.step("Input 100 character for [Address] field");
         createCustomerPage.createCustomerInformation(customerInFormationForm100);
 
-        softAssert.assertTrue(showAllCustomersPage.isShowAllCustomerPageDisplayed(), "[Show all customers] page is not displayed");
+        softAssert.assertTrue(showAllCustomersPage.isNewCustomerButtonDisplayed(), "[Show all customers] page is not displayed");
 
         softAssert.assertAll();
     }

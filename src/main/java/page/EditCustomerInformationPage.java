@@ -25,7 +25,9 @@ public class EditCustomerInformationPage extends CreateCustomerPage {
 
     public EditCustomerInformationPage(WebDriver driver) {
         super(driver);
+        this.driver = driver;
     }
+
 
 //    @Step ("Edit name")
 //    public void nameEditInput(String name) {

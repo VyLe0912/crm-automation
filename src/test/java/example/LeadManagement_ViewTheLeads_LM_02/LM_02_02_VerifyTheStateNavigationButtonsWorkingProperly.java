@@ -13,7 +13,7 @@ import utils.ConfigReader;
 
 import java.time.Duration;
 
-public class LM_02_02_VerifyTheStateToggleButtonsWorkingProperly {
+public class LM_02_02_VerifyTheStateNavigationButtonsWorkingProperly {
     WebDriver driver;
     ConfigReader configReader;
     ShowAllCustomersPage showAllCustomersPage;
@@ -41,7 +41,7 @@ public class LM_02_02_VerifyTheStateToggleButtonsWorkingProperly {
 
         Allure.step("Login success");
         loginPage.login("abcTrang@gmail.com", "123123");
-        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
+        showAllCustomersPage.waitForNewCustomerButtonIsDisplayed();
 
         // xac minh trang hien tai la 1
         softAssert.assertEquals(showAllCustomersPage.getCurrentPage(), 1);

@@ -25,7 +25,7 @@ public class LM_01_06_VerrifyCannotAddCustomerWhenEnteringInvalidValueForEmailFi
     CreateCustomerPage createCustomerPage;
     SoftAssert softAssert;
     Faker faker;
-    CustomerInFormationForm customerInFor1, customerInFor2, customerInFor3;
+    CustomerInFormationForm customerInFor;
 
     String name;
     String email1, email2, email3;
@@ -52,9 +52,7 @@ public class LM_01_06_VerrifyCannotAddCustomerWhenEnteringInvalidValueForEmailFi
         phone = RandomStringUtils.randomNumeric(10);
         address = faker.address().fullAddress();
 
-        customerInFor1 = new CustomerInFormationForm(name, email1, phone, address);
-        customerInFor2 = new CustomerInFormationForm(name, email2, phone, address);
-        customerInFor3 = new CustomerInFormationForm(name, email3, phone, address);
+        customerInFor = new CustomerInFormationForm(name, email1, phone, address);
     }
 
     @Test
@@ -74,21 +72,23 @@ public class LM_01_06_VerrifyCannotAddCustomerWhenEnteringInvalidValueForEmailFi
 
         Allure.step("Input 'username' for [Email] field");
         Allure.step("Input valid data for [Name], [Phone], [Address] field");
-        createCustomerPage.createCustomerInformation(customerInFor1);
+        createCustomerPage.createCustomerInformation(customerInFor);
 
         softAssert.assertTrue(createCustomerPage.isCreateCustomerPageDisplayed(), "Create success");
         softAssert.assertEquals(createCustomerPage.getErrorForEmailField(), "The email is not valid (ex: abc@abc)", "No message in email field");
 
         //'username.domain' for [Email] field
         Allure.step("Input 'username.domain' for [Email] field");
-        createCustomerPage.createCustomerInformation(customerInFor2);
+        customerInFor.setEmail(email2);
+        createCustomerPage.createCustomerInformation(customerInFor);
 
         softAssert.assertTrue(createCustomerPage.isCreateCustomerPageDisplayed(), "Create success");
         softAssert.assertEquals(createCustomerPage.getErrorForEmailField(), "The email is not valid (ex: abc@abc)", "No message in email field");
 
         //'username@domain' for [Email] field
         Allure.step("Input 'username@domain' for [Email] field");
-        createCustomerPage.createCustomerInformation(customerInFor3);
+        customerInFor.setEmail(email3);
+        createCustomerPage.createCustomerInformation(customerInFor);
 
         softAssert.assertTrue(createCustomerPage.isCreateCustomerPageDisplayed(), "Create success");
         softAssert.assertEquals(createCustomerPage.getErrorForEmailField(), "The email is not valid (ex: abc@abc)", "No message in email field");

@@ -30,6 +30,7 @@ public class LM_02_03_VerifyCustomerInformationIsDisplayedCorrectlyOnTheCustomer
     String email;
     String phone;
     String address;
+    int randomNumber;
 
     @BeforeMethod
     public void setUp() {
@@ -45,26 +46,27 @@ public class LM_02_03_VerifyCustomerInformationIsDisplayedCorrectlyOnTheCustomer
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        int randomCustomer = random.nextInt(10);
+        randomNumber = random.nextInt(10);
 
-        name = showAllCustomersPage.getCustomerNameByIndex(randomCustomer);
-        email = showAllCustomersPage.getCustomerEmailByIndex(randomCustomer);
-        phone = showAllCustomersPage.getCustomerPhoneByIndex(randomCustomer);
-        address = showAllCustomersPage.getCustomerAddressByIndex(randomCustomer);
+
     }
 
     @Test
-    public void testLM_02_01() {
+    public void testLM_02_03() {
 
         Allure.step("Open CRM website");
         driver.get(configReader.getUrl());
 
         Allure.step("Login success");
         loginPage.login("abcTrang@gmail.com", "123123");
-        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
+        showAllCustomersPage.waitForNewCustomerButtonIsDisplayed();
 
         // bam chon 1 customer bat ki
-        showAllCustomersPage.openCustomerInformationPage(1);
+        name = showAllCustomersPage.getCustomerNameByIndex(randomNumber);
+        email = showAllCustomersPage.getCustomerEmailByIndex(randomNumber);
+        phone = showAllCustomersPage.getCustomerPhoneByIndex(randomNumber);
+        address = showAllCustomersPage.getCustomerAddressByIndex(randomNumber);
+        showAllCustomersPage.openCustomerInformationPage(randomNumber);
 
         // xac minh chuyen den man hinh customer information
         softAssert.assertTrue(customerInformationPage.isCustomerInformationPageDisplayed());

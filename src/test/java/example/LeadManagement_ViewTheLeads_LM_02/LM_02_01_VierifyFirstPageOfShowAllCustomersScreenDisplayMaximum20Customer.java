@@ -41,7 +41,7 @@ public class LM_02_01_VierifyFirstPageOfShowAllCustomersScreenDisplayMaximum20Cu
 
         Allure.step("Login success");
         loginPage.login("abcTrang@gmail.com", "123123");
-        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
+        showAllCustomersPage.waitForNewCustomerButtonIsDisplayed();
 
         softAssert.assertEquals(showAllCustomersPage.countRowInCurrentPage(), 20, "The number of customers on the first page is not 20.");
 
