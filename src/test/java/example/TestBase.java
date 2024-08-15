@@ -17,7 +17,7 @@ public class TestBase {
         driver = new ChromeDriver();
         configReader = new ConfigReader();
         driver.get(configReader.getUrl());
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().window().maximize();
     }
 

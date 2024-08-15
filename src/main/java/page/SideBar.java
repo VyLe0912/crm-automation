@@ -25,8 +25,8 @@ public class SideBar {
     By openCreateCampaignTypePageSelector;
 
     By productsMenuButtonSelector = By.xpath("(//span[@class='nav-label'])[4]");
-    By openShowAllProductsPageSelector = By.xpath("(//ul[@class='nav nav-second-level collapse in']/li/a)[1]");
-    By openCreateProductPageSelector = By.xpath("(//ul[@class='nav nav-second-level collapse in']/li/a)[2]");
+    By showAllProductsButtonSelector = By.xpath("(//ul[@class='nav nav-second-level collapse in']/li/a)[1]");
+    By createProductButtonSelector = By.xpath("(//ul[@class='nav nav-second-level collapse in']/li/a)[2]");
 
     By opportunitiesMenuButtonSelector = By.xpath("//span[text() = 'Opportunities']");
     By showAllOpportunitiesButtonSelector = By.xpath("//a[text() = 'Show All Opportunitys']");
@@ -119,12 +119,19 @@ public class SideBar {
         driver.findElement(productsMenuButtonSelector).click();
     }
 
-    public void openShowAllProductsPage() {
-        driver.findElement(openShowAllProductsPageSelector).click();
+    public void clickShowAllProductsButton() {
+        driver.findElement(showAllProductsButtonSelector).click();
     }
 
+    @Step("Open [Show All Product] page")
+    public void openShowAllProductsPage() {
+        clickProductMenuButton();
+        clickShowAllProductsButton();
+    }
+
+
     public void openCreateProductPage() {
-        driver.findElement(openCreateProductPageSelector).click();
+        driver.findElement(createProductButtonSelector).click();
     }
 
 }

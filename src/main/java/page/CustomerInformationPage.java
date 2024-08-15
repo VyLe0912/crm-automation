@@ -3,6 +3,7 @@ package page;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -10,6 +11,7 @@ import java.time.Duration;
 
 public class CustomerInformationPage {
     WebDriver driver;
+//    Actions actions = new Actions(driver);
 
 
     By editButtonSelector = By.xpath("//a[text()='Edit']");
@@ -18,6 +20,8 @@ public class CustomerInformationPage {
     By customerPhoneSelector = By.xpath("//div[preceding-sibling::label[text()='Phone:']]/span");
     By customerAddressSelector = By.xpath("//div[preceding-sibling::label[text()='Address:']]/span");
     By informationBreadCrumbSelector = By.xpath("//strong[text()='Information']");
+
+    By addOrderButtonSelector = By.xpath("//a[text()='Add order']");
 
     public CustomerInformationPage(WebDriver driver) {
         this.driver = driver;
@@ -53,4 +57,8 @@ public class CustomerInformationPage {
         return wait.until(d->d.findElement(informationBreadCrumbSelector).isDisplayed());
     }
 
+    @Step("Click [Add order] button")
+    public void clickAddOrderButton() {
+        driver.findElement(addOrderButtonSelector).click();
+    }
 }
