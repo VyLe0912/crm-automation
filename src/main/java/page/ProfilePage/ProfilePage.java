@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import page.LoginPage;
-import page.Objects.User;
+import models.Objects.User;
 import page.SideBar;
 import utils.ConfigReader;
 

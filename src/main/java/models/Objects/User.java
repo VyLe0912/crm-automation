@@ -1,4 +1,4 @@
-package page.Objects;
+package models.Objects;
 
 public class User {
     private String email;

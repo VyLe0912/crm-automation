@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.LoginPage;
-import page.Objects.User;
+import models.Objects.User;
 import page.SideBar;
 
 public class VerifyLoginFunctionSuccess extends TestBase {
