@@ -65,10 +65,16 @@ public class LoginPage {
         return driver.findElement(textPassSelector).getText();
     }
 
+    public boolean isDisappearLoginForm() {
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(1));
+        return wait.until(d->d.findElements(btnLoginSelector).size()==0);
+    }
+
     public void login(String email, String password) {
         enterEmail(email);
         enterPassword(password);
         clickButtonLogin();
+        isDisappearLoginForm();
     }
 
     public void loginFunc(User user) {

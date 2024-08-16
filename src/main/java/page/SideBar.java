@@ -12,8 +12,8 @@ public class SideBar {
     WebDriver driver;
 
     By customerMenuButtonSelector = By.xpath("//span[text() = 'Customer']");
-    By openShowAllCustomersPageSelector = By.xpath("//a[text() = 'Show All Customers']");
-    By openCreateCustomerPageSelector = By.xpath("//a[text() = 'Create Customer']");
+    By showAllCustomersButtonSelector = By.xpath("//a[text() = 'Show All Customers']");
+    By createCustomerButtonSelector = By.xpath("//a[text() = 'Create Customer']");
 
     By reminderMenuButtonSelector;
     By openShowAllRemindersPageSelector;
@@ -25,18 +25,18 @@ public class SideBar {
     By openCreateCampaignTypePageSelector;
 
     By productsMenuButtonSelector = By.xpath("(//span[@class='nav-label'])[4]");
-    By openShowAllProductsPageSelector = By.xpath("(//ul[@class='nav nav-second-level collapse in']/li/a)[1]");
-    By openCreateProductPageSelector = By.xpath("(//ul[@class='nav nav-second-level collapse in']/li/a)[2]");
+    By showAllProductsButtonSelector = By.xpath("(//ul[@class='nav nav-second-level collapse in']/li/a)[1]");
+    By createProductButtonSelector = By.xpath("(//ul[@class='nav nav-second-level collapse in']/li/a)[2]");
 
     By opportunitiesMenuButtonSelector = By.xpath("//span[text() = 'Opportunities']");
-    By openShowAllOpportunitiesPageSelector = By.xpath("//a[text() = 'Show All Opportunitys']");
+    By showAllOpportunitiesButtonSelector = By.xpath("//a[text() = 'Show All Opportunitys']");
 
     By ordersMenuButtonSelector = By.xpath("//span[text() = 'Orders']");
-    By openShowAllOrdersPageSelector = By.xpath("//a[text() = 'Show All Orders']");
     By labelHomePageSelector = By.xpath("//span[@class='m-r-sm text-muted welcome-message']");
 
     By nameAccountHeaderSelector = By.xpath("(//strong[@class='font-bold'])[2]");
     By btnLogOutInputSelector = By.xpath("//form[@id='j_idt63']");
+    By showAllOrdersButtonSelector = By.xpath("//a[text() = 'Show All Orders']");
 
     public SideBar(WebDriver driver) {
         this.driver = driver;
@@ -56,38 +56,62 @@ public class SideBar {
     }
 
     @Step ("Click [Menu/ Customer] button on side bar")
-    public void clickCustomerMenuButton() {
+    public void expandCustomerMenu() {
         driver.findElement(customerMenuButtonSelector).click();
     }
 
     @Step ("Click [Show All Customers] button on side bar")
+    public void clickShowAllCustomersButton() {
+        driver.findElement(showAllCustomersButtonSelector).click();
+    }
+
+    @Step("Open [Show All Customers] page")
     public void openShowAllCustomersPage() {
-        driver.findElement(openShowAllCustomersPageSelector).click();
+        expandCustomerMenu();
+        clickShowAllCustomersButton();
     }
 
     @Step ("Click [Create Customer] button on site bar")
+    public void clickCreateCustomerButton() {
+        driver.findElement(createCustomerButtonSelector).click();
+    }
+
+    @Step("Open [Create Customer] page")
     public void openCreateCustomerPage() {
-        driver.findElement(openCreateCustomerPageSelector).click();
+        expandCustomerMenu();
+        clickCreateCustomerButton();
     }
 
     @Step ("Click [Menu/ Opportunities] button on side bar")
-    public void clickOpportunitiesMenuButton() {
+    public void expandOpportunitiesMenu() {
         driver.findElement(opportunitiesMenuButtonSelector).click();
     }
 
     @Step ("Click [Show All Opportunities] button on side bar")
+    public void clickShowAllOpportunitiesButton() {
+        driver.findElement(showAllOpportunitiesButtonSelector).click();
+    }
+
+    @Step("Open [Show All Opportunities] page")
     public void openShowAllOpportunitiesPage() {
-        driver.findElement(openShowAllOpportunitiesPageSelector).click();
+        expandOpportunitiesMenu();
+        clickShowAllOpportunitiesButton();
     }
 
     @Step ("Click [Menu/ Orders] button on side bar")
-    public void clickOrdersMenuButton() {
+    public void expandOrdersMenu() {
         driver.findElement(ordersMenuButtonSelector).click();
     }
 
     @Step ("Click [Show All Orders] button on side bar")
-    public void openShowAllOrdersPage() {
-        driver.findElement(openShowAllOrdersPageSelector).click();
+    public void clickShowAllOrdersButton() {
+        driver.findElement(showAllOrdersButtonSelector).click();
+    }
+
+    @Step("Open [Show All Orders] page")
+    public void openShowALlOrdersPage() {
+        expandOrdersMenu();
+        clickShowAllOrdersButton();
     }
 
     @Step("Click [Menu/ Products] button on side bar")
@@ -95,12 +119,19 @@ public class SideBar {
         driver.findElement(productsMenuButtonSelector).click();
     }
 
-    public void openShowAllProductsPage() {
-        driver.findElement(openShowAllProductsPageSelector).click();
+    public void clickShowAllProductsButton() {
+        driver.findElement(showAllProductsButtonSelector).click();
     }
 
+    @Step("Open [Show All Product] page")
+    public void openShowAllProductsPage() {
+        clickProductMenuButton();
+        clickShowAllProductsButton();
+    }
+
+
     public void openCreateProductPage() {
-        driver.findElement(openCreateProductPageSelector).click();
+        driver.findElement(createProductButtonSelector).click();
     }
 
 }
