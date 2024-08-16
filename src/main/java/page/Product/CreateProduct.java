@@ -16,6 +16,7 @@ public class CreateProduct {
     By btnSaveProductInputSelector = By.xpath("//input[@name='bookForm:j_idt77']");
     By labelCreateProductPageInputSelector = By.xpath("//div[@class='ibox-title']/h5");
 
+
     //Messages
     By textMessProductInputSelector = By.xpath("//input[@id='bookForm:pn']//preceding::span[1]");
     By textMessProductPriceInputSelector = By.xpath("//input[@id='bookForm:pp']//preceding::span[1]");
@@ -79,8 +80,8 @@ public class CreateProduct {
         return driver.findElement(textMessProductDiscountInputSelector).getText();
     }
 
-    public boolean createProductPageIsDisplay() {
-        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        return wait.until(d->d.findElement(labelCreateProductPageInputSelector).isDisplayed());
-    }
+//    public boolean createProductPageIsDisplay() {
+//        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        return wait.until(d->d.findElement(labelCreateProductPageInputSelector).isDisplayed());
+//    }
 }

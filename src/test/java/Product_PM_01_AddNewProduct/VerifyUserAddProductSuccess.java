@@ -33,7 +33,7 @@ public class VerifyUserAddProductSuccess extends TestBase {
     public void VerifyUserAddProductSuccess() {
 
         Allure.step("Login function");
-        loginPage.loginFunction();
+        loginPage.loginWithDefaultAccount();
 
         Allure.step("Open create product page");
         sideBar.clickProductMenuButton();

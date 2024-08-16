@@ -2,6 +2,7 @@ package page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import models.Objects.User;
@@ -65,25 +66,25 @@ public class LoginPage {
         return driver.findElement(textPassSelector).getText();
     }
 
-    public boolean isDisappearLoginForm() {
-        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(1));
-        return wait.until(d->d.findElements(btnLoginSelector).size()==0);
-    }
+//    public void isDisappearLoginForm() {
+//        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        wait.until();
+//    }
 
     public void login(String email, String password) {
         enterEmail(email);
         enterPassword(password);
         clickButtonLogin();
-        isDisappearLoginForm();
+        waitToDownloadPage();
     }
 
-    public void loginFunc(User user) {
+    public void login(User user) {
         enterEmail(user.getEmail());
         enterPassword(user.getPassword());
         clickButtonLogin();
     }
 
-    public void loginFunction() {
+    public void loginWithDefaultAccount() {
         configReader = new ConfigReader();
         enterEmail(configReader.email());
         enterPassword(configReader.password());

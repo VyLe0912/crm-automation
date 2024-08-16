@@ -8,7 +8,7 @@ import org.testng.asserts.SoftAssert;
 import page.LoginPage;
 import page.Customer.ShowAllCustomersPage;
 
-public class LM_02_01_VierifyFirstPageOfShowAllCustomersScreenDisplayMaximum20Customer extends TestBase {
+public class LM_02_01_VerifyFirstPageOfShowAllCustomersScreenDisplayMaximum20Customer extends TestBase {
     ShowAllCustomersPage showAllCustomersPage;
     SoftAssert softAssert;
     LoginPage loginPage;

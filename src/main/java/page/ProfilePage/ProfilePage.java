@@ -104,7 +104,7 @@ public class ProfilePage {
         loginPage = new LoginPage(driver);
         sideBar = new SideBar(driver);
         configReader = new ConfigReader();
-        loginPage.loginFunction();
+        loginPage.loginWithDefaultAccount();
         sideBar.openHomePage();
         clickLinkProfile();
         waitForProfilePageAppear();

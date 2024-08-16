@@ -1,6 +1,7 @@
 package Product_PM_01_AddNewProduct;
 
 import example.TestBase;
+import io.qameta.allure.Allure;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -20,10 +21,14 @@ public class VerifyOpenCreateProductModal extends TestBase {
 
     @Test
     public void VerifyOpenCreateProductModal() {
-        loginPage.loginFunction();
+
+        Allure.step("Login function");
+        loginPage.loginWithDefaultAccount();
+
+        Allure.step("Verify open Create Product page");
         sideBar.clickProductMenuButton();
         sideBar.openCreateProductPage();
-        softAssert.assertTrue(createProduct.createProductPageIsDisplay(), "failed to open Create Product page");
+        softAssert.assertEquals(createProduct.getLabelCreateProductPage(), "Add Product", "failed to open Create Product page");
         softAssert.assertAll();
     }
 

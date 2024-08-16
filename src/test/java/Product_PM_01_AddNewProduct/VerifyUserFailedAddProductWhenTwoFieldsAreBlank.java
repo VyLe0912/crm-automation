@@ -23,38 +23,37 @@ public class VerifyUserFailedAddProductWhenTwoFieldsAreBlank extends TestBase {
         name = faker.commerce().productName();
         price = faker.number().digit();
         discount = faker.number().digit();
-
-        productForm1 = new ProductForm("", "", discount);
-        productForm2 = new ProductForm("", price, "");
-        productForm3 = new ProductForm(name, "", "");
     }
 
     @Test
     public void VerifyUserFailedAddProductWhenTwoFieldsAreBlank() {
 
         Allure.step("Login function");
-        loginPage.loginFunction();
+        loginPage.loginWithDefaultAccount();
 
         Allure.step("Open create product page");
         sideBar.clickProductMenuButton();
         sideBar.openCreateProductPage();
 
         Allure.step("Verify add product failed when product name and price fields are blank");
-        createProduct.createProduct(productForm1);
+        productForm = new ProductForm("", "", discount);
+        createProduct.createProduct(productForm);
         softAssert.assertEquals(createProduct.getMessProName(), "Please enter product name", "Error ProName");
         softAssert.assertEquals(createProduct.getMessProPrice(), "Please enter price", "Error ProPrice");
 
         createProduct.deleteAllTextBox();
 
         Allure.step("Verify add product failed when product name and discount fields are blank");
-        createProduct.createProduct(productForm2);
+        productForm = new ProductForm("", price, "");
+        createProduct.createProduct(productForm);
         softAssert.assertEquals(createProduct.getMessProName(), "Please enter product name", "Error ProName");
         softAssert.assertEquals(createProduct.getMessProDiscount(), "Please enter discount", "Error ProDiscount");
 
         createProduct.deleteAllTextBox();
 
         Allure.step("Verify add product failed when product price and discount fields are blank");
-        createProduct.createProduct(productForm3);
+        productForm = new ProductForm("", price, discount);
+        createProduct.createProduct(productForm);
         softAssert.assertEquals(createProduct.getMessProPrice(), "Please enter price", "Error ProPrice");
         softAssert.assertEquals(createProduct.getMessProDiscount(), "Please enter discount", "Error ProDiscount");
 
@@ -65,9 +64,7 @@ public class VerifyUserFailedAddProductWhenTwoFieldsAreBlank extends TestBase {
     LoginPage loginPage;
     SideBar sideBar;
     CreateProduct createProduct;
-    ProductForm productForm1;
-    ProductForm productForm2;
-    ProductForm productForm3;
+    ProductForm productForm;
     Faker faker;
     String name;
     String price;

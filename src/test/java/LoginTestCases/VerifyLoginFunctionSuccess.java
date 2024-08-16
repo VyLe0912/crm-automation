@@ -22,7 +22,7 @@ public class VerifyLoginFunctionSuccess extends TestBase {
     @Test
     public void verifyLoginFunction() {
         Allure.step("Verify Login fucntion success");
-        loginPage.loginFunc(user);
+        loginPage.login(user);
         softAssert.assertEquals(sideBar.headerNameAccount(), "Thy", "Login failed");
         softAssert.assertAll();
     }

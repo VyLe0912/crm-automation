@@ -25,7 +25,7 @@ public class VerifyUserFailedAddProductWhenAllFieldsAreBlank extends TestBase {
     public void VerifyUserFailedAddProductWhenAllFieldsAreBlank() {
 
         Allure.step("Login function");
-        loginPage.loginFunction();
+        loginPage.loginWithDefaultAccount();
 
         Allure.step("Open create product page");
         sideBar.clickProductMenuButton();
