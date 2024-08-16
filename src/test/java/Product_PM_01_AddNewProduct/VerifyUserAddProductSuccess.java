@@ -1,4 +1,4 @@
-package ProductCases;
+package Product_PM_01_AddNewProduct;
 
 import com.github.javafaker.Faker;
 import example.TestBase;
