@@ -57,6 +57,12 @@ public class CreateProduct {
         clickBtnSave();
     }
 
+    public void deleteAllTextBox() {
+        driver.findElement(txbProductNameInputSelector).clear();
+        driver.findElement(txbProductPriceInputSelector).clear();
+        driver.findElement(txbProductDiscountInputSelector).clear();
+    }
+
     public String getLabelCreateProductPage() {
         return driver.findElement(labelCreateProductPageInputSelector).getText();
     }
