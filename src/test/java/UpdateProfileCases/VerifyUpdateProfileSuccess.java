@@ -2,20 +2,13 @@ package UpdateProfileCases;
 
 import example.TestBase;
 import io.qameta.allure.Allure;
-import page.Objects.User;
+import models.Objects.User;
 import page.ProfilePage.ProfilePage;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.LoginPage;
 import page.SideBar;
-import utils.ConfigReader;
-
-import java.time.Duration;
 
 public class VerifyUpdateProfileSuccess extends TestBase {
     @BeforeMethod
