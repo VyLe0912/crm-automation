@@ -1,4 +1,4 @@
-package ProductCases;
+package Product_PM_01_AddNewProduct;
 
 import example.TestBase;
 import org.testng.annotations.BeforeMethod;
