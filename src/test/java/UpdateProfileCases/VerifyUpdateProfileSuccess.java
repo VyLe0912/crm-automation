@@ -27,7 +27,7 @@ public class VerifyUpdateProfileSuccess extends TestBase {
         driver.get(configReader.getUrl());
 
         Allure.step("Login function");
-        loginPage.loginFunction();
+        loginPage.loginWithDefaultAccount();
         sideBar.openHomePage();
         profilePage.clickLinkProfile();
         profilePage.waitForProfilePageAppear();
