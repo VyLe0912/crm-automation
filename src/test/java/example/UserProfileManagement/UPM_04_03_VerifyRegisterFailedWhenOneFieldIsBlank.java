@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:src/test/java/example/UserProfileManagement/UPM_04_03_VerifyRegisterFailedWhenOneFieldIsBlank.java
 package example.UserProfileManagement;
+========
+package example.RegisterCases;
+>>>>>>>> 54ace25 (lm04):src/test/java/example/RegisterCases/VerifyRegisterFailedWhenOneFieldIsBlank.java
 
 import example.TestBase;
 import io.qameta.allure.Allure;
@@ -9,7 +13,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+<<<<<<<< HEAD:src/test/java/example/UserProfileManagement/UPM_04_03_VerifyRegisterFailedWhenOneFieldIsBlank.java
 public class UPM_04_03_VerifyRegisterFailedWhenOneFieldIsBlank extends TestBase {
+========
+public class VerifyRegisterFailedWhenOneFieldIsBlank extends TestBase {
+>>>>>>>> 54ace25 (lm04):src/test/java/example/RegisterCases/VerifyRegisterFailedWhenOneFieldIsBlank.java
     @BeforeMethod
     public void setUp() {
         super.setUp();

@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class UPM_02_03_VerifyUpdateProfileFailedWhenOneFieldIsBlank extends TestBase {
-
     @BeforeMethod
     public void setUp() {
         super.setUp();
