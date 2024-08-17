@@ -1,0 +1,53 @@
+package page.Products;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import page.SideBar.SideBar;
+
+import java.time.Duration;
+
+public class CreateProductPage extends SideBar {
+    WebDriver driver;
+
+    By txbProductNameInputSelector;
+    By txbProductPriceInputSelector;
+    By txbProductDiscountInputSelector;
+    By btnSaveProductInputSelector;
+    By labelCreateProductPageInputSelector = By.xpath("//div[@class='ibox-title']/h5");
+
+    //Messages
+    By getTxtMessProductInputSelector;
+    By getTxtMessProductPriceInputSelector;
+    By getTxtMessProductDiscountInputSelector;
+
+    public CreateProductPage(WebDriver driver) {
+        super(driver);
+        this.driver = driver;
+    }
+
+    public void enterProductName() {
+    }
+
+    public void enterProductPrice() {
+    }
+
+    public void enterProductDiscount() {
+    }
+
+    public void clickBtnSave() {
+    }
+
+    public void createProduct() {
+    }
+
+    public String getLabelCreateProductPage() {
+        return driver.findElement(labelCreateProductPageInputSelector).getText();
+    }
+
+    public boolean createProductPageIsDisplay() {
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        return wait.until(d->d.findElement(labelCreateProductPageInputSelector).isDisplayed());
+    }
+}

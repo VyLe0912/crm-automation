@@ -1,4 +1,4 @@
-package example.LeadManagement_LM_03_SearchLeadByName;
+package example.LeadManagement_LM_01_10_AddNewLead;
 
 import com.github.javafaker.Faker;
 import example.TestBase;
@@ -9,10 +9,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.Customer.CreateCustomerPage;
-import page.Customer.ShowAllCustomersPage;
 import page.Login.LoginPage;
+import page.Customer.ShowAllCustomersPage;
 
-public class LM_03_01_VerifyTheUserCanSearchCustomerByNameWhenInputFullNameOrFirstOfPartName extends TestBase {
+public class LM_01_01_VerifySuccessfulAddACustomerWhenUserInputValidDataForAllFields extends TestBase {
     LoginPage loginPage;
     ShowAllCustomersPage showAllCustomersPage;
     CreateCustomerPage createCustomerPage;
@@ -24,9 +24,6 @@ public class LM_03_01_VerifyTheUserCanSearchCustomerByNameWhenInputFullNameOrFir
     String email;
     String phone;
     String address;
-    String firstPartOfName;
-    String randomName;
-    int lengthOfName;
 
     @BeforeMethod
     public void setUp() {
@@ -42,36 +39,30 @@ public class LM_03_01_VerifyTheUserCanSearchCustomerByNameWhenInputFullNameOrFir
         phone = RandomStringUtils.randomNumeric(10);
         address = faker.address().fullAddress();
         customerInfor = new CustomerInFormationForm(name,email, phone, address);
-        lengthOfName = name.length();
-        firstPartOfName = name.substring(0, lengthOfName - 1);
-        randomName = name + "123";
     }
 
     @Test
-    public void testLM_03_01() {
+    public void testLM_01_01() {
 
         Allure.step("Login success");
         loginPage.login("abcTrang@gmail.com", "123123");
+//        softAssert.assertTrue(loginPage.isDisappearLoginForm(), "[Login] page is still display");
 
         Allure.step("Open [Create Customer] page");
         showAllCustomersPage.openCreateCustomerPage();
 
-        Allure.step("Create a customer");
+        softAssert.assertTrue(createCustomerPage.isCreateCustomerPageDisplayed(), "[Create customer] page is not displayed");
+
+        Allure.step("Input valid data for all fields");
         createCustomerPage.createCustomerInformation(customerInfor);
 
-        //Search toan bo ten
-        Allure.step("Search with full name");
-        showAllCustomersPage.searchCustomer(name);
-        softAssert.assertTrue(showAllCustomersPage.allNamesAre(name));
+        softAssert.assertTrue(showAllCustomersPage.isNewCustomerButtonDisplayed(), "[Show all customers] page is not displayed");
 
-        //Search ten k hop le
-        Allure.step("Search with invalid name");
-        showAllCustomersPage.searchCustomer(randomName);
-        softAssert.assertTrue(showAllCustomersPage.isNoRecordFoundIsDisplayed());
-
-        //Search 1 phan cua ten
-        showAllCustomersPage.searchCustomer(firstPartOfName);//search vs tên bỏ 1 kí tu cuoi
-        softAssert.assertTrue(showAllCustomersPage.allNamesAre(name));
+        //xác minh Customer vừa được thêm vào hiển thị ở đầu danh sách customer
+        softAssert.assertEquals(showAllCustomersPage.getCustomerNameByIndex(1), name, "The newly created customer is not at the top of the list.");
+        softAssert.assertEquals(showAllCustomersPage.getCustomerEmailByIndex(1), email, "The newly created customer is not at the top of the list.");
+        softAssert.assertEquals(showAllCustomersPage.getCustomerPhoneByIndex(1), phone, "The newly created customer is not at the top of the list.");
+        softAssert.assertEquals(showAllCustomersPage.getCustomerAddressByIndex(1), address, "The newly created customer is not at the top of the list.");
 
         softAssert.assertAll();
     }

@@ -3,38 +3,43 @@ package page.Customer;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import page.SideBar.SideBar;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.Random;
 
-public class ShowAllCustomersPage {
+public class ShowAllCustomersPage extends SideBar {
+
     WebDriver driver;
+
+    public ShowAllCustomersPage(WebDriver driver) {
+        super(driver);
+        this.driver = driver;
+    }
 
     By newCustomerButtonSelector = By.xpath("//a[text()='New Customer']");
     By nameInputToSearchSelector = By.xpath("//th/span[text()='Name']/following-sibling::input");
     By customerNameButtonSelector;
     By customerQuantityDropdownListSelector;
-    By firstPageButtonSelector = By.xpath("//span[@class='ui-icon ui-icon-seek-first']");
-    By previousPageButtonSelector = By.xpath("//span[@class='ui-icon ui-icon-seek-prev']");
-    By nextPageButtonSelector = By.xpath("//span[@class='ui-icon ui-icon-seek-next']");
-    By lastPageButtonSelector = By.xpath("//div[@class='ui-paginator ui-paginator-top ui-widget-header ui-corner-top']/span/span[@class='ui-icon ui-icon-seek-end']");
+    By firstPageButtonSelector = By.xpath("//div[@class='ui-paginator ui-paginator-top ui-widget-header ui-corner-top']/span/span[@class='ui-icon ui-icon-seek-first']");
+    By previousPageButtonSelector = By.xpath("//div[@class='ui-paginator ui-paginator-top ui-widget-header ui-corner-top']/span/span[@class='ui-icon ui-icon-seek-prev']");
+    By nextPageButtonSelector = By.xpath("//div[@class='ui-paginator ui-paginator-top ui-widget-header ui-corner-top']/span/span[@class='ui-icon ui-icon-seek-next']");
+    protected By lastPageButtonSelector = By.xpath("//div[@class='ui-paginator ui-paginator-top ui-widget-header ui-corner-top']/span/span[@class='ui-icon ui-icon-seek-end']");
     By openCreateCustomerPageSelector = By.xpath("//h2[text()='Create Customer']");
 
     By noRecordFoundLabelSelector = By.xpath("//td[text()='No records found.']");
     By tableRowSelector = By.xpath("//tbody/tr");
 
-    By customerNameLabelSelector = By.xpath("//tr/td/a[1]");
+    By customerNameLabelSelector = By.xpath("//tbody/tr/td/a");
     By customerEmailLabelSelector = By.xpath("//tr/td[2]");
     By customerAddressLabelSelector = By.xpath("//tr/td[3]");
     By customerPhoneLabelSelector = By.xpath("//tr/td[4]");
 
     By pageCurrentLabelSelector = By.xpath("//div[@class='ui-paginator ui-paginator-top ui-widget-header ui-corner-top']/span[@class='ui-paginator-current']");
-
-    public ShowAllCustomersPage(WebDriver driver) {
-        this.driver = driver;
-    }
 
     public boolean isNewCustomerButtonDisplayed() {
         Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -140,7 +145,6 @@ public class ShowAllCustomersPage {
     }
 
     public int getCurrentPage() {
-//        String str = getPageCurrentLabel();
         int start1 = getPageCurrentLabel().indexOf('(');
         int end1 = getPageCurrentLabel().indexOf(' ');
         String currentPage = getPageCurrentLabel().substring(start1 + 1, end1);
@@ -148,29 +152,31 @@ public class ShowAllCustomersPage {
     }
 
     public int getTotalPage() {
-//        String str = getPageCurrentLabel();
         int start2 = getPageCurrentLabel().lastIndexOf(' ');
         int end2 = getPageCurrentLabel().indexOf(')');
         String totalPage = getPageCurrentLabel().substring(start2 + 1, end2);
         return Integer.parseInt(totalPage);
     }
 
-//    Random random = new Random();
-//
     public int randomCustomer() {
         Random random = new Random();
         return random.nextInt(10) + 1;
     }
 
     public String firstPartOfNameSearch(String name) {
-        return name.substring(0,3);
+        int size = name.length();
+        return name.substring(0,size-1);
     }
 
-    public String firstPartOfNameResult(String name) {
-        return getCustomerNameByIndex(1).substring(0,3);
-    }
+    public boolean allNamesAre(String name) {
+        List<WebElement> elements = driver.findElements(customerNameLabelSelector);
 
-//    public String randomName(String name) {
-//        return getCustomerNameByIndex(1).substring(0,3) + "123";
-//    }
+        for (WebElement element : elements) {
+            String allName = element.getText();
+            if (!allName.startsWith(name)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

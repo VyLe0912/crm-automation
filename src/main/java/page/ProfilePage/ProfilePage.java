@@ -4,14 +4,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import page.LoginPage;
-import page.Objects.User;
-import page.SideBar;
+import page.Login.LoginPage;
+import models.User;
+import page.SideBar.SideBar;
 import utils.ConfigReader;
 
 import java.time.Duration;
 
-public class ProfilePage {
+public class ProfilePage extends SideBar{
     WebDriver driver;
     LoginPage loginPage;
     SideBar sideBar;
@@ -30,6 +30,7 @@ public class ProfilePage {
     By notifySuccessSelector = By.xpath("//input[@name='campaigntypeform:j_idt79']//preceding::p");
 
     public ProfilePage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 

@@ -5,9 +5,9 @@ import io.qameta.allure.Allure;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.CustomerInformationPage;
-import page.Customer.EditCustomerInformationPage;
-import page.LoginPage;
+import page.CustomerInformation.CustomerInformationPage;
+import page.CustomerInformation.EditCustomerInformationPage;
+import page.Login.LoginPage;
 import page.Customer.ShowAllCustomersPage;
 
 import java.util.Random;

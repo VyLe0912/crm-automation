@@ -6,16 +6,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import page.SideBar.SideBar;
 
 import java.time.Duration;
 
-public class CreateCustomerPage {
+public class CreateCustomerPage extends SideBar {
     WebDriver driver;
 
-    By nameInputSelector = By.xpath("(//div[preceding-sibling::label[text()='Name']])/input[@class='form-control m-b']");
-    By emailInputSelector = By.xpath("(//div[preceding-sibling::label[text()='Email']])/input[@class='form-control m-b']");
-    By phoneInputSelector = By.xpath("(//div[preceding-sibling::label[text()='Phone']])/input[@class='form-control m-b']");
-    By addressInputSelector = By.xpath("(//div[preceding-sibling::label[text()='Address']])/input[@class='form-control m-b']");
+    protected By nameInputSelector = By.xpath("(//div[preceding-sibling::label[text()='Name']])/input[@class='form-control m-b']");
+    protected By emailInputSelector = By.xpath("(//div[preceding-sibling::label[text()='Email']])/input[@class='form-control m-b']");
+    protected By phoneInputSelector = By.xpath("(//div[preceding-sibling::label[text()='Phone']])/input[@class='form-control m-b']");
+    protected By addressInputSelector = By.xpath("(//div[preceding-sibling::label[text()='Address']])/input[@class='form-control m-b']");
     By createACustomerButtonSelector = By.name("j_idt70:j_idt80");
     By cancelButtonSelector = By.xpath("//a[text()='Cancel']");
     By newCustomerButtonSelector = By.xpath("//a[text()='New Customer']");
@@ -26,6 +27,7 @@ public class CreateCustomerPage {
     By addressFieldTextMessageSelector = By.xpath("//input[@id='j_idt70:address']/preceding-sibling::span");
 
     public CreateCustomerPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 
