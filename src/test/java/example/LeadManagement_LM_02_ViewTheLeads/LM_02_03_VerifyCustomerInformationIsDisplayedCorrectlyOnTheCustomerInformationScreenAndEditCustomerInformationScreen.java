@@ -5,9 +5,9 @@ import io.qameta.allure.Allure;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.CustomerInformationPage;
-import page.Customer.EditCustomerInformationPage;
-import page.LoginPage;
+import page.CustomerInformation.CustomerInformationPage;
+import page.CustomerInformation.EditCustomerInformationPage;
+import page.Login.LoginPage;
 import page.Customer.ShowAllCustomersPage;
 
 import java.util.Random;
@@ -64,7 +64,7 @@ public class LM_02_03_VerifyCustomerInformationIsDisplayedCorrectlyOnTheCustomer
         customerInformationPage.clickEditButton();
 
         // xac minh chuyen den man hinh edit customer information
-        softAssert.assertTrue(editCustomerInformationPage.isEditCustomerInformationDisplayed());
+        softAssert.assertTrue(editCustomerInformationPage.isEditCustomerInformationPageDisplayed());
 
         // xac minh thong tin customer o man hinh edit customer information
         softAssert.assertEquals(editCustomerInformationPage.getCustomerName(), name, "Name is incorrect");

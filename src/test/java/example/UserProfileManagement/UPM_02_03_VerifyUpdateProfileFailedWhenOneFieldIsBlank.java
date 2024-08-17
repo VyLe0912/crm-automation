@@ -1,14 +1,26 @@
+<<<<<<<< HEAD:src/test/java/example/UserProfileManagement/UPM_02_03_VerifyUpdateProfileFailedWhenOneFieldIsBlank.java
 package example.UserProfileManagement;
 
 import example.TestBase;
 import io.qameta.allure.Allure;
 import models.Objects.User;
+========
+package example.UpdateProfileCases;
+
+import example.TestBase;
+import io.qameta.allure.Allure;
+import models.User;
+>>>>>>>> 54ace25 (lm04):src/test/java/example/UpdateProfileCases/VerifyUpdateProfileFailedWhenOneFieldIsBlank.java
 import page.ProfilePage.ProfilePage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+<<<<<<<< HEAD:src/test/java/example/UserProfileManagement/UPM_02_03_VerifyUpdateProfileFailedWhenOneFieldIsBlank.java
 public class UPM_02_03_VerifyUpdateProfileFailedWhenOneFieldIsBlank extends TestBase {
+========
+public class VerifyUpdateProfileFailedWhenOneFieldIsBlank extends TestBase {
+>>>>>>>> 54ace25 (lm04):src/test/java/example/UpdateProfileCases/VerifyUpdateProfileFailedWhenOneFieldIsBlank.java
     @BeforeMethod
     public void setUp() {
         super.setUp();

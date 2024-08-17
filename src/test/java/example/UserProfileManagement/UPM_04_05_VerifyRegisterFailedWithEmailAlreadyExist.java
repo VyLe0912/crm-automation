@@ -1,9 +1,18 @@
+<<<<<<<< HEAD:src/test/java/example/UserProfileManagement/UPM_04_05_VerifyRegisterFailedWithEmailAlreadyExist.java
 package example.UserProfileManagement;
 
 import example.TestBase;
 import io.qameta.allure.Allure;
 import page.Register.RegisterForm;
 import page.Register.RegisterUser;
+========
+package example.RegisterCases;
+
+import example.TestBase;
+import io.qameta.allure.Allure;
+import models.RegisterForm;
+import models.RegisterUser;
+>>>>>>>> 54ace25 (lm04):src/test/java/example/RegisterCases/VerifyRegisterFailedWithEmailAlreadyExist.java
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;

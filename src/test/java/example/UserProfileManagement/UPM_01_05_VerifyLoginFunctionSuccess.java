@@ -1,13 +1,23 @@
+<<<<<<<< HEAD:src/test/java/example/UserProfileManagement/UPM_01_05_VerifyLoginFunctionSuccess.java
 package example.UserProfileManagement;
+========
+package example.LoginTestCases;
+>>>>>>>> 54ace25 (lm04):src/test/java/example/LoginTestCases/VerifyLoginFunctionSuccess.java
 
 import example.TestBase;
 import io.qameta.allure.Allure;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+<<<<<<<< HEAD:src/test/java/example/UserProfileManagement/UPM_01_05_VerifyLoginFunctionSuccess.java
 import page.LoginPage;
 import models.Objects.User;
 import page.SideBar;
+========
+import page.Login.LoginPage;
+import models.User;
+import page.SideBar.SideBar;
+>>>>>>>> 54ace25 (lm04):src/test/java/example/LoginTestCases/VerifyLoginFunctionSuccess.java
 
 public class UPM_01_05_VerifyLoginFunctionSuccess extends TestBase {
     @BeforeMethod

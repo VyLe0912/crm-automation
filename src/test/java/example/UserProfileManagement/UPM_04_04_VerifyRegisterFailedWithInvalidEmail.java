@@ -1,9 +1,13 @@
+<<<<<<<< HEAD:src/test/java/example/UserProfileManagement/UPM_04_04_VerifyRegisterFailedWithInvalidEmail.java
 package example.UserProfileManagement;
+========
+package example.RegisterCases;
+>>>>>>>> 54ace25 (lm04):src/test/java/example/RegisterCases/VerifyRegisterFailedWithInvalidEmail.java
 
 import example.TestBase;
 import io.qameta.allure.Allure;
-import page.Register.RegisterForm;
-import page.Register.RegisterUser;
+import models.RegisterForm;
+import models.RegisterUser;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.Dimension;
 import org.testng.annotations.BeforeMethod;

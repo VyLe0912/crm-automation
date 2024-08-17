@@ -1,12 +1,21 @@
+<<<<<<<< HEAD:src/test/java/example/UserProfileManagement/UPM_03_01_VerifyLogOutFunctionSuccess.java
 package example.UserProfileManagement;
+========
+package example.LogOutCases;
+>>>>>>>> 54ace25 (lm04):src/test/java/example/LogOutCases/VerifyLogOutFunctionSuccess.java
 
 import example.TestBase;
 import io.qameta.allure.Allure;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+<<<<<<<< HEAD:src/test/java/example/UserProfileManagement/UPM_03_01_VerifyLogOutFunctionSuccess.java
 import page.LoginPage;
 import page.SideBar;
+========
+import page.Login.LoginPage;
+import page.SideBar.SideBar;
+>>>>>>>> 54ace25 (lm04):src/test/java/example/LogOutCases/VerifyLogOutFunctionSuccess.java
 
 public class UPM_03_01_VerifyLogOutFunctionSuccess extends TestBase {
     @BeforeMethod

@@ -10,9 +10,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.Customer.CreateCustomerPage;
 import page.Customer.ShowAllCustomersPage;
-import page.LoginPage;
-
-import java.util.Random;
+import page.Login.LoginPage;
 
 public class LM_03_01_VerifyTheUserCanSearchCustomerByNameWhenInputFullNameOrFirstOfPartName extends TestBase {
     LoginPage loginPage;
@@ -21,7 +19,6 @@ public class LM_03_01_VerifyTheUserCanSearchCustomerByNameWhenInputFullNameOrFir
     Faker faker;
     SoftAssert softAssert;
     CustomerInFormationForm customerInfor;
-    Random random;
 
     String name;
     String email;
@@ -29,6 +26,7 @@ public class LM_03_01_VerifyTheUserCanSearchCustomerByNameWhenInputFullNameOrFir
     String address;
     String firstPartOfName;
     String randomName;
+    int lengthOfName;
 
     @BeforeMethod
     public void setUp() {
@@ -44,12 +42,13 @@ public class LM_03_01_VerifyTheUserCanSearchCustomerByNameWhenInputFullNameOrFir
         phone = RandomStringUtils.randomNumeric(10);
         address = faker.address().fullAddress();
         customerInfor = new CustomerInFormationForm(name,email, phone, address);
-        firstPartOfName = showAllCustomersPage.firstPartOfNameSearch(name);
+        lengthOfName = name.length();
+        firstPartOfName = name.substring(0, lengthOfName - 1);
         randomName = name + "123";
     }
 
     @Test
-    public void testLM_01_01() {
+    public void testLM_03_01() {
 
         Allure.step("Login success");
         loginPage.login("abcTrang@gmail.com", "123123");
@@ -61,16 +60,18 @@ public class LM_03_01_VerifyTheUserCanSearchCustomerByNameWhenInputFullNameOrFir
         createCustomerPage.createCustomerInformation(customerInfor);
 
         //Search toan bo ten
+        Allure.step("Search with full name");
         showAllCustomersPage.searchCustomer(name);
-        softAssert.assertEquals(showAllCustomersPage.getCustomerNameByIndex(1), name);
+        softAssert.assertTrue(showAllCustomersPage.allNamesAre(name));
 
-        //search ten k hop le
+        //Search ten k hop le
+        Allure.step("Search with invalid name");
         showAllCustomersPage.searchCustomer(randomName);
         softAssert.assertTrue(showAllCustomersPage.isNoRecordFoundIsDisplayed());
 
         //Search 1 phan cua ten
-        showAllCustomersPage.searchCustomer(firstPartOfName);
-        softAssert.assertEquals(showAllCustomersPage.firstPartOfNameResult(showAllCustomersPage.getCustomerNameByIndex(1)), firstPartOfName);
+        showAllCustomersPage.searchCustomer(firstPartOfName);//search vs tên bỏ 1 kí tu cuoi
+        softAssert.assertTrue(showAllCustomersPage.allNamesAre(name));
 
         softAssert.assertAll();
     }
