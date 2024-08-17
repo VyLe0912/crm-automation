@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:src/test/java/example/UserProfileManagement/UPM_04_04_VerifyRegisterFailedWithInvalidEmail.java
 package example.UserProfileManagement;
+========
+package example.RegisterCases;
+>>>>>>>> 54ace25 (lm04):src/test/java/example/RegisterCases/VerifyRegisterFailedWithInvalidEmail.java
 
 import example.TestBase;
 import io.qameta.allure.Allure;
