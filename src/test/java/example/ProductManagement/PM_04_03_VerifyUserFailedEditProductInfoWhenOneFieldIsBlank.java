@@ -6,12 +6,13 @@ import io.qameta.allure.Allure;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.LoginPage;
-import page.Product.CreateProduct;
+import page.Login.LoginPage;
+import page.Products.CreateProductPage;
 import page.Product.EditProduct;
-import page.Product.ProductForm;
+import models.ProductForm;
 import page.Product.ShowAllProducts;
-import page.SideBar;
+import page.SideBar.SideBar;
+
 
 public class PM_04_03_VerifyUserFailedEditProductInfoWhenOneFieldIsBlank extends TestBase {
     @BeforeMethod
@@ -21,7 +22,7 @@ public class PM_04_03_VerifyUserFailedEditProductInfoWhenOneFieldIsBlank extends
         loginPage = new LoginPage(driver);
         sideBar = new SideBar(driver);
         showAllProducts = new ShowAllProducts(driver);
-        createProduct = new CreateProduct(driver);
+        createProduct = new CreateProductPage(driver);
         editProduct = new EditProduct(driver);
 
         faker = new Faker();
@@ -68,7 +69,7 @@ public class PM_04_03_VerifyUserFailedEditProductInfoWhenOneFieldIsBlank extends
     LoginPage loginPage;
     SideBar sideBar;
     ShowAllProducts showAllProducts;
-    CreateProduct createProduct;
+    CreateProductPage createProduct;
     ProductForm productForm;
     EditProduct editProduct;
     Faker faker;

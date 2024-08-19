@@ -1,19 +1,11 @@
-<<<<<<<< HEAD:src/test/java/example/UserProfileManagement/UPM_01_02_VerifyLoginFailedWhenAllFieldsAreBlank.java
 package example.UserProfileManagement;
-========
-package example.LoginTestCases;
->>>>>>>> 54ace25 (lm04):src/test/java/example/LoginTestCases/VerifyLoginFailedWhenAllFieldsAreBlank.java
 
 import example.TestBase;
 import io.qameta.allure.Allure;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-<<<<<<<< HEAD:src/test/java/example/UserProfileManagement/UPM_01_02_VerifyLoginFailedWhenAllFieldsAreBlank.java
-import page.LoginPage;
-========
 import page.Login.LoginPage;
->>>>>>>> 54ace25 (lm04):src/test/java/example/LoginTestCases/VerifyLoginFailedWhenAllFieldsAreBlank.java
 
 public class UPM_01_02_VerifyLoginFailedWhenAllFieldsAreBlank extends TestBase {
     @BeforeMethod

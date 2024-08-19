@@ -1,16 +1,11 @@
-<<<<<<<< HEAD:src/test/java/example/UserProfileManagement/UPM_04_01_VerifyUserOpenRegisterModal.java
 package example.UserProfileManagement;
 
 import example.TestBase;
 import io.qameta.allure.Allure;
-import page.Register.RegisterForm;
-========
-package example.RegisterCases;
 
 import example.TestBase;
 import io.qameta.allure.Allure;
 import models.RegisterForm;
->>>>>>>> 54ace25 (lm04):src/test/java/example/RegisterCases/VerifyUserOpenRegisterModal.java
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;

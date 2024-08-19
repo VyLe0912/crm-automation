@@ -1,5 +1,6 @@
 package page.Products;
 
+import models.ProductForm;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
@@ -9,7 +10,7 @@ import page.SideBar.SideBar;
 import java.time.Duration;
 
 public class CreateProductPage extends SideBar {
-    WebDriver driver;
+    protected WebDriver driver;
 
     By txbProductNameInputSelector = By.xpath("//input[@id='bookForm:pn']");
     By txbProductPriceInputSelector = By.xpath("//input[@id='bookForm:pp']");

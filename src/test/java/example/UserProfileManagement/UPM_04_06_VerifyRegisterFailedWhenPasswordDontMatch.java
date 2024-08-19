@@ -1,21 +1,12 @@
-<<<<<<<< HEAD:src/test/java/example/UserProfileManagement/UPM_04_06_VerifyRegisterFailedWhenPasswordDontMatch.java
 package example.UserProfileManagement;
-========
-package example.RegisterCases;
->>>>>>>> 54ace25 (lm04):src/test/java/example/RegisterCases/VerifyRegisterFailedWhenPasswordDontMatch.java
 
 import example.TestBase;
 import io.qameta.allure.Allure;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-<<<<<<<< HEAD:src/test/java/example/UserProfileManagement/UPM_04_06_VerifyRegisterFailedWhenPasswordDontMatch.java
-import page.Register.RegisterForm;
-import page.Register.RegisterUser;
-========
 import models.RegisterForm;
 import models.RegisterUser;
->>>>>>>> 54ace25 (lm04):src/test/java/example/RegisterCases/VerifyRegisterFailedWhenPasswordDontMatch.java
 
 public class UPM_04_06_VerifyRegisterFailedWhenPasswordDontMatch extends TestBase {
     @BeforeMethod
