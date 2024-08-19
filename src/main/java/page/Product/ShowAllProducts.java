@@ -20,6 +20,7 @@ public class ShowAllProducts {
     By btnPreviousPageInputSelector;
     By btnNextPageInputSelector;
     By btnLastPageInputSelector;
+    By messNoFoundSelector = By.xpath("//tr[@class='ui-widget-content ui-datatable-empty-message']/td");
 
     //Text box at Column
     By txbColumnProductNameSelector = By.xpath("(//tr/th/input)[1]");
@@ -27,9 +28,9 @@ public class ShowAllProducts {
     By txbColumnProductDiscountSelector = By.xpath("(//tr/th/input)[3]");
 
     //Column of table
-    By getColumnProductNameSelector;
-    By getColumnProductPriceSelector;
-    By getColumnProductDiscountSelector;
+    By getColumnProductNameSelector = By.xpath("//tbody/tr/td");
+    By getColumnProductPriceSelector = By.xpath("//tbody/tr/td[2]");
+    By getColumnProductDiscountSelector = By.xpath("//tbody/tr/td[3]");
 
     public ShowAllProducts(WebDriver driver) {
         this.driver = driver;
@@ -52,5 +53,27 @@ public class ShowAllProducts {
         return driver.findElements(productDiscountLabelSelector).get(i-1).getText();
     }
 
+    public void enterProductNameColumn(String name) {
+        driver.findElement(txbColumnProductNameSelector).sendKeys(name);
+    }
+
+    public void enterProductPriceColumn(String price) {
+        driver.findElement(txbColumnProductPriceSelector).sendKeys(price);
+    }
+
+    public void enterProductDiscountColumn(String discount) {
+        driver.findElement(txbColumnProductDiscountSelector).sendKeys(discount);
+    }
+
+    public boolean allProductsAre(String name) {
+        return driver.findElements(getColumnProductNameSelector).equals(name);
+    }
+    public boolean allProductsStartWiths(String name) {
+        return driver.findElement(getColumnProductNameSelector).getText().startsWith(name);
+    }
+
+    public String getMessageNoFound() {
+        return driver.findElement(messNoFoundSelector).getText();
+    }
 }
 

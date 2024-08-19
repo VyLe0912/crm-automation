@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.LoginPage;
 import page.Product.CreateProduct;
+import page.Product.ShowAllProducts;
 import page.SideBar;
 
 public class VerifySearchProductByColumnProductName extends TestBase {
@@ -17,6 +18,7 @@ public class VerifySearchProductByColumnProductName extends TestBase {
         loginPage = new LoginPage(driver);
         sideBar = new SideBar(driver);
         createProduct = new CreateProduct(driver);
+        showAllProducts = new ShowAllProducts(driver);
     }
 
     @Test
@@ -26,15 +28,17 @@ public class VerifySearchProductByColumnProductName extends TestBase {
         loginPage.loginWithDefaultAccount();
 
         Allure.step("Verify open Create Product page");
-        sideBar.clickProductMenuButton();
         sideBar.openShowAllProductsPage();
 
+        showAllProducts.enterProductNameColumn("iPhone");
+        softAssert.assertEquals(showAllProducts.allProductsAre("iPhone"), "iPhone X", "Error search function");
 
-
+        softAssert.assertAll();
     }
 
     SoftAssert softAssert;
     LoginPage loginPage;
     SideBar sideBar;
     CreateProduct createProduct;
+    ShowAllProducts showAllProducts;
 }
