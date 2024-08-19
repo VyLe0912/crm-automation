@@ -90,5 +90,9 @@ public class ShowAllProducts {
     public String getLabelEditProductPage() {
         return driver.findElement(labelEditProductPageSelector).getText();
     }
+
+    public String getLabelShowALlProductsPage() {
+        return driver.findElement(labelShowProductPageInputSelector).getText();
+    }
 }
 

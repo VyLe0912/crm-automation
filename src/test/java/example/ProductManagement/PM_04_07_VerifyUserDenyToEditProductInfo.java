@@ -6,11 +6,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.LoginPage;
-import page.Product.CreateProduct;
+import page.Product.EditProduct;
 import page.Product.ShowAllProducts;
 import page.SideBar;
 
-public class PM_04_01_VerifyOpenUpdateProductInfo extends TestBase {
+public class PM_04_07_VerifyUserDenyToEditProductInfo extends TestBase {
     @BeforeMethod
     public void setUp() {
         super.setUp();
@@ -18,10 +18,11 @@ public class PM_04_01_VerifyOpenUpdateProductInfo extends TestBase {
         loginPage = new LoginPage(driver);
         sideBar = new SideBar(driver);
         showAllProducts = new ShowAllProducts(driver);
+        editProduct = new EditProduct(driver);
     }
 
     @Test
-    public void VerifyOpenUpdateProductInfo() {
+    public void VerifyUserDenyToEditProductInfo() {
 
         Allure.step("Login function");
         loginPage.loginWithDefaultAccount();
@@ -30,7 +31,10 @@ public class PM_04_01_VerifyOpenUpdateProductInfo extends TestBase {
         sideBar.openShowAllProductsPage();
 
         showAllProducts.clickBtnEditProduct();
-        softAssert.assertEquals(showAllProducts.getLabelEditProductPage(), "Edit Product", "Failed to open Edit page");
+
+        editProduct.clickBtnCancelEditProduct();
+
+        softAssert.assertEquals(showAllProducts.getLabelShowALlProductsPage(), "Products List", "Error button cancel");
 
         softAssert.assertAll();
     }
@@ -39,4 +43,5 @@ public class PM_04_01_VerifyOpenUpdateProductInfo extends TestBase {
     LoginPage loginPage;
     SideBar sideBar;
     ShowAllProducts showAllProducts;
+    EditProduct editProduct;
 }
