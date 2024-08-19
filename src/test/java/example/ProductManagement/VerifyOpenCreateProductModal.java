@@ -1,40 +1,39 @@
-package UpdateProfileCases;
+package example.ProductManagement;
 
 import example.TestBase;
 import io.qameta.allure.Allure;
-import page.ProfilePage.ProfilePage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.LoginPage;
+import page.Product.CreateProduct;
 import page.SideBar;
 
-public class VerifyOpenProfilePage extends TestBase {
+public class VerifyOpenCreateProductModal extends TestBase {
     @BeforeMethod
     public void setUp() {
         super.setUp();
-        profilePage = new ProfilePage(driver);
         softAssert = new SoftAssert();
         loginPage = new LoginPage(driver);
         sideBar = new SideBar(driver);
+        createProduct = new CreateProduct(driver);
     }
 
     @Test
-    public void VerifyOpenProfilePage() {
+    public void VerifyOpenCreateProductModal() {
 
         Allure.step("Login function");
         loginPage.loginWithDefaultAccount();
-        sideBar.openHomePage();
 
-        Allure.step("Open profile page");
-        profilePage.clickLinkProfile();
-        profilePage.waitForProfilePageAppear();
-        softAssert.assertEquals(profilePage.labelProfilePage(), "User Information", "Can't open profile page");
+        Allure.step("Verify open Create Product page");
+        sideBar.clickProductMenuButton();
+        sideBar.openCreateProductPage();
+        softAssert.assertEquals(createProduct.getLabelCreateProductPage(), "Add Product", "failed to open Create Product page");
         softAssert.assertAll();
     }
 
-    ProfilePage profilePage;
+    SoftAssert softAssert;
     LoginPage loginPage;
     SideBar sideBar;
-    SoftAssert softAssert;
+    CreateProduct createProduct;
 }

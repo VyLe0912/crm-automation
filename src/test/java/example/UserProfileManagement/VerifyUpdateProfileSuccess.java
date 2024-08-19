@@ -1,4 +1,4 @@
-package UpdateProfileCases;
+package example.UserProfileManagement;
 
 import example.TestBase;
 import io.qameta.allure.Allure;

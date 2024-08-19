@@ -1,4 +1,4 @@
-package Product_PM_01_AddNewProduct;
+package example.ProductManagement;
 
 import example.TestBase;
 import io.qameta.allure.Allure;
