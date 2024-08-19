@@ -15,12 +15,15 @@ public class ShowAllProducts {
     By productNameLabelSelector = By.xpath("//tr/td[1]");
     By productPriceLabelSelector = By.xpath("//tr/td[2]");
     By productDiscountLabelSelector = By.xpath("//tr/td[3]");
+    By labelEditProductPageSelector = By.xpath("//div[@class='ibox-title']/h5");
 
     By btnFirstPageInputSelector;
     By btnPreviousPageInputSelector;
     By btnNextPageInputSelector;
     By btnLastPageInputSelector;
     By messNoFoundSelector = By.xpath("//tr[@class='ui-widget-content ui-datatable-empty-message']/td");
+    By btnEditProductSelector = By.xpath("(//a[@class='btn btn-primary'])[2]");
+    By btnDeleteProductSelector = By.xpath("//input[@name='productform:j_idt72:0:j_idt87']");
 
     //Text box at Column
     By txbColumnProductNameSelector = By.xpath("(//tr/th/input)[1]");
@@ -74,6 +77,18 @@ public class ShowAllProducts {
 
     public String getMessageNoFound() {
         return driver.findElement(messNoFoundSelector).getText();
+    }
+
+    public void clickBtnEditProduct() {
+        driver.findElement(btnEditProductSelector).click();
+    }
+
+    public void clickBtnDeleteProduct() {
+        driver.findElement(btnDeleteProductSelector).click();
+    }
+
+    public String getLabelEditProductPage() {
+        return driver.findElement(labelEditProductPageSelector).getText();
     }
 }
 
