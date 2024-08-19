@@ -21,6 +21,7 @@ public class LoginPage {
     By textPassSelector = By.xpath("//input[@id='campaigntypeform:pass']//preceding::span[1]");
     By noticeInvalidEmail = By.xpath("(//div[@class='col-sm-4 col-md-offset-4 pull-right']/p)[1]");
     By labelCRMWebsiteInputSelector = By.xpath("//strong[@class='text-navy']");
+    By labelHomePageSelector = By.xpath("//span[@class='m-r-sm text-muted welcome-message']");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -66,16 +67,21 @@ public class LoginPage {
         return driver.findElement(textPassSelector).getText();
     }
 
-//    public void isDisappearLoginForm() {
+    //    public void isDisappearLoginForm() {
 //        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 //        wait.until();
 //    }
+    public boolean waitToOpenHomePage() {
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        return wait.until(driver1 -> driver1.findElement(labelHomePageSelector).isDisplayed());
+    }
 
     public void login(String email, String password) {
         enterEmail(email);
         enterPassword(password);
         clickButtonLogin();
-        waitToDownloadPage();
+//        waitToDownloadPage();
+        waitToOpenHomePage();
     }
 
     public void login(User user) {
@@ -89,7 +95,7 @@ public class LoginPage {
         enterEmail(configReader.email());
         enterPassword(configReader.password());
         clickButtonLogin();
-        waitToDownloadPage();
+        waitToOpenHomePage();
     }
 
     public void waitToDownloadPage() {

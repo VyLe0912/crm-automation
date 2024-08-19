@@ -21,6 +21,16 @@ public class ShowAllProducts {
     By btnNextPageInputSelector;
     By btnLastPageInputSelector;
 
+    //Text box at Column
+    By txbColumnProductNameSelector = By.xpath("(//tr/th/input)[1]");
+    By txbColumnProductPriceSelector = By.xpath("(//tr/th/input)[2]");
+    By txbColumnProductDiscountSelector = By.xpath("(//tr/th/input)[3]");
+
+    //Column of table
+    By getColumnProductNameSelector;
+    By getColumnProductPriceSelector;
+    By getColumnProductDiscountSelector;
+
     public ShowAllProducts(WebDriver driver) {
         this.driver = driver;
     }
