@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:src/test/java/example/UserProfileManagement/UPM_02_02_VerifyUpdateProfileFailedWhenAllFIeldAreBlank.java
 package example.UserProfileManagement;
-========
-package example.UpdateProfileCases;
->>>>>>>> 54ace25 (lm04):src/test/java/example/UpdateProfileCases/VerifyUpdateProfileFailedWhenAllFIeldAreBlank.java
 
 import example.TestBase;
 import io.qameta.allure.Allure;
