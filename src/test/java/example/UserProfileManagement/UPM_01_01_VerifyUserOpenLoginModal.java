@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:src/test/java/example/UserProfileManagement/UPM_01_01_VerifyUserOpenLoginModal.java
 package example.UserProfileManagement;
-========
-package example.LoginTestCases;
->>>>>>>> 54ace25 (lm04):src/test/java/example/LoginTestCases/VerifyUserOpenLoginModal.java
 
 import example.TestBase;
 import io.qameta.allure.Allure;

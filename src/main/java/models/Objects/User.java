@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:src/main/java/models/Objects/User.java
 package models.Objects;
-========
-package models;
->>>>>>>> 54ace25 (lm04):src/main/java/models/User.java
 
 public class User {
     private String email;

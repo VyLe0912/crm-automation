@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:src/test/java/example/ProductManagement/PM_01_01_VerifyOpenCreateProductModal.java
 package example.ProductManagement;
-========
-package example.ProductCases;
->>>>>>>> 54ace25 (lm04):src/test/java/example/ProductCases/VerifyOpenCreateProductModal.java
 
 import example.TestBase;
 import io.qameta.allure.Allure;
