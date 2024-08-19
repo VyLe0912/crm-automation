@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.LoginPage;
 
-public class VerifyLoginFailedWhenOneFieldIsBlank extends TestBase {
+public class UPM_01_03VerifyLoginFailedWhenOneFieldIsBlank extends TestBase {
     @BeforeMethod
     public void setUp() {
         super.setUp();

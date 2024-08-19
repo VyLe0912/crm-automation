@@ -2,7 +2,6 @@ package example.UserProfileManagement;
 
 import example.TestBase;
 import io.qameta.allure.Allure;
-import models.Objects.User;
 import page.ProfilePage.ProfilePage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -10,7 +9,7 @@ import org.testng.asserts.SoftAssert;
 import page.LoginPage;
 import page.SideBar;
 
-public class VerifyUpdateProfileSuccess extends TestBase {
+public class UPM_02_01_VerifyOpenProfilePage extends TestBase {
     @BeforeMethod
     public void setUp() {
         super.setUp();
@@ -18,31 +17,22 @@ public class VerifyUpdateProfileSuccess extends TestBase {
         softAssert = new SoftAssert();
         loginPage = new LoginPage(driver);
         sideBar = new SideBar(driver);
-        user = new User("Vy", "due", "0845123456");
     }
 
     @Test
-    public void VerifyUpdateProfileSuccess() {
-        Allure.step("Open CRM Website");
-        driver.get(configReader.getUrl());
+    public void VerifyOpenProfilePage() {
 
         Allure.step("Login function");
         loginPage.loginWithDefaultAccount();
         sideBar.openHomePage();
+
+        Allure.step("Open profile page");
         profilePage.clickLinkProfile();
         profilePage.waitForProfilePageAppear();
-        profilePage.deleteAllTextBox();
-
-        Allure.step("Update profile with proper values");
-        profilePage.updateProfile(user);
-
-        Allure.step("Check update success");
-        softAssert.assertEquals(profilePage.textMessageUpdateSuccess(), "Edit success!", "Error update");
-        softAssert.assertEquals(sideBar.headerNameAccount(), "Vy", "Update error");
+        softAssert.assertEquals(profilePage.labelProfilePage(), "User Information", "Can't open profile page");
         softAssert.assertAll();
     }
 
-    User user;
     ProfilePage profilePage;
     LoginPage loginPage;
     SideBar sideBar;

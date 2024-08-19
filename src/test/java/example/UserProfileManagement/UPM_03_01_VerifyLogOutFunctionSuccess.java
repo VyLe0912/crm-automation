@@ -8,7 +8,7 @@ import org.testng.asserts.SoftAssert;
 import page.LoginPage;
 import page.SideBar;
 
-public class VerifyLogOutFunctionSuccess extends TestBase {
+public class UPM_03_01_VerifyLogOutFunctionSuccess extends TestBase {
     @BeforeMethod
     public void setUp() {
         super.setUp();

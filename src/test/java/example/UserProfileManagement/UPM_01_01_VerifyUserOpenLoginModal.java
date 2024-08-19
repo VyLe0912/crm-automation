@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.LoginPage;
 
-public class VerifyUserOpenLoginModal extends TestBase {
+public class UPM_01_01_VerifyUserOpenLoginModal extends TestBase {
     By labelLoginSelector = By.xpath("(//div[@class = 'ibox-title'])[1]");
 
     @BeforeMethod

@@ -10,7 +10,7 @@ import page.Product.CreateProduct;
 import page.Product.ShowAllProducts;
 import page.SideBar;
 
-public class VerifySearchFailedWhenInsertInvalidValue extends TestBase {
+public class PM_03_04_VerifySearchFailedWhenInsertInvalidValue extends TestBase {
     @BeforeMethod
     public void setUp() {
         super.setUp();

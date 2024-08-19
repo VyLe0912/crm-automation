@@ -10,7 +10,7 @@ import page.Register.RegisterForm;
 import page.Register.RegisterUser;
 import page.SideBar;
 
-public class VerifyUserRegisterSuccess extends TestBase{
+public class UPM_04_07_VerifyUserRegisterSuccess extends TestBase{
 
     @BeforeMethod
     public void setUp() {

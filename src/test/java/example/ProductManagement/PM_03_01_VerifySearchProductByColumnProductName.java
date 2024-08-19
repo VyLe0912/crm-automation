@@ -9,7 +9,7 @@ import page.LoginPage;
 import page.Product.ShowAllProducts;
 import page.SideBar;
 
-public class VerifySearchProductByColumnProductName extends TestBase {
+public class PM_03_01_VerifySearchProductByColumnProductName extends TestBase {
     @BeforeMethod
     public void setUp() {
         super.setUp();

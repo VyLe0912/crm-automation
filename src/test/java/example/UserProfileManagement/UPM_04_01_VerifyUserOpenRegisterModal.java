@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyUserOpenRegisterModal extends TestBase {
+public class UPM_04_01_VerifyUserOpenRegisterModal extends TestBase {
     @BeforeMethod
     public void setUp() {
         super.setUp();

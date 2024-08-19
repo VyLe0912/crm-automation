@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyRegisterFailedWithInvalidEmail extends TestBase {
+public class UPM_04_04_VerifyRegisterFailedWithInvalidEmail extends TestBase {
     @BeforeMethod
     public void setUp() {
         super.setUp();

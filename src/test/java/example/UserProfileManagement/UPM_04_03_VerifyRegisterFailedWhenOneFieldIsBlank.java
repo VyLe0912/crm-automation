@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyRegisterFailedWhenOneFieldIsBlank extends TestBase {
+public class UPM_04_03_VerifyRegisterFailedWhenOneFieldIsBlank extends TestBase {
     @BeforeMethod
     public void setUp() {
         super.setUp();

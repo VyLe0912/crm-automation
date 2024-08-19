@@ -9,9 +9,10 @@ import org.testng.asserts.SoftAssert;
 import page.LoginPage;
 import page.Product.CreateProduct;
 import page.Product.ProductForm;
+import page.Product.ShowAllProducts;
 import page.SideBar;
 
-public class VerifyUserFailedAddProductWhenInsertInvalidValue extends TestBase {
+public class PM_01_02_VerifyUserAddProductSuccess extends TestBase {
     @BeforeMethod
     public void setUp() {
         super.setUp();
@@ -21,12 +22,15 @@ public class VerifyUserFailedAddProductWhenInsertInvalidValue extends TestBase {
         createProduct = new CreateProduct(driver);
         faker = new Faker();
         name = faker.commerce().productName();
+        price = faker.commerce().price();
+        discount = faker.commerce().price();
+        showAllProducts = new ShowAllProducts(driver);
 
-        productForm = new ProductForm(name, "vbdmskbdjfdlncdjn", "fkfkoasfanfsoano");
+        productForm = new ProductForm(name, price,discount);
     }
 
     @Test
-    public void VerifyUserFailedAddProductWhenInsertInvalidValue() {
+    public void VerifyUserAddProductSuccess() {
 
         Allure.step("Login function");
         loginPage.loginWithDefaultAccount();
@@ -35,10 +39,16 @@ public class VerifyUserFailedAddProductWhenInsertInvalidValue extends TestBase {
         sideBar.clickProductMenuButton();
         sideBar.openCreateProductPage();
 
-        Allure.step("Verify add product failed when insert invalid value in price and discount");
+        Allure.step("Create product with valid values");
         createProduct.createProduct(productForm);
-        softAssert.assertEquals(createProduct.getMessProPrice(), "Please enter numbers only", "Error price");
-        softAssert.assertEquals(createProduct.getMessProDiscount(), "Please enter numbers only", "Error discount");
+
+        Allure.step("Open Show all products page");
+        sideBar.openShowAllProductsPage();
+        softAssert.assertTrue(showAllProducts.showAllProductsPageIsDisplayed(), "Show all products page is not displayed");
+
+        softAssert.assertEquals(showAllProducts.getProductNameByIndex(1), name, "New product is not at the top of the list");
+        softAssert.assertEquals(showAllProducts.getProductPriceByIndex(1), price, "New product is not at the top of the list");
+        softAssert.assertEquals(showAllProducts.getProductDiscountByIndex(1), discount, "New product is not at the top of the list");
 
         softAssert.assertAll();
     }
@@ -47,7 +57,10 @@ public class VerifyUserFailedAddProductWhenInsertInvalidValue extends TestBase {
     LoginPage loginPage;
     SideBar sideBar;
     CreateProduct createProduct;
+    ShowAllProducts showAllProducts;
     ProductForm productForm;
     Faker faker;
     String name;
+    String price;
+    String discount;
 }

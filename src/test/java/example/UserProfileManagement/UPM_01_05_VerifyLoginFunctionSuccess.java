@@ -9,7 +9,7 @@ import page.LoginPage;
 import models.Objects.User;
 import page.SideBar;
 
-public class VerifyLoginFunctionSuccess extends TestBase {
+public class UPM_01_05_VerifyLoginFunctionSuccess extends TestBase {
     @BeforeMethod
     public void setUp() {
         super.setUp();

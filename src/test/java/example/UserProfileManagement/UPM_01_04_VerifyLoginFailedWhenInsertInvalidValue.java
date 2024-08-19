@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.LoginPage;
 
-public class VerifyLoginFailedWhenInsertInvalidValue extends TestBase {
+public class UPM_01_04_VerifyLoginFailedWhenInsertInvalidValue extends TestBase {
     @BeforeMethod
     public void setUp() {
         super.setUp();

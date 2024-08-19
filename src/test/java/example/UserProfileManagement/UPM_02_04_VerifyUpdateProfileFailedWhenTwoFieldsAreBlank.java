@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyUpdateProfileFailedWhenTwoFieldsAreBlank extends TestBase {
+public class UPM_02_04_VerifyUpdateProfileFailedWhenTwoFieldsAreBlank extends TestBase {
     @BeforeMethod
     public void setUp() {
         super.setUp();

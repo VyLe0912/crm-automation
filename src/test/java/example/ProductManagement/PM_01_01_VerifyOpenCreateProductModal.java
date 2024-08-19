@@ -9,7 +9,7 @@ import page.LoginPage;
 import page.Product.CreateProduct;
 import page.SideBar;
 
-public class VerifyOpenCreateProductModal extends TestBase {
+public class PM_01_01_VerifyOpenCreateProductModal extends TestBase {
     @BeforeMethod
     public void setUp() {
         super.setUp();
