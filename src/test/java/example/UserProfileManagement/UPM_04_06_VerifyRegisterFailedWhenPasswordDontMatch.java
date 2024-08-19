@@ -5,8 +5,8 @@ import io.qameta.allure.Allure;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.Register.RegisterForm;
-import page.Register.RegisterUser;
+import models.RegisterForm;
+import models.RegisterUser;
 
 public class UPM_04_06_VerifyRegisterFailedWhenPasswordDontMatch extends TestBase {
     @BeforeMethod

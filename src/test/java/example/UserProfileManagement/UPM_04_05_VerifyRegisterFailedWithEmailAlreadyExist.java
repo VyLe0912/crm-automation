@@ -2,8 +2,11 @@ package example.UserProfileManagement;
 
 import example.TestBase;
 import io.qameta.allure.Allure;
-import page.Register.RegisterForm;
-import page.Register.RegisterUser;
+
+import example.TestBase;
+import io.qameta.allure.Allure;
+import models.RegisterForm;
+import models.RegisterUser;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;

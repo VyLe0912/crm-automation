@@ -5,9 +5,10 @@ import io.qameta.allure.Allure;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.LoginPage;
+import page.Login.LoginPage;
 import page.Product.ShowAllProducts;
-import page.SideBar;
+import page.SideBar.SideBar;
+
 
 public class PM_03_01_VerifySearchProductByColumnProductName extends TestBase {
     @BeforeMethod

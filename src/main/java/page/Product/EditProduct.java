@@ -1,9 +1,11 @@
 package page.Product;
 
+import models.ProductForm;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import page.Products.CreateProductPage;
 
-public class EditProduct extends CreateProduct{
+public class EditProduct extends CreateProductPage {
 
     By btnSaveEditProductSelector = By.xpath("//input[@name='bookForm:j_idt79']");
     By btnCancelEditProductSelector = By.name("bookForm:j_idt79");

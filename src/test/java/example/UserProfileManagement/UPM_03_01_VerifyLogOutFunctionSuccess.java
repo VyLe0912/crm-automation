@@ -5,8 +5,8 @@ import io.qameta.allure.Allure;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.LoginPage;
-import page.SideBar;
+import page.Login.LoginPage;
+import page.SideBar.SideBar;
 
 public class UPM_03_01_VerifyLogOutFunctionSuccess extends TestBase {
     @BeforeMethod

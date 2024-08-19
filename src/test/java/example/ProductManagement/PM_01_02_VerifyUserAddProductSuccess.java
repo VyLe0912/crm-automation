@@ -3,14 +3,16 @@ package example.ProductManagement;
 import com.github.javafaker.Faker;
 import example.TestBase;
 import io.qameta.allure.Allure;
+import models.ProductForm;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.LoginPage;
-import page.Product.CreateProduct;
-import page.Product.ProductForm;
+import page.Login.LoginPage;
+import page.Products.CreateProductPage;
+import models.ProductForm;
 import page.Product.ShowAllProducts;
-import page.SideBar;
+import page.SideBar.SideBar;
+
 
 public class PM_01_02_VerifyUserAddProductSuccess extends TestBase {
     @BeforeMethod
@@ -19,7 +21,7 @@ public class PM_01_02_VerifyUserAddProductSuccess extends TestBase {
         softAssert = new SoftAssert();
         loginPage = new LoginPage(driver);
         sideBar = new SideBar(driver);
-        createProduct = new CreateProduct(driver);
+        createProduct = new CreateProductPage(driver);
         faker = new Faker();
         name = faker.commerce().productName();
         price = faker.commerce().price();
@@ -56,7 +58,7 @@ public class PM_01_02_VerifyUserAddProductSuccess extends TestBase {
     SoftAssert softAssert;
     LoginPage loginPage;
     SideBar sideBar;
-    CreateProduct createProduct;
+    CreateProductPage createProduct;
     ShowAllProducts showAllProducts;
     ProductForm productForm;
     Faker faker;

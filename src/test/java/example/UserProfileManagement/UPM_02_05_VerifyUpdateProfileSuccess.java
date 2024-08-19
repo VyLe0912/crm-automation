@@ -3,12 +3,16 @@ package example.UserProfileManagement;
 import example.TestBase;
 import io.qameta.allure.Allure;
 import models.Objects.User;
+
+import example.TestBase;
+import io.qameta.allure.Allure;
+import models.Objects.User;
 import page.ProfilePage.ProfilePage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.LoginPage;
-import page.SideBar;
+import page.Login.LoginPage;
+import page.SideBar.SideBar;
 
 public class UPM_02_05_VerifyUpdateProfileSuccess extends TestBase {
     @BeforeMethod

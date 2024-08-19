@@ -3,10 +3,14 @@ package example.UserProfileManagement;
 import example.TestBase;
 import io.qameta.allure.Allure;
 import models.Objects.User;
-import page.ProfilePage.ProfilePage;
+
+import example.TestBase;
+import io.qameta.allure.Allure;
+import models.Objects.User;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import page.ProfilePage.ProfilePage;
 
 public class UPM_02_04_VerifyUpdateProfileFailedWhenTwoFieldsAreBlank extends TestBase {
     @BeforeMethod

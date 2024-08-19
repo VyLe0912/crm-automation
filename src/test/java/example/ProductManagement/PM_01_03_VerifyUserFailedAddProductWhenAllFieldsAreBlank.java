@@ -2,13 +2,15 @@ package example.ProductManagement;
 
 import example.TestBase;
 import io.qameta.allure.Allure;
+import models.ProductForm;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.LoginPage;
-import page.Product.CreateProduct;
-import page.Product.ProductForm;
-import page.SideBar;
+import page.Login.LoginPage;
+import page.Products.CreateProductPage;
+import page.Products.CreateProductPage;
+import page.SideBar.SideBar;
+
 
 public class PM_01_03_VerifyUserFailedAddProductWhenAllFieldsAreBlank extends TestBase {
     @BeforeMethod
@@ -17,7 +19,7 @@ public class PM_01_03_VerifyUserFailedAddProductWhenAllFieldsAreBlank extends Te
         softAssert = new SoftAssert();
         loginPage = new LoginPage(driver);
         sideBar = new SideBar(driver);
-        createProduct = new CreateProduct(driver);
+        createProduct = new CreateProductPage(driver);
         form = new ProductForm("", "", "");
     }
 
@@ -49,6 +51,6 @@ public class PM_01_03_VerifyUserFailedAddProductWhenAllFieldsAreBlank extends Te
     SoftAssert softAssert;
     LoginPage loginPage;
     SideBar sideBar;
-    CreateProduct createProduct;
+    CreateProductPage createProduct;
     ProductForm form;
 }

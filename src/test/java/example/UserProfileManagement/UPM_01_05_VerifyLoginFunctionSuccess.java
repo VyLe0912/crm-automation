@@ -5,9 +5,9 @@ import io.qameta.allure.Allure;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.LoginPage;
+import page.Login.LoginPage;
 import models.Objects.User;
-import page.SideBar;
+import page.SideBar.SideBar;
 
 public class UPM_01_05_VerifyLoginFunctionSuccess extends TestBase {
     @BeforeMethod

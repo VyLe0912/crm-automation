@@ -5,10 +5,11 @@ import io.qameta.allure.Allure;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.LoginPage;
-import page.Product.CreateProduct;
+import page.Login.LoginPage;
+import page.Products.CreateProductPage;
 import page.Product.ShowAllProducts;
-import page.SideBar;
+import page.SideBar.SideBar;
+
 
 public class PM_03_04_VerifySearchFailedWhenInsertInvalidValue extends TestBase {
     @BeforeMethod
@@ -43,6 +44,6 @@ public class PM_03_04_VerifySearchFailedWhenInsertInvalidValue extends TestBase 
     SoftAssert softAssert;
     LoginPage loginPage;
     SideBar sideBar;
-    CreateProduct createProduct;
+    CreateProductPage createProduct;
     ShowAllProducts showAllProducts;
 }

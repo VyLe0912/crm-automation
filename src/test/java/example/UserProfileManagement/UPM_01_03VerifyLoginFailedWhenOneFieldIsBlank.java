@@ -5,7 +5,7 @@ import io.qameta.allure.Allure;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.LoginPage;
+import page.Login.LoginPage;
 
 public class UPM_01_03VerifyLoginFailedWhenOneFieldIsBlank extends TestBase {
     @BeforeMethod

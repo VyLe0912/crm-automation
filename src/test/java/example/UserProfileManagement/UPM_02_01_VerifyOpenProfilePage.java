@@ -2,20 +2,21 @@ package example.UserProfileManagement;
 
 import example.TestBase;
 import io.qameta.allure.Allure;
+import page.Login.LoginPage;
 import page.ProfilePage.ProfilePage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.LoginPage;
-import page.SideBar;
+import page.SideBar.SideBar;
 
 public class UPM_02_01_VerifyOpenProfilePage extends TestBase {
+
     @BeforeMethod
     public void setUp() {
         super.setUp();
         profilePage = new ProfilePage(driver);
         softAssert = new SoftAssert();
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage( driver);
         sideBar = new SideBar(driver);
     }
 

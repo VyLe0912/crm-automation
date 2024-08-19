@@ -2,13 +2,14 @@ package example.UserProfileManagement;
 
 import example.TestBase;
 import io.qameta.allure.Allure;
+import models.RegisterForm;
+import models.RegisterUser;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.LoginPage;
-import page.Register.RegisterForm;
-import page.Register.RegisterUser;
-import page.SideBar;
+import page.Login.LoginPage;
+import page.SideBar.SideBar;
+
 
 public class UPM_04_07_VerifyUserRegisterSuccess extends TestBase{
 

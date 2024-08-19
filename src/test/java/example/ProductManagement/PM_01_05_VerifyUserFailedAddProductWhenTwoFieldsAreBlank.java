@@ -6,10 +6,11 @@ import io.qameta.allure.Allure;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import page.LoginPage;
-import page.Product.CreateProduct;
-import page.Product.ProductForm;
-import page.SideBar;
+import page.Login.LoginPage;
+import page.Products.CreateProductPage;
+import models.ProductForm;
+import page.SideBar.SideBar;
+
 
 public class PM_01_05_VerifyUserFailedAddProductWhenTwoFieldsAreBlank extends TestBase {
     @BeforeMethod
@@ -18,7 +19,7 @@ public class PM_01_05_VerifyUserFailedAddProductWhenTwoFieldsAreBlank extends Te
         softAssert = new SoftAssert();
         loginPage = new LoginPage(driver);
         sideBar = new SideBar(driver);
-        createProduct = new CreateProduct(driver);
+        createProduct = new CreateProductPage(driver);
         faker = new Faker();
         name = faker.commerce().productName();
         price = faker.number().digit();
@@ -63,7 +64,7 @@ public class PM_01_05_VerifyUserFailedAddProductWhenTwoFieldsAreBlank extends Te
     SoftAssert softAssert;
     LoginPage loginPage;
     SideBar sideBar;
-    CreateProduct createProduct;
+    CreateProductPage createProduct;
     ProductForm productForm;
     Faker faker;
     String name;
