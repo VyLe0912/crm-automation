@@ -32,8 +32,9 @@ public class LM_04_01_VerifyThatTheUserCanSuccessfullyEditCustomerInformationOnT
     String phone;
     String address;
     int randomCustomer;
-    String customerNameInShowAllCustomerPage;
-    String customerNameInCustomerInformationPage;
+    String customerNameInShowAllCustomerPageBefore, customerEmailInShowAllCustomerPageBefore, customerPhoneInShowAllCustomerPageBefore, customerAddressInShowAllCustomerPageBefore;
+    String customerNameInShowAllCustomerPageAfter, customerEmailInShowAllCustomerPageAfter, customerPhoneInShowAllCustomerPageAfter, customerAddressInShowAllCustomerPageAfter;
+    String customerNameInCustomerInformationPage, customerEmailInCustomerInformationPage, customerPhoneInCustomerInformationPage, customerAddressInCustomerInformationPage;
 
     @BeforeMethod
     public void setUp() {
@@ -61,12 +62,28 @@ public class LM_04_01_VerifyThatTheUserCanSuccessfullyEditCustomerInformationOnT
         Allure.step("Login success");
         loginPage.login("abcTrang@gmail.com", "123123");
 
+        //lay thong tin cua customer bat ki o man hinh [Show All Customers]
+        customerNameInShowAllCustomerPageBefore = showAllCustomersPage.getCustomerNameByIndex(randomCustomer);
+        customerEmailInShowAllCustomerPageBefore = showAllCustomersPage.getCustomerEmailByIndex(randomCustomer);
+        customerPhoneInShowAllCustomerPageBefore = showAllCustomersPage.getCustomerPhoneByIndex(randomCustomer);
+        customerAddressInShowAllCustomerPageBefore = showAllCustomersPage.getCustomerAddressByIndex(randomCustomer);
+
         Allure.step("Open [Customer Information] page");
-        customerNameInShowAllCustomerPage = showAllCustomersPage.getCustomerNameByIndex(randomCustomer);
         showAllCustomersPage.openCustomerInformationPage(randomCustomer);
-//        showAllCustomersPage.openCustomerInformationPage(1);
+
+
+        //lay thong tin cua customer o man hinh [Customer Information]
         customerNameInCustomerInformationPage = customerInformationPage.getCustomerName();
-        softAssert.assertEquals(customerNameInCustomerInformationPage, customerNameInShowAllCustomerPage);
+        customerEmailInCustomerInformationPage = customerInformationPage.getCustomerEmail();
+        customerPhoneInCustomerInformationPage = customerInformationPage.getCustomerPhone();
+        customerAddressInCustomerInformationPage = customerInformationPage.getCustomerAddress();
+
+        //so sanh thong tin customer o man hinh [Customer Information] va man hinh [Show All Customers]
+        softAssert.assertEquals(customerNameInCustomerInformationPage, customerNameInShowAllCustomerPageBefore);
+        softAssert.assertEquals(customerEmailInCustomerInformationPage, customerEmailInShowAllCustomerPageBefore);
+        softAssert.assertEquals(customerPhoneInCustomerInformationPage, customerPhoneInShowAllCustomerPageBefore);
+        softAssert.assertEquals(customerAddressInCustomerInformationPage, customerAddressInShowAllCustomerPageBefore);
+
 
         Allure.step("Open [Edit Customer Information] page");
         customerInformationPage.clickEditButton();
@@ -74,6 +91,8 @@ public class LM_04_01_VerifyThatTheUserCanSuccessfullyEditCustomerInformationOnT
         Allure.step("Edit name, email, phone, address");
         editCustomerInformationPage.editCustomerInformation(customerInfor);
         softAssert.assertTrue(customerInformationPage.isCustomerInformationPageDisplayed());
+
+        //xac minh thong tin sau khi chinh sua o man hinh [Customer Information]
         softAssert.assertEquals(customerInformationPage.getCustomerName(), name);
         softAssert.assertEquals(customerInformationPage.getCustomerEmail(), email);
         softAssert.assertEquals(customerInformationPage.getCustomerPhone(), phone);
@@ -82,6 +101,18 @@ public class LM_04_01_VerifyThatTheUserCanSuccessfullyEditCustomerInformationOnT
         Allure.step("Open [Show All Customer] page");
         customerInformationPage.openShowAllCustomersPage();
 
+        //lay thong tin cua customer o man hinh [Show All Customers] sau chinh sua
+        customerNameInShowAllCustomerPageAfter = showAllCustomersPage.getCustomerNameByIndex(randomCustomer);
+        customerEmailInShowAllCustomerPageAfter = showAllCustomersPage.getCustomerEmailByIndex(randomCustomer);
+        customerPhoneInShowAllCustomerPageAfter = showAllCustomersPage.getCustomerPhoneByIndex(randomCustomer);
+        customerAddressInShowAllCustomerPageAfter = showAllCustomersPage.getCustomerAddressByIndex(randomCustomer);
+
+        //so sanh thong tin customer o man hinh [Show All Customers] sau chinh sua va thong tin chinh sua
+        softAssert.assertEquals(customerNameInShowAllCustomerPageAfter, name);
+        softAssert.assertEquals(customerEmailInShowAllCustomerPageAfter, email);
+        softAssert.assertEquals(customerPhoneInShowAllCustomerPageAfter, phone);
+        softAssert.assertEquals(customerAddressInShowAllCustomerPageAfter, address);
+
         Allure.step("Search with name after edited");
         showAllCustomersPage.searchCustomer(name);
         softAssert.assertTrue(showAllCustomersPage.allNamesAre(name));
@@ -89,6 +120,8 @@ public class LM_04_01_VerifyThatTheUserCanSuccessfullyEditCustomerInformationOnT
         Allure.step("Search with name before edited");
         showAllCustomersPage.searchCustomer(customerNameInCustomerInformationPage);
         softAssert.assertTrue(showAllCustomersPage.isNoRecordFoundIsDisplayed());
+
+        //NHI
 
         softAssert.assertAll();
     }

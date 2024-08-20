@@ -13,11 +13,6 @@ import java.time.Duration;
 public class EditCustomerInformationPage extends CreateCustomerPage {
     WebDriver driver;
 
-//    By nameEditInputSelector = By.id("j_idt74:name");
-//    By emailEditInputSelector = By.id("j_idt74:email");
-//    By phoneEditInputSelector = By.id("j_idt74:phone");
-//    By addressEditInputSelector = By.id("j_idt74:address");
-//    By cancelButtonSelector = By.xpath("//a[text()='Cancel']");
     By saveButtonSelector = By.name("j_idt74:j_idt85");
 
     By informationBreadcrumbButtonSelector = By.xpath("//a[text()='Information']");
@@ -30,39 +25,10 @@ public class EditCustomerInformationPage extends CreateCustomerPage {
         this.driver = driver;
     }
 
-
-//    @Step ("Edit name")
-//    public void nameEditInput(String name) {
-//        driver.findElement(nameEditInputSelector).clear();
-//        driver.findElement(nameEditInputSelector).sendKeys(name);
-//    }
-
-//    @Step ("Edit email")
-//    public void emailEditInput(String email) {
-//        driver.findElement(emailEditInputSelector).clear();
-//        driver.findElement(emailEditInputSelector).sendKeys(email);
-//    }
-//    @Step ("Edit phone")
-//    public void phoneEditInput(String phone) {
-//        driver.findElement(phoneEditInputSelector).clear();
-//        driver.findElement(phoneEditInputSelector).sendKeys(phone);
-//    }
-
-//    @Step ("Edit address")
-//    public void addressEditInput(String address) {
-//        driver.findElement(addressEditInputSelector).clear();
-//        driver.findElement(addressEditInputSelector).sendKeys(address);
-//    }
-
     @Step("Click [Save] button")
     public void clickSaveButton() {
         driver.findElement(saveButtonSelector).click();
     }
-
-//    @Step("Click [Cancel] button")
-//    public void clickCancelButton() {
-//        driver.findElement(cancelButtonSelector).click();
-//    }
 
     @Step("Click [Information] button on breadcrumb")
     public void clickInformationBreadcrumbButton() {

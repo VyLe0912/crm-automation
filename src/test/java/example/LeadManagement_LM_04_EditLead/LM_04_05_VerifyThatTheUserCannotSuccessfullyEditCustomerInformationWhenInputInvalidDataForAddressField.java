@@ -3,7 +3,6 @@ package example.LeadManagement_LM_04_EditLead;
 import com.github.javafaker.Faker;
 import example.TestBase;
 import io.qameta.allure.Allure;
-import models.CustomerInFormationForm;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -16,7 +15,7 @@ import page.Login.LoginPage;
 
 import java.util.Random;
 
-public class LM_04_02_VerifyThatTheUserCannotSuccessfullyEditCustomerInformationWhenInputInvalidDataForNameField extends TestBase {
+public class LM_04_05_VerifyThatTheUserCannotSuccessfullyEditCustomerInformationWhenInputInvalidDataForAddressField extends TestBase {
     LoginPage loginPage;
     ShowAllCustomersPage showAllCustomersPage;
     CreateCustomerPage createCustomerPage;
@@ -26,7 +25,7 @@ public class LM_04_02_VerifyThatTheUserCannotSuccessfullyEditCustomerInformation
     CustomerInformationPage customerInformationPage;
     EditCustomerInformationPage editCustomerInformationPage;
 
-    String name51;
+    String address;
     int randomCustomer;
 
     @BeforeMethod
@@ -42,11 +41,11 @@ public class LM_04_02_VerifyThatTheUserCannotSuccessfullyEditCustomerInformation
         random = new Random();
 
         randomCustomer = random.nextInt(10) + 1;
-        name51 = RandomStringUtils.randomAlphabetic(51);
+        address = RandomStringUtils.randomAlphabetic(101);
     }
 
     @Test
-    public void testLM_04_02() {
+    public void testLM_04_05() {
 
         Allure.step("Login success");
         loginPage.login("abcTrang@gmail.com", "123123");
@@ -57,21 +56,21 @@ public class LM_04_02_VerifyThatTheUserCannotSuccessfullyEditCustomerInformation
         Allure.step("Open [Edit Customer Information] page");
         customerInformationPage.clickEditButton();
 
-        //bo trong truong name
-        Allure.step("Clear value of [Name] field");
-        editCustomerInformationPage.clearName();
+        //bo trong truong address
+        Allure.step("Clear value of [Address] field");
+        editCustomerInformationPage.clearAddress();
         editCustomerInformationPage.clickSaveButton();
 
         softAssert.assertTrue(editCustomerInformationPage.isEditCustomerInformationPageDisplayed());
-        softAssert.assertEquals(editCustomerInformationPage.getErrorForNameField(), "Please enter your name");
+        softAssert.assertEquals(editCustomerInformationPage.getErrorForAddressField(), "Please enter your address");
 
-        //Nhap 51 ky tu cho truong name
-        Allure.step("Input 51 characters for [Name] field");
-        editCustomerInformationPage.inputName(name51);
+        //Nhap 101 ky tu cho truong address
+        Allure.step("Input 101 characters for [Address] field");
+        editCustomerInformationPage.inputAddress(address);
         editCustomerInformationPage.clickSaveButton();
 
         softAssert.assertTrue(editCustomerInformationPage.isEditCustomerInformationPageDisplayed());
-        softAssert.assertEquals(editCustomerInformationPage.getErrorForNameField(), "size must be between 0 and 50");
+        softAssert.assertEquals(editCustomerInformationPage.getErrorForAddressField(), "size must be between 0 and 100");
 
         softAssert.assertAll();
     }

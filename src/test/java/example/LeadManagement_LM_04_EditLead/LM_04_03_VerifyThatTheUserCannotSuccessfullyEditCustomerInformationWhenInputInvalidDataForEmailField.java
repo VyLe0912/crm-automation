@@ -3,8 +3,6 @@ package example.LeadManagement_LM_04_EditLead;
 import com.github.javafaker.Faker;
 import example.TestBase;
 import io.qameta.allure.Allure;
-import models.CustomerInFormationForm;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -16,7 +14,7 @@ import page.Login.LoginPage;
 
 import java.util.Random;
 
-public class LM_04_02_VerifyThatTheUserCannotSuccessfullyEditCustomerInformationWhenInputInvalidDataForNameField extends TestBase {
+public class LM_04_03_VerifyThatTheUserCannotSuccessfullyEditCustomerInformationWhenInputInvalidDataForEmailField extends TestBase {
     LoginPage loginPage;
     ShowAllCustomersPage showAllCustomersPage;
     CreateCustomerPage createCustomerPage;
@@ -26,7 +24,7 @@ public class LM_04_02_VerifyThatTheUserCannotSuccessfullyEditCustomerInformation
     CustomerInformationPage customerInformationPage;
     EditCustomerInformationPage editCustomerInformationPage;
 
-    String name51;
+    String email1, email2, email3;
     int randomCustomer;
 
     @BeforeMethod
@@ -42,11 +40,13 @@ public class LM_04_02_VerifyThatTheUserCannotSuccessfullyEditCustomerInformation
         random = new Random();
 
         randomCustomer = random.nextInt(10) + 1;
-        name51 = RandomStringUtils.randomAlphabetic(51);
+        email1 = "username";
+        email2 = "username.domain";
+        email3 = "username@domain";
     }
 
     @Test
-    public void testLM_04_02() {
+    public void testLM_04_03() {
 
         Allure.step("Login success");
         loginPage.login("abcTrang@gmail.com", "123123");
@@ -57,21 +57,37 @@ public class LM_04_02_VerifyThatTheUserCannotSuccessfullyEditCustomerInformation
         Allure.step("Open [Edit Customer Information] page");
         customerInformationPage.clickEditButton();
 
-        //bo trong truong name
-        Allure.step("Clear value of [Name] field");
-        editCustomerInformationPage.clearName();
+        //Bo trong truong email
+        Allure.step("Clear value of [Email] field");
+        editCustomerInformationPage.clearEmail();
         editCustomerInformationPage.clickSaveButton();
 
         softAssert.assertTrue(editCustomerInformationPage.isEditCustomerInformationPageDisplayed());
-        softAssert.assertEquals(editCustomerInformationPage.getErrorForNameField(), "Please enter your name");
+        softAssert.assertEquals(editCustomerInformationPage.getErrorForEmailField(), "Please enter your email");
 
-        //Nhap 51 ky tu cho truong name
-        Allure.step("Input 51 characters for [Name] field");
-        editCustomerInformationPage.inputName(name51);
+        //Nhap "username" cho truong email
+        Allure.step("Input 'username' for [Email] field");
+        editCustomerInformationPage.inputEmail(email1);
         editCustomerInformationPage.clickSaveButton();
 
         softAssert.assertTrue(editCustomerInformationPage.isEditCustomerInformationPageDisplayed());
-        softAssert.assertEquals(editCustomerInformationPage.getErrorForNameField(), "size must be between 0 and 50");
+        softAssert.assertEquals(editCustomerInformationPage.getErrorForEmailField(), "The email is not valid (ex: abc@abc)");
+
+        //Nhap "username.domain" cho truong name
+        Allure.step("Input 'username.domain' for [Email] field");
+        editCustomerInformationPage.inputEmail(email2);
+        editCustomerInformationPage.clickSaveButton();
+
+        softAssert.assertTrue(editCustomerInformationPage.isEditCustomerInformationPageDisplayed());
+        softAssert.assertEquals(editCustomerInformationPage.getErrorForEmailField(), "The email is not valid (ex: abc@abc)");
+
+        //Nhap "username@domain" cho truong name
+        Allure.step("Input 'username@domain' for [Email] field");
+        editCustomerInformationPage.inputEmail(email3);
+        editCustomerInformationPage.clickSaveButton();
+
+        softAssert.assertTrue(editCustomerInformationPage.isEditCustomerInformationPageDisplayed());
+        softAssert.assertEquals(editCustomerInformationPage.getErrorForEmailField(), "The email is not valid (ex: abc@abc)");
 
         softAssert.assertAll();
     }
