@@ -10,7 +10,6 @@ import page.SideBar.SideBar;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.Random;
 
 public class ShowAllCustomersPage extends SideBar {
 
@@ -23,10 +22,14 @@ public class ShowAllCustomersPage extends SideBar {
 
     By newCustomerButtonSelector = By.xpath("//a[text()='New Customer']");
     By nameInputToSearchSelector = By.xpath("//th/span[text()='Name']/following-sibling::input");
-    By firstPageButtonSelector = By.xpath("//div[@class='ui-paginator ui-paginator-top ui-widget-header ui-corner-top']/span/span[@class='ui-icon ui-icon-seek-first']");
-    By previousPageButtonSelector = By.xpath("//div[@class='ui-paginator ui-paginator-top ui-widget-header ui-corner-top']/span/span[@class='ui-icon ui-icon-seek-prev']");
-    By nextPageButtonSelector = By.xpath("//div[@class='ui-paginator ui-paginator-top ui-widget-header ui-corner-top']/span/span[@class='ui-icon ui-icon-seek-next']");
-    protected By lastPageButtonSelector = By.xpath("//div[@class='ui-paginator ui-paginator-top ui-widget-header ui-corner-top']/span/span[@class='ui-icon ui-icon-seek-end']");
+    By firstPageButtonInTopSelector = By.xpath("//div[@class='ui-paginator ui-paginator-top ui-widget-header ui-corner-top']/span/span[@class='ui-icon ui-icon-seek-first']");
+    By previousPageButtonInTopSelector = By.xpath("//div[@class='ui-paginator ui-paginator-top ui-widget-header ui-corner-top']/span/span[@class='ui-icon ui-icon-seek-prev']");
+    By nextPageButtonInTopSelector = By.xpath("//div[@class='ui-paginator ui-paginator-top ui-widget-header ui-corner-top']/span/span[@class='ui-icon ui-icon-seek-next']");
+    protected By lastPageButtonInTopSelector = By.xpath("//div[@class='ui-paginator ui-paginator-top ui-widget-header ui-corner-top']/span/span[@class='ui-icon ui-icon-seek-end']");
+    By firstPageButtonInBottomSelector = By.xpath("//div[@class='ui-paginator ui-paginator-bottom ui-widget-header ui-corner-bottom']/span/span[@class='ui-icon ui-icon-seek-first']");
+    By previousPageButtonInBottomSelector = By.xpath("//div[@class='ui-paginator ui-paginator-bottom ui-widget-header ui-corner-bottom']/span/span[@class='ui-icon ui-icon-seek-prev']");
+    By nextPageButtonInBottomSelector = By.xpath("//div[@class='ui-paginator ui-paginator-bottom ui-widget-header ui-corner-bottom']/span/span[@class='ui-icon ui-icon-seek-next']");
+    By lastPageButtonInBottomSelector = By.xpath("//div[@class='ui-paginator ui-paginator-bottom ui-widget-header ui-corner-bottom']/span/span[@class='ui-icon ui-icon-seek-end']");
     By openCreateCustomerPageSelector = By.xpath("//h2[text()='Create Customer']");
 
     By noRecordFoundLabelSelector = By.xpath("//td[text()='No records found.']");
@@ -71,7 +74,7 @@ public class ShowAllCustomersPage extends SideBar {
     }
 
     @Step("Open [Create Customer] page")
-    public void openCreateCustomerPage() {
+    public void openCreateNewCustomerPage() {
         clickNewCustomerButton();
         waitForCreateCustomerPageIsDisplayed();
     }
@@ -120,24 +123,44 @@ public class ShowAllCustomersPage extends SideBar {
         return driver.findElements(tableRowSelector).size();
     }
 
-    @Step("Click first customer page button")
-    public void openFirstCustomerPage() {
-        driver.findElement(firstPageButtonSelector).click();
+    @Step("Click first customer page button in top")
+    public void openFirstCustomerPageTop() {
+        driver.findElement(firstPageButtonInTopSelector).click();
     }
 
-    @Step("Click previous customer page button")
-    public void openPreviousCustomerPage() {
-        driver.findElement(previousPageButtonSelector).click();
+    @Step("Click previous customer page button in top")
+    public void openPreviousCustomerPageTop() {
+        driver.findElement(previousPageButtonInTopSelector).click();
     }
 
-    @Step("Click next customer page button")
-    public void openNextCustomerPage() {
-        driver.findElement(nextPageButtonSelector).click();
+    @Step("Click next customer page button in top")
+    public void openNextCustomerPageTop() {
+        driver.findElement(nextPageButtonInTopSelector).click();
     }
 
-    @Step("Click last customer page button")
-    public void openLastCustomerPage() {
-        driver.findElement(lastPageButtonSelector).click();
+    @Step("Click last customer page button in top")
+    public void openLastCustomerPageTop() {
+        driver.findElement(lastPageButtonInTopSelector).click();
+    }
+
+    @Step("Click first customer page button in bottom")
+    public void openFirstCustomerPageBottom() {
+        driver.findElement(firstPageButtonInBottomSelector).click();
+    }
+
+    @Step("Click previous customer page button in bottom")
+    public void openPreviousCustomerPageBottom() {
+        driver.findElement(previousPageButtonInBottomSelector).click();
+    }
+
+    @Step("Click next customer page button in bottom")
+    public void openNextCustomerPageBottom() {
+        driver.findElement(nextPageButtonInBottomSelector).click();
+    }
+
+    @Step("Click last customer page button in bottom")
+    public void openLastCustomerPageBottom() {
+        driver.findElement(lastPageButtonInBottomSelector).click();
     }
 
     public String getPageCurrentLabel() {

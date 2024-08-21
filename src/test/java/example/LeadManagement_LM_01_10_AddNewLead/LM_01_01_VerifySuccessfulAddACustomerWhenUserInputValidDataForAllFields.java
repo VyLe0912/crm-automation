@@ -46,10 +46,9 @@ public class LM_01_01_VerifySuccessfulAddACustomerWhenUserInputValidDataForAllFi
 
         Allure.step("Login success");
         loginPage.login("abcTrang@gmail.com", "123123");
-//        softAssert.assertTrue(loginPage.isDisappearLoginForm(), "[Login] page is still display");
 
         Allure.step("Open [Create Customer] page");
-        showAllCustomersPage.openCreateCustomerPage();
+        showAllCustomersPage.openCreateNewCustomerPage();
 
         softAssert.assertTrue(createCustomerPage.isCreateCustomerPageDisplayed(), "[Create customer] page is not displayed");
 

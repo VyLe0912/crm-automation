@@ -53,7 +53,7 @@ public class LM_01_17_VerifyCannotAddCustomerWhenEnteringInvalidValueForPhoneFie
 //        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
 
         Allure.step("Open [Create Customer] page");
-        sideBar.openCreateCustomerPage();
+        sideBar.openCreateNewCustomerPage();
 
         // nhap ki tu cho truong [Phone]
         Allure.step("Input character for [Phone] field");

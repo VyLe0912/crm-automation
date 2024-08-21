@@ -54,7 +54,7 @@ public class LM_01_05_VerifyCanAddCustomerWhenEnteringValidValueForNameField ext
 
         //1 ki tu cho truong [name]
         Allure.step("Open [Create Customer] page");
-        showAllCustomersPage.openCreateCustomerPage();
+        showAllCustomersPage.openCreateNewCustomerPage();
 
         Allure.step("Input 1 character for [Name] field");
         Allure.step("Input valid data for [Email], [Phone], [Address] field");
@@ -65,7 +65,7 @@ public class LM_01_05_VerifyCanAddCustomerWhenEnteringValidValueForNameField ext
 
         //49 ki tu cho truong [name]
         Allure.step("Open [Create Customer] page");
-        showAllCustomersPage.openCreateCustomerPage();
+        showAllCustomersPage.openCreateNewCustomerPage();
 
         Allure.step("Input 49 character for [Name] field");
         Allure.step("Input valid data for [Email], [Phone], [Address] field");
@@ -76,7 +76,7 @@ public class LM_01_05_VerifyCanAddCustomerWhenEnteringValidValueForNameField ext
 
         //50 ki tu cho truong [name]
         Allure.step("Open [Create Customer] page");
-        showAllCustomersPage.openCreateCustomerPage();
+        showAllCustomersPage.openCreateNewCustomerPage();
 
         Allure.step("Input 50 character for [Name] field");
         Allure.step("Input valid data for [Email], [Phone], [Address] field");

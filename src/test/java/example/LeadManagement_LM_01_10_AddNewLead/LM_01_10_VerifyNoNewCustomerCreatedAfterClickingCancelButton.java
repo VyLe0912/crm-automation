@@ -52,7 +52,7 @@ public class LM_01_10_VerifyNoNewCustomerCreatedAfterClickingCancelButton extend
 
         softAssert.assertTrue(showAllCustomersPage.isNewCustomerButtonDisplayed(), "[Show all customers] page is not displayed");
         Allure.step("Open [Create Customer] page");
-        showAllCustomersPage.openCreateCustomerPage();
+        showAllCustomersPage.openCreateNewCustomerPage();
 
         softAssert.assertTrue(createCustomerPage.isCreateCustomerPageDisplayed(), "[Create customer] page is not displayed");
         Allure.step("Input valid data for all fields");

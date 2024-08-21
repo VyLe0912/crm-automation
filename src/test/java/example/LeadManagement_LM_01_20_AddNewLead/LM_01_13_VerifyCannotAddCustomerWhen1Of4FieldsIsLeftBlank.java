@@ -49,7 +49,7 @@ public class LM_01_13_VerifyCannotAddCustomerWhen1Of4FieldsIsLeftBlank extends T
 //        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
 
         Allure.step("Open [Create Customer] page");
-        sideBar.openCreateCustomerPage();
+        sideBar.openCreateNewCustomerPage();
 
         // 1. Bo trong truong [Name]
         Allure.step("Leave [Name] field blank");
