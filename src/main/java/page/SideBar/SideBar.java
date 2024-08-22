@@ -77,7 +77,7 @@ public class SideBar {
     }
 
     @Step("Open [Create Customer] page")
-    public void openCreateCustomerPage() {
+    public void openCreateNewCustomerPage() {
         expandCustomerMenu();
         clickCreateCustomerButton();
     }

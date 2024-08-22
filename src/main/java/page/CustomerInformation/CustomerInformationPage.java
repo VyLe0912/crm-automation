@@ -11,7 +11,6 @@ import java.time.Duration;
 
 public class CustomerInformationPage extends SideBar {
     WebDriver driver;
-//    Actions actions = new Actions(driver);
 
     By editButtonSelector = By.xpath("//a[text()='Edit']");
     By customerNameSelector = By.xpath("//div[preceding-sibling::label[text()='Name:']]/span");

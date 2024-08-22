@@ -24,11 +24,11 @@ public class ShowAllProductsPage extends ShowAllCustomersPage {
 
     public void waitForLastPageButtonIsDisplayed() {
         Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(d->d.findElement(lastPageButtonSelector).isDisplayed());
+        wait.until(d->d.findElement(lastPageButtonInTopSelector).isDisplayed());
     }
 
     @Step("Click last customer page button")
     public void openLastProductPage() {
-        driver.findElement(lastPageButtonSelector).click();
+        driver.findElement(lastPageButtonInTopSelector).click();
     }
 }

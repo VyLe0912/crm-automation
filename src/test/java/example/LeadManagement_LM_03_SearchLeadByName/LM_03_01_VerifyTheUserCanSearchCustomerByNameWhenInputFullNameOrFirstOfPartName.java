@@ -54,7 +54,7 @@ public class LM_03_01_VerifyTheUserCanSearchCustomerByNameWhenInputFullNameOrFir
         loginPage.login("abcTrang@gmail.com", "123123");
 
         Allure.step("Open [Create Customer] page");
-        showAllCustomersPage.openCreateCustomerPage();
+        showAllCustomersPage.openCreateNewCustomerPage();
 
         Allure.step("Create a customer");
         createCustomerPage.createCustomerInformation(customerInfor);

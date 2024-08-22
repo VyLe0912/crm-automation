@@ -22,7 +22,6 @@ public class LM_04_02_VerifyThatTheUserCannotSuccessfullyEditCustomerInformation
     CreateCustomerPage createCustomerPage;
     Faker faker;
     SoftAssert softAssert;
-    CustomerInFormationForm customerInfor;
     Random random;
     CustomerInformationPage customerInformationPage;
     EditCustomerInformationPage editCustomerInformationPage;
@@ -54,11 +53,11 @@ public class LM_04_02_VerifyThatTheUserCannotSuccessfullyEditCustomerInformation
 
         Allure.step("Open [Customer Information] page");
         showAllCustomersPage.openCustomerInformationPage(randomCustomer);
-//        showAllCustomersPage.openCustomerInformationPage(5);
 
         Allure.step("Open [Edit Customer Information] page");
         customerInformationPage.clickEditButton();
 
+        //bo trong truong name
         Allure.step("Clear value of [Name] field");
         editCustomerInformationPage.clearName();
         editCustomerInformationPage.clickSaveButton();
@@ -66,6 +65,7 @@ public class LM_04_02_VerifyThatTheUserCannotSuccessfullyEditCustomerInformation
         softAssert.assertTrue(editCustomerInformationPage.isEditCustomerInformationPageDisplayed());
         softAssert.assertEquals(editCustomerInformationPage.getErrorForNameField(), "Please enter your name");
 
+        //Nhap 51 ky tu cho truong name
         Allure.step("Input 51 characters for [Name] field");
         editCustomerInformationPage.inputName(name51);
         editCustomerInformationPage.clickSaveButton();

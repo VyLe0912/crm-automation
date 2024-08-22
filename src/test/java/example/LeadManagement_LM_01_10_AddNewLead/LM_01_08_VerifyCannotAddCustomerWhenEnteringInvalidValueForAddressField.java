@@ -50,7 +50,7 @@ public class LM_01_08_VerifyCannotAddCustomerWhenEnteringInvalidValueForAddressF
 //        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
 
         Allure.step("Open [Create Customer] page");
-        showAllCustomersPage.openCreateCustomerPage();
+        showAllCustomersPage.openCreateNewCustomerPage();
 
         Allure.step("Input valid data for [Name], [Email], [Phone] field");
         Allure.step("Input 101 character for [Address] field");
