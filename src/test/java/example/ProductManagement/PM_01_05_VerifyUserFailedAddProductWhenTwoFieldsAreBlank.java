@@ -53,7 +53,7 @@ public class PM_01_05_VerifyUserFailedAddProductWhenTwoFieldsAreBlank extends Te
         createProduct.deleteAllTextBox();
 
         Allure.step("Verify add product failed when product price and discount fields are blank");
-        productForm = new ProductForm("", price, discount);
+        productForm = new ProductForm(name, "", "");
         createProduct.createProduct(productForm);
         softAssert.assertEquals(createProduct.getMessProPrice(), "Please enter price", "Error ProPrice");
         softAssert.assertEquals(createProduct.getMessProDiscount(), "Please enter discount", "Error ProDiscount");

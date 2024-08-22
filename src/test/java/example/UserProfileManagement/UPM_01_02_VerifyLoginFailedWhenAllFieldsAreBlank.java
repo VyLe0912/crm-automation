@@ -2,6 +2,7 @@ package example.UserProfileManagement;
 
 import example.TestBase;
 import io.qameta.allure.Allure;
+import models.Objects.User;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -13,12 +14,13 @@ public class UPM_01_02_VerifyLoginFailedWhenAllFieldsAreBlank extends TestBase {
         super.setUp();
         loginPage = new LoginPage(driver);
         softAssert = new SoftAssert();
+        user = new User("", "");
     }
 
     @Test
     public void VerifyLoginFailedWhenAllFieldsAreBlank() {
         Allure.step("Leave fields are blank");
-        loginPage.login("","");
+        loginPage.login(user);
 
         Allure.step("Inspect message at email field");
         //Kiểm tra thông báo trường Email hiển thị
@@ -33,4 +35,5 @@ public class UPM_01_02_VerifyLoginFailedWhenAllFieldsAreBlank extends TestBase {
 
     LoginPage loginPage;
     SoftAssert softAssert;
+    User user;
 }

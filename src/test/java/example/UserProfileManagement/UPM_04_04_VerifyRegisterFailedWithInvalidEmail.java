@@ -17,7 +17,6 @@ public class UPM_04_04_VerifyRegisterFailedWithInvalidEmail extends TestBase {
         faker = new Faker();
         softAssert = new SoftAssert();
         registerForm = new RegisterForm(driver);
-        driver.manage().window().setSize(new Dimension(1378, 840));
         password = faker.internet().password();
         confPassword = faker.internet().password();
         name = faker.funnyName().name();

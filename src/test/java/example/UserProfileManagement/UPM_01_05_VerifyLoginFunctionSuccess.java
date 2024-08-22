@@ -23,7 +23,7 @@ public class UPM_01_05_VerifyLoginFunctionSuccess extends TestBase {
     public void verifyLoginFunction() {
         Allure.step("Verify Login fucntion success");
         loginPage.login(user);
-        softAssert.assertEquals(sideBar.headerNameAccount(), "Thy", "Login failed");
+        softAssert.assertEquals(sideBar.headerNameAccount(), "Vy", "Login failed");
         softAssert.assertAll();
     }
 
