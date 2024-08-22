@@ -56,7 +56,7 @@ public class PM_04_04_VerifyUserFailedEditProductInfoWhenTwoFieldsAreBlank exten
         productForm = new ProductForm(name, "", "");
         editProduct.editProduct(productForm);
 
-        softAssert.assertEquals(createProduct.getMessProName(), "Please enter product name", "Error name");
+        softAssert.assertEquals(createProduct.getMessProPrice(), "Please enter price", "Error price");
         softAssert.assertEquals(createProduct.getMessProDiscount(), "Please enter discount", "Error discount");
 
         createProduct.deleteAllTextBox();
