@@ -35,7 +35,7 @@ public class SideBar {
     By labelHomePageSelector = By.xpath("//span[@class='m-r-sm text-muted welcome-message']");
 
     By nameAccountHeaderSelector = By.xpath("(//strong[@class='font-bold'])[2]");
-    By btnLogOutInputSelector = By.xpath("//form[@id='j_idt63']");
+    By btnLogOutInputSelector = By.linkText("Logout");
     By showAllOrdersButtonSelector = By.xpath("//a[text() = 'Show All Orders']");
 
     public SideBar(WebDriver driver) {

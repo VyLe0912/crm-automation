@@ -44,6 +44,7 @@ public class PM_04_03_VerifyUserFailedEditProductInfoWhenOneFieldIsBlank extends
 
         createProduct.deleteAllTextBox();
 
+        Allure.step("Name field is blank");
         productForm = new ProductForm("", price, discount);
         editProduct.editProduct(productForm);
 
@@ -51,6 +52,7 @@ public class PM_04_03_VerifyUserFailedEditProductInfoWhenOneFieldIsBlank extends
 
         createProduct.deleteAllTextBox();
 
+        Allure.step("price field is blank");
         productForm = new ProductForm(name, "", discount);
         editProduct.editProduct(productForm);
 
@@ -58,6 +60,7 @@ public class PM_04_03_VerifyUserFailedEditProductInfoWhenOneFieldIsBlank extends
 
         createProduct.deleteAllTextBox();
 
+        Allure.step("discount field is blank");
         productForm = new ProductForm(name, price, "");
         editProduct.editProduct(productForm);
         softAssert.assertEquals(createProduct.getMessProDiscount(), "Please enter discount", "Error discount");

@@ -1,5 +1,6 @@
 package example.UserProfileManagement;
 
+import com.github.javafaker.Faker;
 import example.TestBase;
 import io.qameta.allure.Allure;
 import models.Objects.User;
@@ -22,6 +23,8 @@ public class UPM_02_05_VerifyUpdateProfileSuccess extends TestBase {
         softAssert = new SoftAssert();
         loginPage = new LoginPage(driver);
         sideBar = new SideBar(driver);
+        faker = new Faker();
+        name = faker.name().name();
         user = new User("Vy", "due", "0845123456");
     }
 
@@ -42,6 +45,9 @@ public class UPM_02_05_VerifyUpdateProfileSuccess extends TestBase {
 
         Allure.step("Check update success");
         softAssert.assertEquals(profilePage.textMessageUpdateSuccess(), "Edit success!", "Error update");
+
+        sideBar.clickBtnLogOut();
+        loginPage.loginWithDefaultAccount();
         softAssert.assertEquals(sideBar.headerNameAccount(), "Vy", "Update error");
         softAssert.assertAll();
     }
@@ -51,4 +57,6 @@ public class UPM_02_05_VerifyUpdateProfileSuccess extends TestBase {
     LoginPage loginPage;
     SideBar sideBar;
     SoftAssert softAssert;
+    Faker faker;
+    String name;
 }
