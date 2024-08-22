@@ -28,13 +28,14 @@ public class LM_02_03_VerifyCustomerInformationIsDisplayedCorrectlyOnTheCustomer
 
     @BeforeMethod
     public void setUp() {
+        super.setUp();
         softAssert = new SoftAssert();
         showAllCustomersPage = new ShowAllCustomersPage(driver);
         loginPage = new LoginPage(driver);
         random = new Random();
         customerInformationPage = new CustomerInformationPage(driver);
         editCustomerInformationPage = new EditCustomerInformationPage(driver);
-        randomNumber = random.nextInt(10);
+        randomNumber = random.nextInt(10) + 1;
     }
 
     @Test
