@@ -80,15 +80,7 @@ public class CreateCustomerPage extends SideBar {
         return wait.until(d->d.findElement(openCreateCustomerPage).isDisplayed());
     }
 
-    @Step ("Create a customer")
-//    public void enterCustomerInformation(String name, String email, String phone, String address) {
-//        inputName(name);
-//        inputEmail(email);
-//        inputPhone(phone);
-//        inputAddress(address);
-//        clickCreateACustomerButton();
-//    }
-
+    @Step ("Enter customer information")
     public void enterCustomerInformation( CustomerInFormationForm customerInfo) {
         inputName(customerInfo.getName());
         inputEmail(customerInfo.getEmail());
@@ -96,6 +88,7 @@ public class CreateCustomerPage extends SideBar {
         inputAddress(customerInfo.getAddress());
     }
 
+    @Step ("Create a Customer")
     public void createCustomerInformation(CustomerInFormationForm customerInfo) {
         enterCustomerInformation(customerInfo);
         clickCreateACustomerButton();

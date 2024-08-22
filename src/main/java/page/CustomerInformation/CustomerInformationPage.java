@@ -11,7 +11,6 @@ import java.time.Duration;
 
 public class CustomerInformationPage extends SideBar {
     WebDriver driver;
-//    Actions actions = new Actions(driver);
 
     By editButtonSelector = By.xpath("//a[text()='Edit']");
     By customerNameSelector = By.xpath("//div[preceding-sibling::label[text()='Name:']]/span");
@@ -27,22 +26,22 @@ public class CustomerInformationPage extends SideBar {
         this.driver = driver;
     }
 
-    @Step("Get customer name in [Show All Customers] page")
+    @Step("Get customer name in [Customer Information] page")
     public String getCustomerName() {
         return driver.findElement(customerNameSelector).getText();
     }
 
-    @Step("Get customer email in [Show All Customers] page")
+    @Step("Get customer email in [Customer Information] page")
     public String getCustomerEmail() {
         return driver.findElement(customerEmailSelector).getText();
     }
 
-    @Step("Get customer phone in [Show All Customers] page")
+    @Step("Get customer phone in [Customer Information] page")
     public String getCustomerPhone() {
         return driver.findElement(customerPhoneSelector).getText();
     }
 
-    @Step("Get customer address in [Show All Customers] page")
+    @Step("Get customer address in [Customer Information] page")
     public String getCustomerAddress() {
         return driver.findElement(customerAddressSelector).getText();
     }

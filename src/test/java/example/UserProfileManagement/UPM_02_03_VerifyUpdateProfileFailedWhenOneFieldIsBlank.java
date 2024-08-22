@@ -3,10 +3,6 @@ package example.UserProfileManagement;
 import example.TestBase;
 import io.qameta.allure.Allure;
 import models.Objects.User;
-
-import example.TestBase;
-import io.qameta.allure.Allure;
-import models.Objects.User;
 import page.ProfilePage.ProfilePage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

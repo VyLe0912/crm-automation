@@ -55,7 +55,7 @@ public class LM_01_06_VerrifyCannotAddCustomerWhenEnteringInvalidValueForEmailFi
 
         //'username' for [Email] field
         Allure.step("Open [Create Customer] page");
-        showAllCustomersPage.openCreateCustomerPage();
+        showAllCustomersPage.openCreateNewCustomerPage();
 
         Allure.step("Input 'username' for [Email] field");
         Allure.step("Input valid data for [Name], [Phone], [Address] field");

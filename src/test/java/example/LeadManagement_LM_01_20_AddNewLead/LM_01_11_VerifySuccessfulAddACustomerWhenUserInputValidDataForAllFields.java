@@ -53,7 +53,7 @@ public class LM_01_11_VerifySuccessfulAddACustomerWhenUserInputValidDataForAllFi
 //        softAssert.assertTrue(loginPage.isDisappearLoginForm(), "[Login] page is still display");
 
         Allure.step("Open [Create Customer] page");
-        sideBar.openCreateCustomerPage();
+        sideBar.openCreateNewCustomerPage();
 
         softAssert.assertTrue(createCustomerPage.isCreateCustomerPageDisplayed(), "[Create customer] page is not displayed");
 

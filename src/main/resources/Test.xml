@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="CRM Automation" parallel="tests" thread-count="2">
+    <test name="Lead Management">
+                <packages>
+                    <package name="example.LeadManagement_LM_01_10_AddNewLead"/>
+                    <package name="example.LeadManagement_LM_01_20_AddNewLead"/>
+                    <package name="example.LeadManagement_LM_02_ViewTheLeads"/>
+                    <package name="example.LeadManagement_LM_03_SearchLeadByName"/>
+                    <package name="example.LeadManagement_LM_04_EditLead"/>
+                </packages>
+    </test>
+<!--    <test name="Product Management">-->
+<!--        <packages>-->
+<!--            <package name="example.ProductManagement"/>-->
+<!--        </packages>-->
+<!--    </test>-->
+<!--    <test name="User Profile Management">-->
+<!--        <packages>-->
+<!--            <package name="example.UserProfileManagement"/>-->
+<!--        </packages>-->
+<!--    </test>-->
+</suite>

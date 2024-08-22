@@ -22,7 +22,7 @@ public class TestBase {
     }
 
 
-    @AfterClass(description = "Tear down the test environment")
+    @AfterClass(description = "Tear down the test environment", alwaysRun = true)
     public void tearDown() {
         // Tear down the test environment
         driver.quit();

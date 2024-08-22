@@ -33,7 +33,7 @@ public class LM_01_02_VerifyCannotSuccessCreateACustomerWhenLeaveBlankAllFields 
 //        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
 
         Allure.step("Open [Create Customer] page");
-        showAllCustomersPage.openCreateCustomerPage();
+        showAllCustomersPage.openCreateNewCustomerPage();
 
         Allure.step("Click [Create a customer] button");
         createCustomerPage.clickCreateACustomerButton();
