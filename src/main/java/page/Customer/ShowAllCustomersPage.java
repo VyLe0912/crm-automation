@@ -109,7 +109,7 @@ public class ShowAllCustomersPage extends SideBar {
         driver.findElement(nameInputToSearchSelector).clear();
         driver.findElement(nameInputToSearchSelector).sendKeys(name);
         try{
-            Thread.sleep(2000);
+            Thread.sleep(3000);
         } catch (Exception e) {
         }
     }
