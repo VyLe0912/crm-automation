@@ -1,11 +1,13 @@
 package page.Customer;
 
 import io.qameta.allure.Step;
+import models.CustomerInFormationForm;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import page.CustomerInformation.CustomerInformationPage;
 import page.SideBar.SideBar;
 
 import java.time.Duration;
@@ -73,15 +75,15 @@ public class ShowAllCustomersPage extends SideBar {
         driver.findElement(newCustomerButtonSelector).click();
     }
 
-    @Step("Open [Create Customer] page")
-    public void openCreateNewCustomerPage() {
-        clickNewCustomerButton();
-        waitForCreateCustomerPageIsDisplayed();
-    }
 
     @Step("Open [Customer Information] page")
     public void openCustomerInformationPage(int i) {
         driver.findElements(customerNameLabelSelector).get(i-1).click();
+    }
+
+    @Step ("Get customer information in [Show All Customers] page")
+    public CustomerInFormationForm getCustomerByIndex(int i) {
+        return new CustomerInFormationForm(getCustomerNameByIndex(i), getCustomerEmailByIndex(i), getCustomerPhoneByIndex(i), getCustomerAddressByIndex(i));
     }
 
     @Step("Get customer name by index")

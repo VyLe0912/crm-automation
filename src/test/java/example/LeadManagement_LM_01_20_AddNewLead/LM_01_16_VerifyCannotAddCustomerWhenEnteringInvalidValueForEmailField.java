@@ -1,4 +1,4 @@
-package example.LeadManagement_LM_01_10_AddNewLead;
+package example.LeadManagement_LM_01_20_AddNewLead;
 
 import com.github.javafaker.Faker;
 import example.TestBase;
@@ -12,8 +12,7 @@ import page.Customer.CreateCustomerPage;
 import page.Login.LoginPage;
 import page.Customer.ShowAllCustomersPage;
 
-public class LM_01_06_VerrifyCannotAddCustomerWhenEnteringInvalidValueForEmailField extends TestBase {
-
+public class LM_01_16_VerifyCannotAddCustomerWhenEnteringInvalidValueForEmailField extends TestBase {
     LoginPage loginPage;
     ShowAllCustomersPage showAllCustomersPage;
     CreateCustomerPage createCustomerPage;
@@ -46,7 +45,7 @@ public class LM_01_06_VerrifyCannotAddCustomerWhenEnteringInvalidValueForEmailFi
     }
 
     @Test
-    public void testLM_01_06() {
+    public void testLM_01_16() {
 
         Allure.step("Login success");
         loginPage.login("abcTrang@gmail.com", "123123");
@@ -82,5 +81,4 @@ public class LM_01_06_VerrifyCannotAddCustomerWhenEnteringInvalidValueForEmailFi
 
         softAssert.assertAll();
     }
-
 }

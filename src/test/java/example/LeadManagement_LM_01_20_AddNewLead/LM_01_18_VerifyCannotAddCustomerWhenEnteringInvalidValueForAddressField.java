@@ -11,7 +11,6 @@ import org.testng.asserts.SoftAssert;
 import page.Customer.CreateCustomerPage;
 import page.Login.LoginPage;
 import page.Customer.ShowAllCustomersPage;
-import page.SideBar.SideBar;
 
 public class LM_01_18_VerifyCannotAddCustomerWhenEnteringInvalidValueForAddressField extends TestBase {
     LoginPage loginPage;
@@ -19,7 +18,6 @@ public class LM_01_18_VerifyCannotAddCustomerWhenEnteringInvalidValueForAddressF
     CreateCustomerPage createCustomerPage;
     SoftAssert softAssert;
     Faker faker;
-    SideBar sideBar;
     CustomerInFormationForm customerInFor;
 
     String name;
@@ -34,7 +32,6 @@ public class LM_01_18_VerifyCannotAddCustomerWhenEnteringInvalidValueForAddressF
         loginPage = new LoginPage(driver);
         showAllCustomersPage = new ShowAllCustomersPage(driver);
         createCustomerPage = new CreateCustomerPage(driver);
-        sideBar = new SideBar(driver);
         faker = new Faker();
 
         name = faker.name().name();
@@ -52,7 +49,7 @@ public class LM_01_18_VerifyCannotAddCustomerWhenEnteringInvalidValueForAddressF
 //        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
 
         Allure.step("Open [Create Customer] page");
-        sideBar.openCreateNewCustomerPage();
+        showAllCustomersPage.openCreateNewCustomerPage();
 
         Allure.step("Input valid data for [Name], [Email], [Phone] field");
         Allure.step("Input 101 character for [Address] field");

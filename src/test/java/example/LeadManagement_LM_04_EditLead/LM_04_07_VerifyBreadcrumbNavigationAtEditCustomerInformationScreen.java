@@ -8,7 +8,6 @@ import page.Customer.ShowAllCustomersPage;
 import page.CustomerInformation.CustomerInformationPage;
 import page.CustomerInformation.EditCustomerInformationPage;
 import page.Login.LoginPage;
-
 import java.util.Random;
 
 public class LM_04_07_VerifyBreadcrumbNavigationAtEditCustomerInformationScreen extends TestBase {

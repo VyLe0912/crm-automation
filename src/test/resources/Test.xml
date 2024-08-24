@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="CRM Automation" parallel="tests" thread-count="2">
+    <test name="Lead Management">
+                <classes>
+<!--                    <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_01_VerifySuccessfulAddACustomerWhenUserInputValidDataForAllFields"/>-->
+<!--                    <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_02_VerifyCannotSuccessCreateACustomerWhenLeaveBlankAllFields"/>-->
+<!--                    <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_03_VerifyCannotAddCustomerWhen1Of4FieldsIsLeftBlank"/>-->
+<!--                    <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_04_VerifyCannotAddCustomerWhenEnteringInvalidValueForNameField"/>-->
+<!--                    <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_05_VerifyCanAddCustomerWhenEnteringValidValueForNameField"/>-->
+<!--                    <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_06_VerifyCannotAddCustomerWhenEnteringInvalidValueForEmailField"/>-->
+<!--                    <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_07_VerifyCannotAddCustomerWhenEnteringInvalidValueForPhoneField"/>-->
+<!--                    <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_08_VerifyCannotAddCustomerWhenEnteringInvalidValueForAddressField"/>-->
+<!--                    <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_09_VerifyCanAddCustomerWhenEnteringValidValueForAddressField"/>-->
+<!--                    <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_10_VerifyNoNewCustomerCreatedAfterClickingCancelButton"/>-->
+<!--                    <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_11_VerifySuccessfulAddACustomerWhenUserInputValidDataForAllFields"/>-->
+<!--                    <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_12_VerifyCannotSuccessCreateACustomerWhenLeaveBlankAllFields"/>-->
+<!--                    <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_13_VerifyCannotAddCustomerWhen1Of4FieldsIsLeftBlank"/>-->
+<!--                    <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_14_VerifyCannotAddCustomerWhenEnteringInvalidValueForNameField"/>-->
+<!--                    <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_15_VerifyCanAddCustomerWhenEnteringValidValueForNameField"/>-->
+<!--                    <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_16_VerifyCannotAddCustomerWhenEnteringInvalidValueForEmailField"/>-->
+<!--                    <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_17_VerifyCannotAddCustomerWhenEnteringInvalidValueForPhoneField"/>-->
+<!--                    <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_18_VerifyCannotAddCustomerWhenEnteringInvalidValueForAddressField"/>-->
+<!--                    <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_19_VerifyCanAddCustomerWhenEnteringValidValueForAddressField"/>-->
+<!--                    <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_20_VerifyNoNewCustomerCreatedAfterClickingCancelButton"/>-->
+<!--                    <class name="example.LeadManagement_LM_02_ViewTheLeads.LM_02_01_VerifyFirstPageOfShowAllCustomersScreenDisplayMaximum20Customer"/>-->
+<!--                    <class name="example.LeadManagement_LM_02_ViewTheLeads.LM_02_02_VerifyTheStateNavigationButtonsWorkingProperly"/>-->
+<!--                    <class name="example.LeadManagement_LM_02_ViewTheLeads.LM_02_03_VerifyCustomerInformationIsDisplayedCorrectlyOnTheCustomerInformationScreenAndEditCustomerInformationScreen"/>-->
+<!--                    <class name="example.LeadManagement_LM_02_ViewTheLeads.LM_02_05_VerifyThatTheNumberOfProductsDisplayedOnTheAddOrderScreenIsEqualToTheNumberOfProductsOnTheShowAllProductsScreen"/>-->
+<!--                    <class name="example.LeadManagement_LM_03_SearchLeadByName.LM_03_01_VerifyTheUserCanSearchCustomerByNameWhenInputFullNameOrFirstOfPartName"/>-->
+                    <class name="example.LeadManagement_LM_04_EditLead.LM_04_01_VerifyThatTheUserCanSuccessfullyEditCustomerInformationOnTheCustomerInformationScreenWithValidValues"/>
+                    <class name="example.LeadManagement_LM_04_EditLead.LM_04_02_VerifyThatTheUserCannotSuccessfullyEditCustomerInformationWhenInputInvalidDataForNameField"/>
+                    <class name="example.LeadManagement_LM_04_EditLead.LM_04_03_VerifyThatTheUserCannotSuccessfullyEditCustomerInformationWhenInputInvalidDataForEmailField"/>
+                    <class name="example.LeadManagement_LM_04_EditLead.LM_04_04_VerifyThatTheUserCannotSuccessfullyEditCustomerInformationWhenInputInvalidDataForPhoneField"/>
+                    <class name="example.LeadManagement_LM_04_EditLead.LM_04_05_VerifyThatTheUserCannotSuccessfullyEditCustomerInformationWhenInputInvalidDataForAddressField"/>
+                    <class name="example.LeadManagement_LM_04_EditLead.LM_04_06_VerifyThatTheUserCannotSuccessfullyEditCustomerInformationWhenClickCancelButton"/>
+                    <class name="example.LeadManagement_LM_04_EditLead.LM_04_07_VerifyBreadcrumbNavigationAtEditCustomerInformationScreen"/>
+
+                </classes>
+    </test>
+</suite>
