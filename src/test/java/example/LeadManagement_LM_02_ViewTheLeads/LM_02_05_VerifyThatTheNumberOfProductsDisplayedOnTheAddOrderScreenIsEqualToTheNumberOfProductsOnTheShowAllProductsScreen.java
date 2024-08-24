@@ -10,13 +10,11 @@ import page.Customer.ShowAllCustomersPage;
 import page.Products.ShowAllProductsPage;
 import page.CustomerInformation.CustomerInformationPage;
 import page.Login.LoginPage;
-import page.SideBar.SideBar;
 
 public class LM_02_05_VerifyThatTheNumberOfProductsDisplayedOnTheAddOrderScreenIsEqualToTheNumberOfProductsOnTheShowAllProductsScreen extends TestBase {
     ShowAllCustomersPage showAllCustomersPage;
     SoftAssert softAssert;
     LoginPage loginPage;
-    SideBar sideBar;
     CustomerInformationPage customerInformationPage;
     CreateOrderPage createOrderPage;
     ShowAllProductsPage showAllProductsPage;
@@ -28,7 +26,6 @@ public class LM_02_05_VerifyThatTheNumberOfProductsDisplayedOnTheAddOrderScreenI
         softAssert = new SoftAssert();
         loginPage = new LoginPage(driver);
         customerInformationPage = new CustomerInformationPage(driver);
-        sideBar = new SideBar(driver);
         createOrderPage = new CreateOrderPage(driver);
         showAllCustomersPage = new ShowAllCustomersPage(driver);
         showAllProductsPage = new ShowAllProductsPage(driver);
@@ -41,15 +38,14 @@ public class LM_02_05_VerifyThatTheNumberOfProductsDisplayedOnTheAddOrderScreenI
         loginPage.login("abcTrang@gmail.com", "123123");
 
         Allure.step("Open [Show All Products] page");
-        sideBar.openShowAllProductsPage();
-//        showAllProductsPage.waitForLastPageButtonIsDisplayed();
+        showAllCustomersPage.openShowAllProductsPage();
         showAllProductsPage.openLastProductPage();
 
         //dem so luong product
         totalProduct = showAllProductsPage.getTotalProduct();
 
         Allure.step("Open [Show All Customer] page");
-        sideBar.openShowAllCustomersPage();
+        showAllProductsPage.openShowAllCustomersPage();
 
         Allure.step("Open [Customer Information] page");
         showAllCustomersPage.openCustomerInformationPage(1);

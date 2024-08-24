@@ -8,14 +8,12 @@ import org.testng.asserts.SoftAssert;
 import page.Customer.CreateCustomerPage;
 import page.Login.LoginPage;
 import page.Customer.ShowAllCustomersPage;
-import page.SideBar.SideBar;
 
 public class LM_01_12_VerifyCannotSuccessCreateACustomerWhenLeaveBlankAllFields extends TestBase {
     LoginPage loginPage;
     ShowAllCustomersPage showAllCustomersPage;
     CreateCustomerPage createCustomerPage;
     SoftAssert softAssert;
-    SideBar sideBar;
 
     @BeforeMethod
     public void setUp() {
@@ -24,7 +22,6 @@ public class LM_01_12_VerifyCannotSuccessCreateACustomerWhenLeaveBlankAllFields 
         loginPage = new LoginPage(driver);
         showAllCustomersPage = new ShowAllCustomersPage(driver);
         createCustomerPage = new CreateCustomerPage(driver);
-        sideBar = new SideBar(driver);
     }
 
     @Test
@@ -35,7 +32,7 @@ public class LM_01_12_VerifyCannotSuccessCreateACustomerWhenLeaveBlankAllFields 
 //        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
 
         Allure.step("Open [Create Customer] page");
-        sideBar.openCreateNewCustomerPage();
+        showAllCustomersPage.openCreateNewCustomerPage();
 
         Allure.step("Click [Create a customer] button");
         createCustomerPage.clickCreateACustomerButton();

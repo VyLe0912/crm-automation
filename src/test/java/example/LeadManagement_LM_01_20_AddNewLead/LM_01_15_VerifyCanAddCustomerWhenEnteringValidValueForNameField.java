@@ -11,7 +11,6 @@ import org.testng.asserts.SoftAssert;
 import page.Customer.CreateCustomerPage;
 import page.Login.LoginPage;
 import page.Customer.ShowAllCustomersPage;
-import page.SideBar.SideBar;
 
 public class LM_01_15_VerifyCanAddCustomerWhenEnteringValidValueForNameField extends TestBase {
     LoginPage loginPage;
@@ -19,7 +18,6 @@ public class LM_01_15_VerifyCanAddCustomerWhenEnteringValidValueForNameField ext
     CreateCustomerPage createCustomerPage;
     SoftAssert softAssert;
     Faker faker;
-    SideBar sideBar;
     CustomerInFormationForm customerInFor;
 
     String name1, name49, name50;
@@ -34,7 +32,6 @@ public class LM_01_15_VerifyCanAddCustomerWhenEnteringValidValueForNameField ext
         loginPage = new LoginPage(driver);
         showAllCustomersPage = new ShowAllCustomersPage(driver);
         createCustomerPage = new CreateCustomerPage(driver);
-        sideBar = new SideBar(driver);
         faker = new Faker();
 
         name1 = RandomStringUtils.randomAlphabetic(1);
@@ -56,7 +53,7 @@ public class LM_01_15_VerifyCanAddCustomerWhenEnteringValidValueForNameField ext
 
         //1 ki tu cho truong [name]
         Allure.step("Open [Create Customer] page");
-        sideBar.openCreateNewCustomerPage();
+        showAllCustomersPage.openCreateNewCustomerPage();
 
         Allure.step("Input 1 character for [Name] field");
         Allure.step("Input valid data for [Email], [Phone], [Address] field");
@@ -66,7 +63,7 @@ public class LM_01_15_VerifyCanAddCustomerWhenEnteringValidValueForNameField ext
 
         //49 ki tu cho truong [name]
         Allure.step("Open [Create Customer] page");
-        sideBar.openCreateNewCustomerPage();
+        showAllCustomersPage.openCreateNewCustomerPage();
 
         Allure.step("Input 49 character for [Name] field");
         Allure.step("Input valid data for [Email], [Phone], [Address] field");
@@ -77,7 +74,7 @@ public class LM_01_15_VerifyCanAddCustomerWhenEnteringValidValueForNameField ext
 
         //50 ki tu cho truong [name]
         Allure.step("Open [Create Customer] page");
-        sideBar.openCreateNewCustomerPage();
+        showAllCustomersPage.openCreateNewCustomerPage();
 
         Allure.step("Input 50 character for [Name] field");
         Allure.step("Input valid data for [Email], [Phone], [Address] field");

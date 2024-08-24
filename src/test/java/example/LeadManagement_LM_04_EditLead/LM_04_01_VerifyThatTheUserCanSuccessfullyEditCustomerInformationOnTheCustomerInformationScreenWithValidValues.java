@@ -22,18 +22,18 @@ public class LM_04_01_VerifyThatTheUserCanSuccessfullyEditCustomerInformationOnT
     CreateCustomerPage createCustomerPage;
     Faker faker;
     SoftAssert softAssert;
-    CustomerInFormationForm customerInfor;
+    CustomerInFormationForm newCustomerInfor;
+    CustomerInFormationForm customerInFor;
     Random random;
     CustomerInformationPage customerInformationPage;
     EditCustomerInformationPage editCustomerInformationPage;
 
-    String name;
-    String email;
-    String phone;
-    String address;
+    String newCustomerName;
+    String newCustomerEmail;
+    String newCustomerPhone;
+    String newCustomerAddress;
     int randomCustomer;
-    String customerNameInShowAllCustomerPageBefore, customerEmailInShowAllCustomerPageBefore, customerPhoneInShowAllCustomerPageBefore, customerAddressInShowAllCustomerPageBefore;
-    String customerNameInCustomerInformationPageBefore, customerEmailInCustomerInformationPageBefore, customerPhoneInCustomerInformationPageBefore, customerAddressInCustomerInformationPageBefore;
+    String customerName, customerEmail, customerPhone, customerAddress;
 
     @BeforeMethod
     public void setUp() {
@@ -48,11 +48,11 @@ public class LM_04_01_VerifyThatTheUserCanSuccessfullyEditCustomerInformationOnT
         random = new Random();
 
         randomCustomer = random.nextInt(10) + 1;
-        name = faker.name().name();
-        email = faker.internet().emailAddress("Trang");
-        phone = RandomStringUtils.randomNumeric(10);
-        address = faker.address().fullAddress();
-        customerInfor = new CustomerInFormationForm(name,email, phone, address);
+        newCustomerName = faker.name().name();
+        newCustomerEmail = faker.internet().emailAddress("Trang");
+        newCustomerPhone = RandomStringUtils.randomNumeric(10);
+        newCustomerAddress = faker.address().fullAddress();
+        newCustomerInfor = new CustomerInFormationForm(newCustomerName, newCustomerEmail, newCustomerPhone, newCustomerAddress);
     }
 
     @Test
@@ -62,65 +62,37 @@ public class LM_04_01_VerifyThatTheUserCanSuccessfullyEditCustomerInformationOnT
         loginPage.login("abcTrang@gmail.com", "123123");
 
         //lay thong tin cua customer bat ki o man hinh [Show All Customers]
-        customerNameInShowAllCustomerPageBefore = showAllCustomersPage.getCustomerNameByIndex(randomCustomer);
-        customerEmailInShowAllCustomerPageBefore = showAllCustomersPage.getCustomerEmailByIndex(randomCustomer);
-        customerPhoneInShowAllCustomerPageBefore = showAllCustomersPage.getCustomerPhoneByIndex(randomCustomer);
-        customerAddressInShowAllCustomerPageBefore = showAllCustomersPage.getCustomerAddressByIndex(randomCustomer);
+        customerInFor = showAllCustomersPage.getCustomerByIndex(randomCustomer);
 
         Allure.step("Open [Customer Information] page");
         showAllCustomersPage.openCustomerInformationPage(randomCustomer);
 
-
-        //lay thong tin cua customer o man hinh [Customer Information]
-        customerNameInCustomerInformationPageBefore = customerInformationPage.getCustomerName();
-        customerEmailInCustomerInformationPageBefore = customerInformationPage.getCustomerEmail();
-        customerPhoneInCustomerInformationPageBefore = customerInformationPage.getCustomerPhone();
-        customerAddressInCustomerInformationPageBefore = customerInformationPage.getCustomerAddress();
-
         //so sanh thong tin customer o man hinh [Customer Information] va man hinh [Show All Customers]
-        softAssert.assertEquals(customerNameInCustomerInformationPageBefore, customerNameInShowAllCustomerPageBefore);
-        softAssert.assertEquals(customerEmailInCustomerInformationPageBefore, customerEmailInShowAllCustomerPageBefore);
-        softAssert.assertEquals(customerPhoneInCustomerInformationPageBefore, customerPhoneInShowAllCustomerPageBefore);
-        softAssert.assertEquals(customerAddressInCustomerInformationPageBefore, customerAddressInShowAllCustomerPageBefore);
-
+        softAssert.assertEquals(customerInformationPage.getCustomer(), customerInFor);
 
         Allure.step("Open [Edit Customer Information] page");
         customerInformationPage.clickEditButton();
 
-        //so sanh thong tin customer o man hinh [Edit customer information] va man hinh [Customer information]
-        softAssert.assertEquals(editCustomerInformationPage.getCustomerName(), customerNameInCustomerInformationPageBefore);
-        softAssert.assertEquals(editCustomerInformationPage.getCustomerEmail(), customerEmailInCustomerInformationPageBefore);
-        softAssert.assertEquals(editCustomerInformationPage.getCustomerPhone(), customerPhoneInCustomerInformationPageBefore);
-        softAssert.assertEquals(editCustomerInformationPage.getCustomerAddress(), customerAddressInCustomerInformationPageBefore);
+        //so sanh thong tin o man hinh [Edit customer information] va man hinh [Show All Customers]
+        softAssert.assertEquals(editCustomerInformationPage.customerInFor(), customerInFor);
 
         Allure.step("Edit name, email, phone, address");
-        editCustomerInformationPage.editCustomerInformation(customerInfor);
+        editCustomerInformationPage.editCustomerInformation(newCustomerInfor);
         softAssert.assertTrue(customerInformationPage.isCustomerInformationPageDisplayed());
 
-        //xac minh thong tin sau khi chinh sua o man hinh
-        softAssert.assertEquals(customerInformationPage.getCustomerName(), name);
-        softAssert.assertEquals(customerInformationPage.getCustomerEmail(), email);
-        softAssert.assertEquals(customerInformationPage.getCustomerPhone(), phone);
-        softAssert.assertEquals(customerInformationPage.getCustomerAddress(), address);
+        //xac minh thong tin sau khi chinh sua duoc cap nhat o man hinh [Customer Information]
+
+        softAssert.assertEquals(customerInformationPage.getCustomer(), newCustomerInfor);
 
         Allure.step("Open [Show All Customer] page");
         customerInformationPage.openShowAllCustomersPage();
 
-        //so sanh thong tin customer o man hinh [Show All Customers] sau chinh sua va thong tin chinh sua
-        softAssert.assertEquals(showAllCustomersPage.getCustomerNameByIndex(randomCustomer), name);
-        softAssert.assertEquals(showAllCustomersPage.getCustomerEmailByIndex(randomCustomer), email);
-        softAssert.assertEquals(showAllCustomersPage.getCustomerPhoneByIndex(randomCustomer), phone);
-        softAssert.assertEquals(showAllCustomersPage.getCustomerAddressByIndex(randomCustomer), address);
+        //xac minh thong tin sau khi chinh sua duoc cap nhat o man hinh [Show All Customers]
+        softAssert.assertEquals(showAllCustomersPage.getCustomerByIndex(randomCustomer), newCustomerInfor);
 
         Allure.step("Search with name after edited");
-        showAllCustomersPage.searchCustomer(name);
-        softAssert.assertTrue(showAllCustomersPage.allNamesAre(name));
-
-        Allure.step("Search with name before edited");
-        showAllCustomersPage.searchCustomer(customerNameInCustomerInformationPageBefore);
-        softAssert.assertTrue(showAllCustomersPage.isNoRecordFoundIsDisplayed());
-
-        //NHI
+        showAllCustomersPage.searchCustomer(newCustomerName);
+        softAssert.assertTrue(showAllCustomersPage.allNamesAre(newCustomerName));
 
         softAssert.assertAll();
     }

@@ -23,6 +23,8 @@ public class LM_04_06_VerifyThatTheUserCannotSuccessfullyEditCustomerInformation
     Faker faker;
     SoftAssert softAssert;
     CustomerInFormationForm customerInfor;
+    CustomerInFormationForm actualCustomer;
+    CustomerInFormationForm expectedCustomer;
     Random random;
     CustomerInformationPage customerInformationPage;
     EditCustomerInformationPage editCustomerInformationPage;
@@ -32,9 +34,6 @@ public class LM_04_06_VerifyThatTheUserCannotSuccessfullyEditCustomerInformation
     String phone;
     String address;
     int randomCustomer;
-    String customerNameInShowAllCustomerPage, customerEmailInShowAllCustomerPage, customerPhoneInShowAllCustomerPage, customerAddressInShowAllCustomerPage;
-    String customerNameInCustomerInformationPageBefore, customerEmailInCustomerInformationPageBefore, customerPhoneInCustomerInformationPageBefore, customerAddressInCustomerInformationPageBefore;
-    String customerNameInCustomerInformationPageAfter, customerEmailInCustomerInformationPageAfter, customerPhoneInCustomerInformationPageAfter, customerAddressInCustomerInformationPageAfter;
 
     @BeforeMethod
     public void setUp() {
@@ -64,12 +63,10 @@ public class LM_04_06_VerifyThatTheUserCannotSuccessfullyEditCustomerInformation
 
         Allure.step("Open [Customer Information] page");
         showAllCustomersPage.openCustomerInformationPage(randomCustomer);
+        customerInformationPage.waitForCustomerNameIsDisplayed();
 
         //lay thong tin cua customer truoc khi chinh sua o man hinh [Customer Information]
-        customerNameInCustomerInformationPageBefore = customerInformationPage.getCustomerName();
-        customerEmailInCustomerInformationPageBefore = customerInformationPage.getCustomerEmail();
-        customerPhoneInCustomerInformationPageBefore = customerInformationPage.getCustomerPhone();
-        customerAddressInCustomerInformationPageBefore = customerInformationPage.getCustomerAddress();
+        expectedCustomer = customerInformationPage.getCustomer();
 
         Allure.step("Open [Edit Customer Information] page");
         customerInformationPage.clickEditButton();
@@ -81,33 +78,16 @@ public class LM_04_06_VerifyThatTheUserCannotSuccessfullyEditCustomerInformation
         softAssert.assertTrue(customerInformationPage.isCustomerInformationPageDisplayed());
 
         //lay thong tin cua customer sau khi chinh sua o man hinh [Customer Information]
-        customerNameInCustomerInformationPageAfter = customerInformationPage.getCustomerName();
-        customerEmailInCustomerInformationPageAfter = customerInformationPage.getCustomerEmail();
-        customerPhoneInCustomerInformationPageAfter =  customerInformationPage.getCustomerPhone();
-        customerAddressInCustomerInformationPageAfter =  customerInformationPage.getCustomerAddress();
+        actualCustomer = customerInformationPage.getCustomer();
 
         //so sanh thong tin cua customer trc va sau khi chinh sua
-        softAssert.assertEquals(customerNameInCustomerInformationPageAfter, customerNameInCustomerInformationPageBefore);
-        softAssert.assertEquals(customerEmailInCustomerInformationPageAfter, customerEmailInCustomerInformationPageBefore);
-        softAssert.assertEquals(customerPhoneInCustomerInformationPageAfter, customerPhoneInCustomerInformationPageBefore);
-        softAssert.assertEquals(customerAddressInCustomerInformationPageAfter, customerAddressInCustomerInformationPageBefore);
+        softAssert.assertEquals(actualCustomer, expectedCustomer);
 
         Allure.step("Open [Show All Customer] page");
         customerInformationPage.openShowAllCustomersPage();
 
-        Allure.step("Check customer name");
-
-        //lay thong tin cua customer o man hinh [Show All Customers]
-        customerNameInShowAllCustomerPage = showAllCustomersPage.getCustomerNameByIndex(randomCustomer);
-        customerEmailInShowAllCustomerPage = showAllCustomersPage.getCustomerEmailByIndex(randomCustomer);
-        customerPhoneInShowAllCustomerPage = showAllCustomersPage.getCustomerPhoneByIndex(randomCustomer);
-        customerAddressInShowAllCustomerPage = showAllCustomersPage.getCustomerAddressByIndex(randomCustomer);
-
-        //kiem tra thong tin cua customer
-        softAssert.assertEquals(customerNameInShowAllCustomerPage, customerNameInCustomerInformationPageBefore);
-        softAssert.assertEquals(customerEmailInShowAllCustomerPage, customerEmailInCustomerInformationPageBefore);
-        softAssert.assertEquals(customerPhoneInShowAllCustomerPage, customerPhoneInCustomerInformationPageBefore);
-        softAssert.assertEquals(customerAddressInShowAllCustomerPage, customerAddressInCustomerInformationPageBefore);
+        //xac minh thong tin cua customer do o man [Show All Customers] khong thay doi
+        softAssert.assertEquals(showAllCustomersPage.getCustomerByIndex(randomCustomer), expectedCustomer);
 
         softAssert.assertAll();
     }
