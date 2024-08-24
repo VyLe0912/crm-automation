@@ -75,7 +75,6 @@ public class ShowAllCustomersPage extends SideBar {
         driver.findElement(newCustomerButtonSelector).click();
     }
 
-
     @Step("Open [Customer Information] page")
     public void openCustomerInformationPage(int i) {
         driver.findElements(customerNameLabelSelector).get(i-1).click();

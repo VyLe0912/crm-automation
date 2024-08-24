@@ -7,6 +7,7 @@ import org.testng.asserts.SoftAssert;
 import page.Customer.ShowAllCustomersPage;
 import page.CustomerInformation.CustomerInformationPage;
 import page.CustomerInformation.EditCustomerInformationPage;
+import page.Home.HomePage;
 import page.Login.LoginPage;
 import java.util.Random;
 
@@ -17,6 +18,7 @@ public class LM_04_07_VerifyBreadcrumbNavigationAtEditCustomerInformationScreen 
     Random random;
     CustomerInformationPage customerInformationPage;
     EditCustomerInformationPage editCustomerInformationPage;
+    HomePage homePage;
 
     int randomCustomer;
 
@@ -29,6 +31,7 @@ public class LM_04_07_VerifyBreadcrumbNavigationAtEditCustomerInformationScreen 
         customerInformationPage = new CustomerInformationPage(driver);
         editCustomerInformationPage = new EditCustomerInformationPage(driver);
         random = new Random();
+        homePage = new HomePage(driver);
 
         randomCustomer = random.nextInt(10) + 1;
     }
@@ -46,14 +49,16 @@ public class LM_04_07_VerifyBreadcrumbNavigationAtEditCustomerInformationScreen 
         customerInformationPage.clickEditButton();
 
         Allure.step("Click Information BreadCrumb");
-        editCustomerInformationPage.clickInformationBreadcrumbButton();
+        editCustomerInformationPage.goToCustomerInformationPageByBreadCrumb();
         softAssert.assertTrue(customerInformationPage.isCustomerInformationPageDisplayed());
 
         Allure.step("Click Show All Customers BreadCrumb");
-        editCustomerInformationPage.clickShowAllCustomersBreadcrumbButton();
+        editCustomerInformationPage.goToShowAllCustomersPageByBreadCrumb();
         softAssert.assertTrue(showAllCustomersPage.isShowAllCustomersPageDisplayed());
 
-        //conf casi home
+        Allure.step("Click Home BreadCrumb");
+        editCustomerInformationPage.goToHomePageByBreadCrumb();
+        softAssert.assertTrue(homePage.isIncomeLabelDisplayed());
 
         softAssert.assertAll();
     }

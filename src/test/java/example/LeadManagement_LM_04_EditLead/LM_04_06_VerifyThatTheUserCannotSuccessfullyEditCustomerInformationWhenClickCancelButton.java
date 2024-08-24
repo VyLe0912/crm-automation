@@ -63,6 +63,7 @@ public class LM_04_06_VerifyThatTheUserCannotSuccessfullyEditCustomerInformation
 
         Allure.step("Open [Customer Information] page");
         showAllCustomersPage.openCustomerInformationPage(randomCustomer);
+        customerInformationPage.waitForCustomerNameIsDisplayed();
 
         //lay thong tin cua customer truoc khi chinh sua o man hinh [Customer Information]
         expectedCustomer = customerInformationPage.getCustomer();
