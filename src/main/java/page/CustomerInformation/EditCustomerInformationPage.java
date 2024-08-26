@@ -31,17 +31,17 @@ public class EditCustomerInformationPage extends CreateCustomerPage {
     }
 
     @Step("Click [Information] button on breadcrumb")
-    public void clickInformationBreadcrumbButton() {
+    public void goToCustomerInformationPageByBreadCrumb() {
         driver.findElement(informationBreadcrumbButtonSelector).click();
     }
 
     @Step("Click [Show All Customers] button on breadcrumb")
-    public void clickShowAllCustomersBreadcrumbButton() {
+    public void goToShowAllCustomersPageByBreadCrumb() {
         driver.findElement(showAllCustomersBreadcrumbButtonSelector).click();
     }
 
     @Step("Click [Home] button on breadcrumb")
-    public void clickHomeBreadcrumbButton() {
+    public void goToHomePageByBreadCrumb() {
         driver.findElement(homeBreadcrumbButtonSelector).click();
     }
 
@@ -63,6 +63,11 @@ public class EditCustomerInformationPage extends CreateCustomerPage {
     @Step("Get customer address in [Edit Customer Information] page")
     public String getCustomerAddress() {
         return driver.findElement(addressInputSelector).getAttribute("value");
+    }
+
+    @Step("Get customer information in [Edit Customer Information] page")
+    public CustomerInFormationForm customerInFor() {
+        return new CustomerInFormationForm(getCustomerName(), getCustomerEmail(), getCustomerPhone(), getCustomerAddress());
     }
 
     public boolean isEditCustomerInformationPageDisplayed() {

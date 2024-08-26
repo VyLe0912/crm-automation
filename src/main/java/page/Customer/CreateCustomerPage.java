@@ -25,7 +25,7 @@ public class CreateCustomerPage extends SideBar {
     By emailFieldTextMessageSelector = By.xpath("(//div[preceding-sibling::label[text()='Email']])/span[@style='color: red']");
     By phoneFieldTextMessageSelector = By.xpath("(//div[preceding-sibling::label[text()='Phone']])/span[@style='color: red']");
     By addressFieldTextMessageSelector = By.xpath("(//div[preceding-sibling::label[text()='Address']])/span[@style='color: red']");
-    //div/input[@class='form-control m-b']/preceding-sibling::span
+
     public CreateCustomerPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
