@@ -1,6 +1,7 @@
 package page.CustomerInformation;
 
 import io.qameta.allure.Step;
+import models.CustomerInFormationForm;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
@@ -60,4 +61,15 @@ public class CustomerInformationPage extends SideBar {
     public void clickAddOrderButton() {
         driver.findElement(addOrderButtonSelector).click();
     }
+
+    public void waitForCustomerNameIsDisplayed() {
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(d->d.findElement(customerNameSelector).isDisplayed());
+    }
+
+    @Step ("Get customer information in [Customer Information] page")
+    public CustomerInFormationForm getCustomer() {
+        return new CustomerInFormationForm(getCustomerName(), getCustomerEmail(), getCustomerPhone(), getCustomerAddress());
+    }
+
 }

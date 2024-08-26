@@ -35,7 +35,6 @@
                     <class name="example.LeadManagement_LM_04_EditLead.LM_04_05_VerifyThatTheUserCannotSuccessfullyEditCustomerInformationWhenInputInvalidDataForAddressField"/>
                     <class name="example.LeadManagement_LM_04_EditLead.LM_04_06_VerifyThatTheUserCannotSuccessfullyEditCustomerInformationWhenClickCancelButton"/>
                     <class name="example.LeadManagement_LM_04_EditLead.LM_04_07_VerifyBreadcrumbNavigationAtEditCustomerInformationScreen"/>
-
                 </classes>
     </test>
 </suite>

@@ -1,1 +1,0 @@
-{"uuid":"a65c59e0-7361-4f08-87b4-f5a577cb644d","name":"RegisterCases.test.cleanUp","children":["d5368cef-40f2-4ce0-a79d-fc5adde877df"],"description":"","befores":[],"afters":[{"name":"cleanUp","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1723441415071,"stop":1723441415565}],"start":1723441415071,"stop":1723441415565}

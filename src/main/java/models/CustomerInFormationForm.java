@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Objects;
+
 public class CustomerInFormationForm {
     String name;
     String email;
@@ -46,5 +48,28 @@ public class CustomerInFormationForm {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CustomerInFormationForm that = (CustomerInFormationForm) o;
+        return Objects.equals(name, that.name) && Objects.equals(email, that.email) && Objects.equals(phone, that.phone) && Objects.equals(address, that.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, email, phone, address);
+    }
+
+    @Override
+    public String toString() {
+        return "CustomerInFormationForm{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 }
