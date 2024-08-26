@@ -1,1 +1,0 @@
-{"uuid":"9c4ff381-a74f-48a3-b83b-2710ddd1d47b","name":"RegisterCases.test.setUp","children":["5da84cea-509d-4caf-8097-2f614b38e615"],"description":"","befores":[{"name":"setUp","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1723441291052,"stop":1723441297892}],"afters":[],"start":1723441291051,"stop":1723441297892}
