@@ -11,7 +11,6 @@ import org.testng.asserts.SoftAssert;
 import page.Customer.CreateCustomerPage;
 import page.Login.LoginPage;
 import page.Customer.ShowAllCustomersPage;
-import page.SideBar.SideBar;
 
 public class LM_01_11_VerifySuccessfulAddACustomerWhenUserInputValidDataForAllFields extends TestBase {
     LoginPage loginPage;
@@ -20,7 +19,6 @@ public class LM_01_11_VerifySuccessfulAddACustomerWhenUserInputValidDataForAllFi
     Faker faker;
     SoftAssert softAssert;
     CustomerInFormationForm customerInfor;
-    SideBar sideBar;
 
     String name;
     String email;
@@ -36,7 +34,6 @@ public class LM_01_11_VerifySuccessfulAddACustomerWhenUserInputValidDataForAllFi
         createCustomerPage = new CreateCustomerPage(driver);
         faker = new Faker();
         softAssert = new SoftAssert();
-        sideBar = new SideBar(driver);
 
         name = faker.name().name();
         email = faker.internet().emailAddress();
@@ -53,7 +50,7 @@ public class LM_01_11_VerifySuccessfulAddACustomerWhenUserInputValidDataForAllFi
 //        softAssert.assertTrue(loginPage.isDisappearLoginForm(), "[Login] page is still display");
 
         Allure.step("Open [Create Customer] page");
-        sideBar.openCreateNewCustomerPage();
+        showAllCustomersPage.openCreateNewCustomerPage();
 
         softAssert.assertTrue(createCustomerPage.isCreateCustomerPageDisplayed(), "[Create customer] page is not displayed");
 

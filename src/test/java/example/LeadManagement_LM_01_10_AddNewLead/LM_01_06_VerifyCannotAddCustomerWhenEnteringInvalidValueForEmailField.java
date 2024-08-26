@@ -1,4 +1,4 @@
-package example.LeadManagement_LM_01_20_AddNewLead;
+package example.LeadManagement_LM_01_10_AddNewLead;
 
 import com.github.javafaker.Faker;
 import example.TestBase;
@@ -11,15 +11,14 @@ import org.testng.asserts.SoftAssert;
 import page.Customer.CreateCustomerPage;
 import page.Login.LoginPage;
 import page.Customer.ShowAllCustomersPage;
-import page.SideBar.SideBar;
 
-public class LM_01_16_VerrifyCannotAddCustomerWhenEnteringInvalidValueForEmailField extends TestBase {
+public class LM_01_06_VerifyCannotAddCustomerWhenEnteringInvalidValueForEmailField extends TestBase {
+
     LoginPage loginPage;
     ShowAllCustomersPage showAllCustomersPage;
     CreateCustomerPage createCustomerPage;
     SoftAssert softAssert;
     Faker faker;
-    SideBar sideBar;
     CustomerInFormationForm customerInFor;
 
     String name;
@@ -34,7 +33,6 @@ public class LM_01_16_VerrifyCannotAddCustomerWhenEnteringInvalidValueForEmailFi
         loginPage = new LoginPage(driver);
         showAllCustomersPage = new ShowAllCustomersPage(driver);
         createCustomerPage = new CreateCustomerPage(driver);
-        sideBar = new SideBar(driver);
         faker = new Faker();
 
         name = faker.name().name();
@@ -48,7 +46,7 @@ public class LM_01_16_VerrifyCannotAddCustomerWhenEnteringInvalidValueForEmailFi
     }
 
     @Test
-    public void testLM_01_16() {
+    public void testLM_01_06() {
 
         Allure.step("Login success");
         loginPage.login("abcTrang@gmail.com", "123123");
@@ -57,7 +55,7 @@ public class LM_01_16_VerrifyCannotAddCustomerWhenEnteringInvalidValueForEmailFi
 
         //'username' for [Email] field
         Allure.step("Open [Create Customer] page");
-        sideBar.openCreateNewCustomerPage();
+        showAllCustomersPage.openCreateNewCustomerPage();
 
         Allure.step("Input 'username' for [Email] field");
         Allure.step("Input valid data for [Name], [Phone], [Address] field");
@@ -84,4 +82,5 @@ public class LM_01_16_VerrifyCannotAddCustomerWhenEnteringInvalidValueForEmailFi
 
         softAssert.assertAll();
     }
+
 }

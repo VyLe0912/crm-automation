@@ -3,7 +3,6 @@ package example.LeadManagement_LM_04_EditLead;
 import com.github.javafaker.Faker;
 import example.TestBase;
 import io.qameta.allure.Allure;
-import models.CustomerInFormationForm;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

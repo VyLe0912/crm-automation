@@ -10,7 +10,6 @@ import org.testng.asserts.SoftAssert;
 import page.Customer.CreateCustomerPage;
 import page.Login.LoginPage;
 import page.Customer.ShowAllCustomersPage;
-import page.SideBar.SideBar;
 
 public class LM_01_13_VerifyCannotAddCustomerWhen1Of4FieldsIsLeftBlank extends TestBase {
     LoginPage loginPage;
@@ -18,7 +17,6 @@ public class LM_01_13_VerifyCannotAddCustomerWhen1Of4FieldsIsLeftBlank extends T
     CreateCustomerPage createCustomerPage;
     SoftAssert softAssert;
     Faker faker;
-    SideBar sideBar;
 
     String name;
     String email;
@@ -33,7 +31,6 @@ public class LM_01_13_VerifyCannotAddCustomerWhen1Of4FieldsIsLeftBlank extends T
         showAllCustomersPage = new ShowAllCustomersPage(driver);
         createCustomerPage = new CreateCustomerPage(driver);
         faker = new Faker();
-        sideBar = new SideBar(driver);
 
         name = faker.name().name();
         email = faker.internet().emailAddress();
@@ -49,7 +46,7 @@ public class LM_01_13_VerifyCannotAddCustomerWhen1Of4FieldsIsLeftBlank extends T
 //        showAllCustomersPage.waitForShowAllCustomersPageIsDisplayed();
 
         Allure.step("Open [Create Customer] page");
-        sideBar.openCreateNewCustomerPage();
+        showAllCustomersPage.openCreateNewCustomerPage();
 
         // 1. Bo trong truong [Name]
         Allure.step("Leave [Name] field blank");
