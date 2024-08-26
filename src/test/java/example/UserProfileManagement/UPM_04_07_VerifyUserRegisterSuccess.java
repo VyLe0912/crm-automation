@@ -1,5 +1,6 @@
 package example.UserProfileManagement;
 
+import com.github.javafaker.Faker;
 import example.TestBase;
 import io.qameta.allure.Allure;
 import models.RegisterForm;
@@ -21,7 +22,9 @@ public class UPM_04_07_VerifyUserRegisterSuccess extends TestBase{
         loginPage = new LoginPage(driver);
         sideBar = new SideBar(driver);
         testBase = new TestBase();
-        registerUser = new RegisterUser("vl12@gmail.com", "abc123", "abc123", "nguyen van a", "due", "0896208700");
+        faker = new Faker();
+        email = faker.internet().emailAddress("bcd123");
+        registerUser = new RegisterUser(email, "abc123", "abc123", "nguyen van a", "due", "0896208700");
     }
 
     @Test
@@ -39,7 +42,7 @@ public class UPM_04_07_VerifyUserRegisterSuccess extends TestBase{
         //Kiem tra hien thi dia chi email moi
         Allure.step("Verify email text box");
         loginPage.waitToDownloadPage();
-        softAssert.assertEquals(loginPage.getValueTxbEmail(), "vl12@gmail.com", "doesn't have account");
+        softAssert.assertEquals(loginPage.getValueTxbEmail(), email, "doesn't have account");
 
         //Kiem tra hien thi ten cua tai khoan sau khi Dang nhap
         Allure.step("Verify login function");
@@ -56,4 +59,6 @@ public class UPM_04_07_VerifyUserRegisterSuccess extends TestBase{
     LoginPage loginPage;
     SideBar sideBar;
     TestBase testBase;
+    Faker faker;
+    String email;
 }
