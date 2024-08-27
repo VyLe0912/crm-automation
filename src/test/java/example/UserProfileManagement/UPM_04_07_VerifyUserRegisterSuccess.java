@@ -23,7 +23,7 @@ public class UPM_04_07_VerifyUserRegisterSuccess extends TestBase{
         sideBar = new SideBar(driver);
         testBase = new TestBase();
         faker = new Faker();
-        email = faker.internet().emailAddress("bcd123");
+        email = faker.internet().emailAddress("ive123");
         registerUser = new RegisterUser(email, "abc123", "abc123", "nguyen van a", "due", "0896208700");
     }
 
