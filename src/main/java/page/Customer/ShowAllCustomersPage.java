@@ -82,11 +82,13 @@ public class ShowAllCustomersPage extends SideBar {
 
     @Step ("Get customer information in [Show All Customers] page")
     public CustomerInFormationForm getCustomerByIndex(int i) {
-        return new CustomerInFormationForm(getCustomerNameByIndex(i), getCustomerEmailByIndex(i), getCustomerPhoneByIndex(i), getCustomerAddressByIndex(i));
+        return  new CustomerInFormationForm(getCustomerNameByIndex(i), getCustomerEmailByIndex(i), getCustomerPhoneByIndex(i), getCustomerAddressByIndex(i));
     }
 
     @Step("Get customer name by index")
     public String getCustomerNameByIndex(int i) {
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(driver->!driver.findElements(customerNameLabelSelector).get(i-1).getText().isEmpty());
         return driver.findElements(customerNameLabelSelector).get(i-1).getText();
     }
 
