@@ -38,6 +38,10 @@ public class UPM_01_04_VerifyLoginFailedWhenInsertInvalidValue extends TestBase 
         loginPage.login(user);
         softAssert.assertEquals(loginPage.noticeInvalid(), "The email or password is incorrect!", "Error mess 2");
 
+        Allure.step("Check with invalid email");
+        user = new User("abc@abc", "VyLe123!");
+        loginPage.login(user);
+        softAssert.assertEquals(loginPage.emailTextMessage(), "The email is not valid", "Error mess 3");
         softAssert.assertAll();
     }
 

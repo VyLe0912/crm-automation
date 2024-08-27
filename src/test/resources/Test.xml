@@ -2,39 +2,79 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="CRM Automation" parallel="none" thread-count="2">
     <test name="Lead Management">
-                <classes>
-                    <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_01_VerifySuccessfulAddACustomerWhenUserInputValidDataForAllFields"/>
-                    <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_02_VerifyCannotSuccessCreateACustomerWhenLeaveBlankAllFields"/>
-                    <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_03_VerifyCannotAddCustomerWhen1Of4FieldsIsLeftBlank"/>
-                    <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_04_VerifyCannotAddCustomerWhenEnteringInvalidValueForNameField"/>
-                    <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_05_VerifyCanAddCustomerWhenEnteringValidValueForNameField"/>
-                    <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_06_VerifyCannotAddCustomerWhenEnteringInvalidValueForEmailField"/>
-                    <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_07_VerifyCannotAddCustomerWhenEnteringInvalidValueForPhoneField"/>
-                    <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_08_VerifyCannotAddCustomerWhenEnteringInvalidValueForAddressField"/>
-                    <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_09_VerifyCanAddCustomerWhenEnteringValidValueForAddressField"/>
-                    <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_10_VerifyNoNewCustomerCreatedAfterClickingCancelButton"/>
-                    <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_11_VerifySuccessfulAddACustomerWhenUserInputValidDataForAllFields"/>
-                    <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_12_VerifyCannotSuccessCreateACustomerWhenLeaveBlankAllFields"/>
-                    <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_13_VerifyCannotAddCustomerWhen1Of4FieldsIsLeftBlank"/>
-                    <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_14_VerifyCannotAddCustomerWhenEnteringInvalidValueForNameField"/>
-                    <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_15_VerifyCanAddCustomerWhenEnteringValidValueForNameField"/>
-                    <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_16_VerifyCannotAddCustomerWhenEnteringInvalidValueForEmailField"/>
-                    <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_17_VerifyCannotAddCustomerWhenEnteringInvalidValueForPhoneField"/>
-                    <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_18_VerifyCannotAddCustomerWhenEnteringInvalidValueForAddressField"/>
-                    <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_19_VerifyCanAddCustomerWhenEnteringValidValueForAddressField"/>
-                    <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_20_VerifyNoNewCustomerCreatedAfterClickingCancelButton"/>
-                    <class name="example.LeadManagement_LM_02_ViewTheLeads.LM_02_01_VerifyFirstPageOfShowAllCustomersScreenDisplayMaximum20Customer"/>
-                    <class name="example.LeadManagement_LM_02_ViewTheLeads.LM_02_02_VerifyTheStateNavigationButtonsWorkingProperly"/>
-                    <class name="example.LeadManagement_LM_02_ViewTheLeads.LM_02_03_VerifyCustomerInformationIsDisplayedCorrectlyOnTheCustomerInformationScreenAndEditCustomerInformationScreen"/>
-                    <class name="example.LeadManagement_LM_02_ViewTheLeads.LM_02_05_VerifyThatTheNumberOfProductsDisplayedOnTheAddOrderScreenIsEqualToTheNumberOfProductsOnTheShowAllProductsScreen"/>
-                    <class name="example.LeadManagement_LM_03_SearchLeadByName.LM_03_01_VerifyTheUserCanSearchCustomerByNameWhenInputFullNameOrFirstOfPartName"/>
-                    <class name="example.LeadManagement_LM_04_EditLead.LM_04_01_VerifyThatTheUserCanSuccessfullyEditCustomerInformationOnTheCustomerInformationScreenWithValidValues"/>
-                    <class name="example.LeadManagement_LM_04_EditLead.LM_04_02_VerifyThatTheUserCannotSuccessfullyEditCustomerInformationWhenInputInvalidDataForNameField"/>
-                    <class name="example.LeadManagement_LM_04_EditLead.LM_04_03_VerifyThatTheUserCannotSuccessfullyEditCustomerInformationWhenInputInvalidDataForEmailField"/>
-                    <class name="example.LeadManagement_LM_04_EditLead.LM_04_04_VerifyThatTheUserCannotSuccessfullyEditCustomerInformationWhenInputInvalidDataForPhoneField"/>
-                    <class name="example.LeadManagement_LM_04_EditLead.LM_04_05_VerifyThatTheUserCannotSuccessfullyEditCustomerInformationWhenInputInvalidDataForAddressField"/>
-                    <class name="example.LeadManagement_LM_04_EditLead.LM_04_06_VerifyThatTheUserCannotSuccessfullyEditCustomerInformationWhenClickCancelButton"/>
-                    <class name="example.LeadManagement_LM_04_EditLead.LM_04_07_VerifyBreadcrumbNavigationAtEditCustomerInformationScreen"/>
-                </classes>
+        <classes>
+            <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_01_VerifySuccessfulAddACustomerWhenUserInputValidDataForAllFields"/>
+            <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_02_VerifyCannotSuccessCreateACustomerWhenLeaveBlankAllFields"/>
+            <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_03_VerifyCannotAddCustomerWhen1Of4FieldsIsLeftBlank"/>
+            <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_04_VerifyCannotAddCustomerWhenEnteringInvalidValueForNameField"/>
+            <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_05_VerifyCanAddCustomerWhenEnteringValidValueForNameField"/>
+            <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_06_VerifyCannotAddCustomerWhenEnteringInvalidValueForEmailField"/>
+            <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_07_VerifyCannotAddCustomerWhenEnteringInvalidValueForPhoneField"/>
+            <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_08_VerifyCannotAddCustomerWhenEnteringInvalidValueForAddressField"/>
+            <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_09_VerifyCanAddCustomerWhenEnteringValidValueForAddressField"/>
+            <class name="example.LeadManagement_LM_01_10_AddNewLead.LM_01_10_VerifyNoNewCustomerCreatedAfterClickingCancelButton"/>
+            <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_11_VerifySuccessfulAddACustomerWhenUserInputValidDataForAllFields"/>
+            <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_12_VerifyCannotSuccessCreateACustomerWhenLeaveBlankAllFields"/>
+            <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_13_VerifyCannotAddCustomerWhen1Of4FieldsIsLeftBlank"/>
+            <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_14_VerifyCannotAddCustomerWhenEnteringInvalidValueForNameField"/>
+            <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_15_VerifyCanAddCustomerWhenEnteringValidValueForNameField"/>
+            <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_16_VerifyCannotAddCustomerWhenEnteringInvalidValueForEmailField"/>
+            <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_17_VerifyCannotAddCustomerWhenEnteringInvalidValueForPhoneField"/>
+            <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_18_VerifyCannotAddCustomerWhenEnteringInvalidValueForAddressField"/>
+            <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_19_VerifyCanAddCustomerWhenEnteringValidValueForAddressField"/>
+            <class name="example.LeadManagement_LM_01_20_AddNewLead.LM_01_20_VerifyNoNewCustomerCreatedAfterClickingCancelButton"/>
+            <class name="example.LeadManagement_LM_02_ViewTheLeads.LM_02_01_VerifyFirstPageOfShowAllCustomersScreenDisplayMaximum20Customer"/>
+            <class name="example.LeadManagement_LM_02_ViewTheLeads.LM_02_02_VerifyTheStateNavigationButtonsWorkingProperly"/>
+            <class name="example.LeadManagement_LM_02_ViewTheLeads.LM_02_03_VerifyCustomerInformationIsDisplayedCorrectlyOnTheCustomerInformationScreenAndEditCustomerInformationScreen"/>
+            <class name="example.LeadManagement_LM_02_ViewTheLeads.LM_02_05_VerifyThatTheNumberOfProductsDisplayedOnTheAddOrderScreenIsEqualToTheNumberOfProductsOnTheShowAllProductsScreen"/>
+            <class name="example.LeadManagement_LM_03_SearchLeadByName.LM_03_01_VerifyTheUserCanSearchCustomerByNameWhenInputFullNameOrFirstOfPartName"/>
+            <class name="example.LeadManagement_LM_04_EditLead.LM_04_01_VerifyThatTheUserCanSuccessfullyEditCustomerInformationOnTheCustomerInformationScreenWithValidValues"/>
+            <class name="example.LeadManagement_LM_04_EditLead.LM_04_02_VerifyThatTheUserCannotSuccessfullyEditCustomerInformationWhenInputInvalidDataForNameField"/>
+            <class name="example.LeadManagement_LM_04_EditLead.LM_04_03_VerifyThatTheUserCannotSuccessfullyEditCustomerInformationWhenInputInvalidDataForEmailField"/>
+            <class name="example.LeadManagement_LM_04_EditLead.LM_04_04_VerifyThatTheUserCannotSuccessfullyEditCustomerInformationWhenInputInvalidDataForPhoneField"/>
+            <class name="example.LeadManagement_LM_04_EditLead.LM_04_05_VerifyThatTheUserCannotSuccessfullyEditCustomerInformationWhenInputInvalidDataForAddressField"/>
+            <class name="example.LeadManagement_LM_04_EditLead.LM_04_06_VerifyThatTheUserCannotSuccessfullyEditCustomerInformationWhenClickCancelButton"/>
+            <class name="example.LeadManagement_LM_04_EditLead.LM_04_07_VerifyBreadcrumbNavigationAtEditCustomerInformationScreen"/>
+        </classes>
+    </test>
+    <test name="User Profile Management">
+        <classes>
+            <class name="example.UserProfileManagement.UPM_01_01_VerifyUserOpenLoginModal"></class>
+            <class name="example.UserProfileManagement.UPM_01_02_VerifyLoginFailedWhenAllFieldsAreBlank"></class>
+            <class name="example.UserProfileManagement.UPM_01_03_VerifyLoginFailedWhenOneFieldIsBlank"></class>
+            <class name="example.UserProfileManagement.UPM_01_04_VerifyLoginFailedWhenInsertInvalidValue"></class>
+            <class name="example.UserProfileManagement.UPM_01_05_VerifyLoginFunctionSuccess"></class>
+            <class name="example.UserProfileManagement.UPM_02_01_VerifyOpenProfilePage"></class>
+            <class name="example.UserProfileManagement.UPM_02_02_VerifyUpdateProfileFailedWhenAllFIeldAreBlank"></class>
+            <class name="example.UserProfileManagement.UPM_02_03_VerifyUpdateProfileFailedWhenOneFieldIsBlank"></class>
+            <class name="example.UserProfileManagement.UPM_02_04_VerifyUpdateProfileFailedWhenTwoFieldsAreBlank"></class>
+            <class name="example.UserProfileManagement.UPM_02_05_VerifyUpdateProfileSuccess"></class>
+            <class name="example.UserProfileManagement.UPM_03_01_VerifyLogOutFunctionSuccess"></class>
+            <class name="example.UserProfileManagement.UPM_04_01_VerifyUserOpenRegisterModal"></class>
+            <class name="example.UserProfileManagement.UPM_04_02_VerifyRegisterFailedWhenAllFieldsAreBlank"></class>
+            <class name="example.UserProfileManagement.UPM_04_03_VerifyRegisterFailedWhenOneFieldIsBlank"></class>
+            <class name="example.UserProfileManagement.UPM_04_04_VerifyRegisterFailedWithInvalidEmail"></class>
+            <class name="example.UserProfileManagement.UPM_04_05_VerifyRegisterFailedWithEmailAlreadyExist"></class>
+            <class name="example.UserProfileManagement.UPM_04_06_VerifyRegisterFailedWhenPasswordDontMatch"></class>
+            <class name="example.UserProfileManagement.UPM_04_07_VerifyUserRegisterSuccess"></class>
+        </classes>
+    </test>
+    <test name="Product Management">
+        <classes>
+            <class name="example.ProductManagement.PM_01_01_VerifyOpenCreateProductModal"></class>
+            <class name="example.ProductManagement.PM_01_02_VerifyUserAddProductSuccess"></class>
+            <class name="example.ProductManagement.PM_01_03_VerifyUserFailedAddProductWhenAllFieldsAreBlank"></class>
+            <class name="example.ProductManagement.PM_01_04_VerifyUserFailedAddProductWhenOneFieldIsBlank"></class>
+            <class name="example.ProductManagement.PM_01_05_VerifyUserFailedAddProductWhenTwoFieldsAreBlank"></class>
+            <class name="example.ProductManagement.PM_01_06_VerifyUserFailedAddProductWhenInsertInvalidValue"></class>
+            <class name="example.ProductManagement.PM_03_01_VerifySearchProductByColumnProductName"></class>
+            <class name="example.ProductManagement.PM_03_04_VerifySearchFailedWhenInsertInvalidValue"></class>
+            <class name="example.ProductManagement.PM_04_01_VerifyOpenEditProductInfo"></class>
+            <class name="example.ProductManagement.PM_04_02_VerifyUserFailedEditProductInfoWhenAllFieldsAreBlank"></class>
+            <class name="example.ProductManagement.PM_04_03_VerifyUserFailedEditProductInfoWhenOneFieldIsBlank"></class>
+            <class name="example.ProductManagement.PM_04_04_VerifyUserFailedEditProductInfoWhenTwoFieldsAreBlank"></class>
+            <class name="example.ProductManagement.PM_04_05_VerifyUserFailedEditProductInfoWhenKeepOldValue"></class>
+            <class name="example.ProductManagement.PM_04_07_VerifyUserDenyToEditProductInfo"></class>
+        </classes>
     </test>
 </suite>

@@ -30,7 +30,7 @@ public class PM_03_01_VerifySearchProductByColumnProductName extends TestBase {
         sideBar.openShowAllProductsPage();
 
         showAllProducts.enterProductNameColumn("iPhone");
-        softAssert.assertEquals(showAllProducts.allProductsStartWiths("iPhone"), "iPhone X", "Error search function");
+        softAssert.assertTrue(showAllProducts.allProductsStartWiths("iPhone"), "Error search function");
 
         softAssert.assertAll();
     }
