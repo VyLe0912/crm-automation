@@ -66,6 +66,7 @@ public class LM_04_01_VerifyThatTheUserCanSuccessfullyEditCustomerInformationOnT
 
         Allure.step("Open [Customer Information] page");
         showAllCustomersPage.openCustomerInformationPage(randomCustomer);
+        customerInformationPage.waitForCustomerNameIsDisplayed();
 
         //so sanh thong tin customer o man hinh [Customer Information] va man hinh [Show All Customers]
         softAssert.assertEquals(customerInformationPage.getCustomer(), customerInFor);
